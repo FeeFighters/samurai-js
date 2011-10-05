@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>base.js.coffee</title>
+  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  
+  <div id="jump_to">
+    Jump To &hellip;
+    <div id="jump_wrapper">
+      <div id="jump_page">
+        
+          
+          <a class="source" href="../samurai.js.coffee.html">0.1/samurai.js.coffee</a>
+        
+          
+          <a class="source" href="base.js.coffee.html">0.1/samurai/base.js.coffee</a>
+        
+          
+          <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
+        
+          
+          <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
+        
+          
+          <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
+        
+          
+          <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
+        
+          
+          <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
+        
+          
+          <a class="source" href="../../samurai.js.coffee.html">samurai.js.coffee</a>
+        
+      </div>
+    </div>
+  </div>
+  
+  <table cellspacing=0 cellpadding=0>
+  <thead>
+    <tr>
+      <th class=docs><h1>base.js.coffee</h1></th>
+      <th class=code></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr id='section-Samurai_Base'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Samurai_Base">&#182;</a>
+        </div>
+        <h2>Samurai Base</h2>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre></pre></div>
+      </td>
+    </tr>
+    
+    <tr id='section-2'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-2">&#182;</a>
+        </div>
+        <p>helper so we can use modules to break functionality into separate files
+See:  https://github.com/jashkenas/coffee-script/wiki/Easy-modules-with-CoffeeScript</p>
+
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="vi">@module = </span><span class="nf">(names, fn) -&gt;</span>
+  <span class="nv">names = </span><span class="nx">names</span><span class="p">.</span><span class="nx">split</span> <span class="s1">&#39;.&#39;</span> <span class="k">if</span> <span class="k">typeof</span> <span class="nx">names</span> <span class="o">is</span> <span class="s1">&#39;string&#39;</span>
+  <span class="nv">space = </span><span class="err">@</span><span class="p">[</span><span class="nx">names</span><span class="p">.</span><span class="nx">shift</span><span class="p">()]</span> <span class="o">||=</span> <span class="p">{}</span>
+  <span class="nx">space</span><span class="p">.</span><span class="nx">module</span> <span class="o">||=</span> <span class="nx">@module</span>
+  <span class="k">if</span> <span class="nx">names</span><span class="p">.</span><span class="nx">length</span>
+    <span class="nx">space</span><span class="p">.</span><span class="nx">module</span> <span class="nx">names</span><span class="p">,</span> <span class="nx">fn</span>
+  <span class="k">else</span>
+    <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span> <span class="nx">space</span></pre></div>
+      </td>
+    </tr>
+    
+  </table>
+</div>
+</body>
