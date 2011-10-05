@@ -9,11 +9,11 @@
   end
   #root_url = Rails.env.development? ? 'http://192.168.1.119:3000' : 'https://samurai.feefighters.com'
 %>
+# Samurai Async Loader
+# -----------------
+
 # Include script.js here, so we can use it for async file loading
 `<%= File.open(File.dirname(__FILE__)+"/#{version}/script.min.js").read %>`
-
-# Bootstrap Samurai
-# -----------------
 
 # Setup the core Samurai object,
 # only what we need to load Samurai.js and its dependencies

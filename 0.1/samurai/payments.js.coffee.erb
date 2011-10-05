@@ -25,7 +25,7 @@ $ = jQuery
       }, { remote: { request: {} }}
 
     # This is the main payment api call
-    # It will generate a payment_method_token based on the supplied credit card data,
+    # It will generate a `payment_method_token` based on the supplied credit card data,
     # and pass it to the callback function
     payment = (data, callback) ->
       rpc.request {
@@ -41,7 +41,7 @@ $ = jQuery
         Samurai.log json
         callback(json)
 
-    # Add the extra data fields that we need to add, ie: redirect_url
+    # Add the extra data fields that we need to add, ie: `redirect_url`
     prepPaymentData = (data) ->
       data.redirect_url = 'http://location/'
       data.merchant_key = Samurai.config.merchant_key
@@ -49,23 +49,23 @@ $ = jQuery
       data.ignore_merchant_key = true if Samurai.config.mock?
       data
 
-    # Attach to any forms with data-samurai="ajax", and make them ajax-aware
+    # Attach to any forms with `data-samurai-ajax`, and make them ajax-aware
     attachPaymentFormHandlers = ->
       samurai = this
       $('form[data-samurai-ajax]').each ->
-        $(this).submit (event) ->
-          event.preventDefault();
-          $(this).trigger('samurai.loading').addClass('loading')
-          $(this).children('.loading').show()
-          $(this).children('button[type="submit"]').attr('disabled', true)
-          payment $(this).formParams(), (data) =>
-            $(this).trigger('samurai.payment', data)
+        $(this).submit (event) ->   # on submit,
+          event.preventDefault();   # stop event propagation
+          $(this).trigger('samurai.loading').addClass('loading')              # trigger the `samurai.loading` event
+          $(this).children('.loading').show()                                 # display the `.loading` spinner
+          $(this).children('button[type="submit"]').attr('disabled', true)    # change the button style
+          payment $(this).formParams(), (data) =>       # call `Samurai.payment()` to submit the credit card data
+            $(this).trigger('samurai.payment', data)    # callback function, trigger the `samurai.payment` event on the form
           false
-        $(this).bind 'samurai.completed', (event, data) ->
-          $(this).children('button[type="submit"]').hide()
-          $(this).removeClass('loading').addClass('complete')
-          $(this).children('.loading').hide()
-          $(this).children('.results').show()
+        $(this).bind 'samurai.completed', (event, data) ->    # bind to the `samurai.completed` event,
+          $(this).children('button[type="submit"]').hide()    # hide the button (only let them purchase once)
+          $(this).removeClass('loading').addClass('complete') # set the `.loading` class on the form
+          $(this).children('.loading').hide()   # hide the `.loading` spinner
+          $(this).children('.results').show()   # show the `.results` container
 
     # Export public API
     {init, payment}
