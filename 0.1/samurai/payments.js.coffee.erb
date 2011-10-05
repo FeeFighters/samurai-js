@@ -53,19 +53,33 @@ $ = jQuery
     attachPaymentFormHandlers = ->
       samurai = this
       $('form[data-samurai-ajax]').each ->
-        $(this).submit (event) ->   # on submit,
-          event.preventDefault();   # stop event propagation
-          $(this).trigger('samurai.loading').addClass('loading')              # trigger the `samurai.loading` event
-          $(this).children('.loading').show()                                 # display the `.loading` spinner
-          $(this).children('button[type="submit"]').attr('disabled', true)    # change the button style
-          payment $(this).formParams(), (data) =>       # call `Samurai.payment()` to submit the credit card data
-            $(this).trigger('samurai.payment', data)    # callback function, trigger the `samurai.payment` event on the form
+        # On submit:
+        #
+        # * stop event propagation
+        # * trigger the `samurai.loading` event
+        # * display the `.loading` spinner, and change the button style to inactive
+        # * call `Samurai.payment()` to submit the credit card data
+        #   * in the callback function, trigger the `samurai.payment` event on the form
+        $(this).submit (event) ->
+          event.preventDefault();
+          $(this).trigger('samurai.loading').addClass('loading')
+          $(this).children('.loading').show()
+          $(this).children('button[type="submit"]').attr('disabled', true)
+          payment $(this).formParams(), (data) =>
+            $(this).trigger('samurai.payment', data)
           false
-        $(this).bind 'samurai.completed', (event, data) ->    # bind to the `samurai.completed` event,
-          $(this).children('button[type="submit"]').hide()    # hide the button (only let them purchase once)
-          $(this).removeClass('loading').addClass('complete') # set the `.loading` class on the form
-          $(this).children('.loading').hide()   # hide the `.loading` spinner
-          $(this).children('.results').show()   # show the `.results` container
+
+        # Bind to the `samurai.completed` event:
+        #
+        # * hide the button (only let them purchase once)
+        # * set the `.loading` class on the form
+        # * hide the `.loading` spinner
+        # * show the `.results` container
+        $(this).bind 'samurai.completed', (event, data) ->
+          $(this).children('button[type="submit"]').hide()
+          $(this).removeClass('loading').addClass('complete')
+          $(this).children('.loading').hide()
+          $(this).children('.results').show()
 
     # Export public API
     {init, payment}
