@@ -79,5 +79,7 @@ window.Samurai =
   ready: (callback) ->
     @readyCallbacks.push callback
 
+  # *NOTE: This configuration is deprecated.*
+  # (The payments module is now loaded by default.  To disable it, set the `withoutPayments: true` configuration.)
   shouldForceLoad: (moduleName) ->
     jQuery.inArray(moduleName, @config.forceLoad) > -1
