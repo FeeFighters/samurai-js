@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>samurai.js.coffee</title>
+  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  
+  <div id="jump_to">
+    Jump To &hellip;
+    <div id="jump_wrapper">
+      <div id="jump_page">
+        
+          
+          <a class="source" href="samurai.js.coffee.html">0.1/samurai.js.coffee</a>
+        
+          
+          <a class="source" href="samurai/base.js.coffee.html">0.1/samurai/base.js.coffee</a>
+        
+          
+          <a class="source" href="samurai/card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
+        
+          
+          <a class="source" href="samurai/expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
+        
+          
+          <a class="source" href="samurai/payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
+        
+          
+          <a class="source" href="samurai/payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
+        
+          
+          <a class="source" href="samurai/utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
+        
+          
+          <a class="source" href="../samurai.js.coffee.html">samurai.js.coffee</a>
+        
+      </div>
+    </div>
+  </div>
+  
+  <table cellspacing=0 cellpadding=0>
+  <thead>
+    <tr>
+      <th class=docs><h1>samurai.js.coffee</h1></th>
+      <th class=code></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr id='section-Samurai.js_Library_Initialization'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-Samurai.js_Library_Initialization">&#182;</a>
+        </div>
+        <h2>Samurai.js Library Initialization</h2>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre></pre></div>
+      </td>
+    </tr>
+    
+    <tr id='section-2'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-2">&#182;</a>
+        </div>
+        <p>Require each of the modules, using Sprockets</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/base&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/utilities&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/card_preview&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/expiration_dates&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payments&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payment_forms&#39;</span></pre></div>
+      </td>
+    </tr>
+    
+    <tr id='section-3'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-3">&#182;</a>
+        </div>
+        <p>Initializes each of the Samurai modules</p>
+
+<p>This is called by the bootloader&rsquo;s .init() function,
+once the full Samurai.js library is loaded on the page</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><span class="vi">@Samurai.init = </span><span class="nf">(@config={})-&gt;</span>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;Bootstrapped. Initializing, with config:&#39;</span>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="nx">@config</span>
+  <span class="vi">@jQuery = </span><span class="nx">jQuery</span></pre></div>
+      </td>
+    </tr>
+    
+    <tr id='section-4'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-4">&#182;</a>
+        </div>
+        <p>Initialize Samurai modules!</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">PaymentForms</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">CardPreview</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">ExpirationDates</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">Payments</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span></pre></div>
+      </td>
+    </tr>
+    
+    <tr id='section-5'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-5">&#182;</a>
+        </div>
+        <p>Override the .ready() command, since we&rsquo;re ready, we want to immediate trigger the callback</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="vi">@ready = </span><span class="nf">(callback) -&gt;</span> <span class="nx">callback</span><span class="p">()</span></pre></div>
+      </td>
+    </tr>
+    
+    <tr id='section-6'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-6">&#182;</a>
+        </div>
+        <p>Trigger the ready() callbacks</p>
+
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>  <span class="k">for</span> <span class="nx">callback</span> <span class="k">in</span> <span class="nx">@readyCallbacks</span>
+    <span class="nx">callback</span><span class="p">()</span>
+  <span class="kc">true</span></pre></div>
+      </td>
+    </tr>
+    
+  </table>
+</div>
+</body>
