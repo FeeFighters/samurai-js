@@ -1,0 +1,69 @@
+<%
+  version ||= 0.1
+  root_url = if Rails.env.development?
+    'http://127.0.0.1:3000'
+  elsif Rails.env.staging?
+    'https://samurai-staging.feefighters.com'
+  else
+    'https://samurai.feefighters.com'
+  end
+  #root_url = Rails.env.development? ? 'http://192.168.1.119:3000' : 'https://samurai.feefighters.com'
+%>
+`<%= File.open(File.dirname(__FILE__)+"/#{version}/script.min.js").read %>`
+
+###
+Bootstrap Samurai
+###
+window.Samurai =
+  config: {}
+
+  init: (@config={}) ->
+    @config.forceLoad = [] unless @config.forceLoad?
+    Samurai.log 'Bootstrapping...'
+    @loadSamuraiCss()
+    @loadVendorJs @loadSamuraiJs
+
+  loadVendorJs: (onComplete) ->
+    vendor_scripts = []
+    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.6.2.min.js") %>' if not jQuery?
+    if Samurai.config.debugEasyXDM
+      vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.debug.js") %>'
+    else
+      vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.min.js") %>'
+    $script vendor_scripts, ->
+      $script '<%= root_url + asset_path("api/#{version}/jquery.formparams.min.js") %>'
+      onComplete()
+
+  loadSamuraiJs: ->
+    jQuery.noConflict()
+    $script '<%= root_url + asset_path("api/#{version}/samurai.js") %>', ->
+      # Call the new initializer
+      window.Samurai.init(window.Samurai.config)
+
+  loadSamuraiCss: ->
+    # Insert the CSS into the head
+    head = document.getElementsByTagName('head')[0]
+    link = document.createElement('link')
+    link.type = 'text/css'
+    link.media = 'screen'
+    link.rel = 'stylesheet'
+    link.href = '<%= root_url + asset_path("api/#{version}/samurai.css") %>'
+    head.appendChild(link)
+
+  log: (data) ->
+    return unless Samurai.config.debug
+    if typeof data == "string" 
+      console.log 'Samurai: '+data 
+    else 
+      if "debug" of console
+        console.debug data
+      else
+        console.info data
+
+  readyCallbacks: []
+
+  ready: (callback) ->
+    @readyCallbacks.push callback
+
+  shouldForceLoad: (moduleName) ->
+    jQuery.inArray(moduleName, @config.forceLoad) > -1

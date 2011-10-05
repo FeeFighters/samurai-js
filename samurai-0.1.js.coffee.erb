@@ -1,0 +1,7 @@
+<% version = __FILE__.match(/samurai-([\d.]+)\./)[1] %>
+<%=
+  filename = File.dirname(__FILE__)+"/samurai.js.coffee.erb"
+  erb = ERB.new(File.open(filename).read)
+  erb.filename = filename
+  erb.result(binding)
+%>

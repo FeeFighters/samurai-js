@@ -1,0 +1,72 @@
+# Module for performing ajax payment transactions
+$ = jQuery
+
+
+@module "Samurai", ->
+  @Payments = do ->
+    rpc = null
+    transparentRedirectUrl = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/v1/payment_methods'" :
+      %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods"} %>
+
+    init = ->
+      setupRpc() if $('form[data-samurai-ajax]').length or Samurai.shouldForceLoad('payments')
+      attachPaymentFormHandlers()
+
+      # Expose the payment method on the Samurai object, for convenience
+      Samurai.payment = payment
+
+    # Setup the easyXDM socket
+    setupRpc = ->
+      remote = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/provider.html'" :
+      %{if Samurai.config.mock then "/provider.html" else "https://api.samurai.feefighters.com/provider.html"} %>
+      rpc = new easyXDM.Rpc {
+        remote: remote
+      }, { remote: { request: {} }}
+
+    # This is the main payment api call
+    # It will generate a payment_method_token based on the supplied credit card data,
+    # and pass it to the callback function
+    payment = (data, callback) ->
+      rpc.request {
+        url: transparentRedirectUrl
+        method: "POST"
+        data: prepPaymentData data
+        dataType: 'json'
+        headers:
+          'Accept': 'application/json'
+      }, (response) ->
+        json = jQuery.parseJSON response.data
+        Samurai.log 'payment response'
+        Samurai.log json
+        callback(json)
+
+    # Add the extra data fields that we need to add, ie: redirect_url
+    prepPaymentData = (data) ->
+      data.redirect_url = 'http://location/'
+      data.merchant_key = Samurai.config.merchant_key
+      data.sandbox = Samurai.config.sandbox
+      data.ignore_merchant_key = true if Samurai.config.mock?
+      data
+
+    # Attach to any forms with data-samurai="ajax", and make them ajax-aware
+    attachPaymentFormHandlers = ->
+      samurai = this
+      $('form[data-samurai-ajax]').each ->
+        $(this).submit (event) ->
+          event.preventDefault();
+          $(this).trigger('samurai.loading').addClass('loading')
+          $(this).children('.loading').show()
+          $(this).children('button[type="submit"]').attr('disabled', true)
+          payment $(this).formParams(), (data) =>
+            $(this).trigger('samurai.payment', data)
+          false
+        $(this).bind 'samurai.completed', (event, data) ->
+          $(this).children('button[type="submit"]').hide()
+          $(this).removeClass('loading').addClass('complete')
+          $(this).children('.loading').hide()
+          $(this).children('.results').show()
+
+    # Export public API
+    {init, payment}
+
+

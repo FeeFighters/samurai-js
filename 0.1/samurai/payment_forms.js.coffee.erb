@@ -1,0 +1,61 @@
+#= depend_on 'api/0.1/samurai/payment_forms/default.html.erb'
+
+# Module for constructing samurai-compatible payment forms
+$ = jQuery
+
+@module "Samurai", ->
+  @PaymentForms = do ->
+
+    init = ->
+      buildPaymentForms()
+
+    buildPaymentForms = ->
+      $('*[data-samurai-payment-form]').each (index, container) ->
+        buildPaymentForm index, container
+      $('.samurai-placeholders').each (i, container) ->
+        setFormPlaceholders(container)
+      setFormPlaceholdersForOldBrowsers()
+
+    buildPaymentForm = (index, container) ->
+      Samurai.log 'Adding payment_form to:'
+      Samurai.log container
+      $(container).append paymentFormHtml(container)
+
+    paymentFormHtml = (container) ->
+      for style, html of forms
+        unless style == 'default'
+          if $(container).hasClass('samurai-'+style)
+            Samurai.log 'Rendering form style: '+style
+            return html
+      Samurai.log 'Rendering form style: default'
+      forms.default
+
+    forms =
+<%=
+  Dir[File.dirname(__FILE__)+"/payment_forms/*"].map do |filename|
+    style = File.basename(filename, '.html.erb')
+    [
+      "      '#{style}': '''",
+      ERB.new(File.open(filename).read).tap { |erb| erb.filename = filename }.result.gsub(/\n\s+/, "\n"),
+      "'''"
+    ].join("\n")
+  end.join("\n")
+%>
+
+    setFormPlaceholders = (container) ->
+      $(container).find('[name="credit_card[first_name]"]').attr 'placeholder', 'First Name'
+      $(container).find('[name="credit_card[last_name]"]').attr 'placeholder', 'Last Name'
+      $(container).find('[name="credit_card[address_1]"]').attr 'placeholder', 'Address'
+      $(container).find('[name="credit_card[address_2]"]').attr 'placeholder', 'Apartment or Suite'
+      $(container).find('[name="credit_card[city]"]').attr 'placeholder', 'City'
+      $(container).find('[name="credit_card[state]"]').attr 'placeholder', 'State'
+      $(container).find('[name="credit_card[zip]"]').attr 'placeholder', 'Zipcode'
+      $(container).find('[name="credit_card[card_number]"]').attr 'placeholder', 'Credit Card Number'
+      $(container).find('[name="credit_card[cvv]"]').attr 'placeholder', 'CVV'
+
+    setFormPlaceholdersForOldBrowsers = ->
+      unless 'placeholder' of document.createElement('input')
+        $(".samurai label").css('display', 'block')
+
+    # Export public API
+    {init}
