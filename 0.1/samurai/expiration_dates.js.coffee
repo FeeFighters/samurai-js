@@ -1,6 +1,10 @@
-# Module for observing the credit_card[number] field, and displaying the proper card images
+# Samurai Expiration Dates Module
+# ------------------------
+
 $ = jQuery
 
+# Module for adjusting expiration-date selectors to make them more user-friendly
+# _WIP!_
 @module "Samurai", ->
   @ExpirationDates = do ->
     yearSelect = null

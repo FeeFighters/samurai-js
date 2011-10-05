@@ -1,14 +1,17 @@
 #= depend_on 'api/0.1/samurai/payment_forms/default.html.erb'
 
-# Module for constructing samurai-compatible payment forms
+# Samurai Payment Forms Module
+# ------------------------
 $ = jQuery
 
+# Module for constructing samurai-compatible payment forms
 @module "Samurai", ->
   @PaymentForms = do ->
 
     init = ->
       buildPaymentForms()
 
+    # Build the payment forms, if we find any container elements on the page
     buildPaymentForms = ->
       $('*[data-samurai-payment-form]').each (index, container) ->
         buildPaymentForm index, container
@@ -16,11 +19,14 @@ $ = jQuery
         setFormPlaceholders(container)
       setFormPlaceholdersForOldBrowsers()
 
+    # Contruct a payment form and append it to the container
     buildPaymentForm = (index, container) ->
       Samurai.log 'Adding payment_form to:'
       Samurai.log container
       $(container).append paymentFormHtml(container)
 
+    # Load the payment form html of the appropriate "style"
+    # (We detect form styles using `samurai-...` class names)
     paymentFormHtml = (container) ->
       for style, html of forms
         unless style == 'default'
@@ -30,6 +36,7 @@ $ = jQuery
       Samurai.log 'Rendering form style: default'
       forms.default
 
+    # Hash of form styles HTML (inlined)
     forms =
 <%=
   Dir[File.dirname(__FILE__)+"/payment_forms/*"].map do |filename|
@@ -42,6 +49,7 @@ $ = jQuery
   end.join("\n")
 %>
 
+    # Setup placeholders on form fields in this `container`
     setFormPlaceholders = (container) ->
       $(container).find('[name="credit_card[first_name]"]').attr 'placeholder', 'First Name'
       $(container).find('[name="credit_card[last_name]"]').attr 'placeholder', 'Last Name'
@@ -53,6 +61,7 @@ $ = jQuery
       $(container).find('[name="credit_card[card_number]"]').attr 'placeholder', 'Credit Card Number'
       $(container).find('[name="credit_card[cvv]"]').attr 'placeholder', 'CVV'
 
+    # Support placeholders on old browsers
     setFormPlaceholdersForOldBrowsers = ->
       unless 'placeholder' of document.createElement('input')
         $(".samurai label").css('display', 'block')

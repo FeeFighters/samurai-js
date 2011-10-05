@@ -9,39 +9,48 @@
   end
   #root_url = Rails.env.development? ? 'http://192.168.1.119:3000' : 'https://samurai.feefighters.com'
 %>
+# Include script.js here, so we can use it for async file loading
 `<%= File.open(File.dirname(__FILE__)+"/#{version}/script.min.js").read %>`
 
-###
-Bootstrap Samurai
-###
+# Bootstrap Samurai
+# -----------------
+
+# Setup the core Samurai object,
+# only what we need to load Samurai.js and its dependencies
 window.Samurai =
   config: {}
 
+  # Bootstrap initializer for Samurai
+  # Calling this function sets `@config` and begins the loading process
   init: (@config={}) ->
     @config.forceLoad = [] unless @config.forceLoad?
     Samurai.log 'Bootstrapping...'
     @loadSamuraiCss()
     @loadVendorJs @loadSamuraiJs
 
+  # Load our vendor javascript
   loadVendorJs: (onComplete) ->
     vendor_scripts = []
-    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.6.2.min.js") %>' if not jQuery?
-    if Samurai.config.debugEasyXDM
+    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.6.2.min.js") %>' if not jQuery?  # include jQuery if it doesn't already exist
+    if Samurai.config.debugEasyXDM  # Load easyXDM for cross-domain messaging (debug or minimized version)
       vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.debug.js") %>'
     else
       vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.min.js") %>'
-    $script vendor_scripts, ->
-      $script '<%= root_url + asset_path("api/#{version}/jquery.formparams.min.js") %>'
+    $script vendor_scripts, ->  # Here we do the actual async laod, with a callback for onComplete
+      $script '<%= root_url + asset_path("api/#{version}/jquery.formparams.min.js") %>'  # jQuery is available, so load the jQuery plugins
       onComplete()
 
+  # Load the main Samurai javascript
+  # This is called as the onComplete callback to loadVendorJs()
   loadSamuraiJs: ->
-    jQuery.noConflict()
+    jQuery.noConflict()   # try not to interfere with existing jQuery/Prototype/etc
     $script '<%= root_url + asset_path("api/#{version}/samurai.js") %>', ->
-      # Call the new initializer
+      # Samurai is loaded, so call the new initializer
       window.Samurai.init(window.Samurai.config)
 
+  # Load the Samurai CSS
   loadSamuraiCss: ->
-    # Insert the CSS into the head
+    # Build a link tag and insert it into the head
     head = document.getElementsByTagName('head')[0]
     link = document.createElement('link')
     link.type = 'text/css'
@@ -50,6 +59,8 @@ window.Samurai =
     link.href = '<%= root_url + asset_path("api/#{version}/samurai.css") %>'
     head.appendChild(link)
 
+  # Simple logging utility method, only outputs if `Samurai.config.debug`
+  # Accepts either a String or an Object, dumps to console
   log: (data) ->
     return unless Samurai.config.debug
     if typeof data == "string" 
@@ -60,8 +71,11 @@ window.Samurai =
       else
         console.info data
 
+  # array of callback functions to be executed when Samurai is loaded
   readyCallbacks: []
 
+  # consumers of Samurai.js can use `Samurai.ready()` to delay code that relies on Samurai being fully initialized
+  # eg:  `Samurai.ready(function() { alert(Samurai.Utilities.cardBrandFromNumber('4111')) });
   ready: (callback) ->
     @readyCallbacks.push callback
 

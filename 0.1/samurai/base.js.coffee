@@ -1,3 +1,6 @@
+# Samurai Base
+# ------------------------
+
 # helper so we can use modules to break functionality into separate files
 # See:  https://github.com/jashkenas/coffee-script/wiki/Easy-modules-with-CoffeeScript
 @module = (names, fn) ->

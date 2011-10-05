@@ -1,16 +1,17 @@
-# Module for performing ajax payment transactions
+# Samurai Payment Forms Module
+# ------------------------
 $ = jQuery
 
-
+# Module for performing ajax payment transactions
 @module "Samurai", ->
   @Payments = do ->
-    rpc = null
+    rpc = null  # our easyXDM socket
     transparentRedirectUrl = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/v1/payment_methods'" :
-      %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods"} %>
+      %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods"} %> # API endpoint
 
     init = ->
-      setupRpc() if $('form[data-samurai-ajax]').length or Samurai.shouldForceLoad('payments')
-      attachPaymentFormHandlers()
+      setupRpc() if $('form[data-samurai-ajax]').length or Samurai.shouldForceLoad('payments')  # initialize the easyXDM framework
+      attachPaymentFormHandlers()  # attach event handlers to any payment forms
 
       # Expose the payment method on the Samurai object, for convenience
       Samurai.payment = payment

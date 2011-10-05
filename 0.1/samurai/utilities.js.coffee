@@ -1,15 +1,22 @@
 # General utilities module
 $ = jQuery
 
+# Samurai Utilities Module
+# ------------------------
+
+# General helper functions
 @module "Samurai", ->
   @Utilities = do ->
 
+    # Detects the brand of credit card based on the prefix of the number
     cardBrandFromNumber = (number) ->
       number = number.toString()
       for own {name, regex} in companies
         if number.match(regex)
           return name
 
+    # List of credit card numbers prefixes
+    # _Note: these are matched in-order_
     companies = [
       { name: 'visa',          regex: /^4/ },
       { name: 'mastercard',    regex: /^(51|52|53|54|55)/ },
