@@ -14,7 +14,7 @@ $ = jQuery
 
     # Build the payment forms, if we find any container elements on the page
     buildPaymentForms = ->
-      $('*[data-samurai-payment-form]').each (index, container) ->
+      $('*[data-samurai-payment-form=""]').each (index, container) ->
         buildPaymentForm index, container
       $('.samurai-placeholders').each (i, container) ->
         setFormPlaceholders(container)

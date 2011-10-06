@@ -30,13 +30,13 @@ $ = jQuery
     payment = (data, callback) ->
       rpc.request {
         url: transparentRedirectUrl
-        method: "POST"
+        method: 'POST'
         data: prepPaymentData data
         dataType: 'json'
         headers:
           'Accept': 'application/json'
       }, (response) ->
-        json = jQuery.parseJSON response.data
+        json = $.parseJSON response.data
         Samurai.log 'payment response'
         Samurai.log json
         callback(json)
@@ -52,7 +52,7 @@ $ = jQuery
     # Attach to any forms with `data-samurai-ajax`, and make them ajax-aware
     attachPaymentFormHandlers = ->
       samurai = this
-      $('form[data-samurai-ajax]').each ->
+      $('form[data-samurai-ajax=""]').each ->
         # On submit:
         #
         # * stop event propagation
@@ -61,7 +61,7 @@ $ = jQuery
         # * call `Samurai.payment()` to submit the credit card data
         #   * in the callback function, trigger the `samurai.payment` event on the form
         $(this).submit (event) ->
-          event.preventDefault();
+          event.preventDefault()
           $(this).trigger('samurai.loading').addClass('loading')
           $(this).children('.loading').show()
           $(this).children('button[type="submit"]').attr('disabled', true)
