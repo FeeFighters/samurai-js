@@ -62,15 +62,16 @@ window.Samurai =
 
   # Simple logging utility method, only outputs if `Samurai.config.debug`
   # Accepts either a String or an Object, dumps to console
-  log: (data) ->
+  log: (data...) ->
     return unless Samurai.config.debug
-    if typeof data == "string" 
-      console.log 'Samurai: '+data 
+    if typeof data[0] == "string" 
+      data[0] = 'Samurai: '+data[0]
+      console.log data... 
     else 
       if "debug" of console
-        console.debug data
+        console.debug data...
       else
-        console.info data
+        console.info data...
 
   # array of callback functions to be executed when Samurai is loaded
   readyCallbacks: []
