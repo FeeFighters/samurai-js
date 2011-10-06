@@ -24,6 +24,7 @@ window.Samurai =
   # Calling this function sets `@config` and begins the loading process
   init: (@config={}) ->
     @config.forceLoad = [] unless @config.forceLoad?
+    @_$ = window.$ # map the old $ to make sure the jQuery we'll load in a second doesn't overwrite it
     Samurai.log 'Bootstrapping...'
     @loadSamuraiCss()
     @loadVendorJs @loadSamuraiJs
@@ -43,7 +44,7 @@ window.Samurai =
   # Load the main Samurai javascript
   # This is called as the onComplete callback to loadVendorJs()
   loadSamuraiJs: ->
-    jQuery.noConflict()   # try not to interfere with existing jQuery/Prototype/etc
+    jQuery.noConflict() unless Samurai._$ is jQuery # try not to interfere with existing jQuery/Prototype/etc
     $script '<%= root_url + asset_path("api/#{version}/samurai.js") %>', ->
       # Samurai is loaded, so call the new initializer
       window.Samurai.init(window.Samurai.config)
