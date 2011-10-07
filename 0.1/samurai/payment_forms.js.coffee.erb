@@ -24,6 +24,8 @@ $ = jQuery
     buildPaymentForm = (index, container) ->
       log 'Adding payment_form to:', container
       $(container).append paymentFormHtml(container)
+      if Samurai.PaymentErrorHandler
+        new Samurai.PaymentErrorHandler($(container).find('form').first())
 
     # Load the payment form html of the appropriate "style"
     # (We detect form styles using `samurai-...` class names)

@@ -7,6 +7,7 @@
 #= require 'api/0.1/samurai/card_preview'
 #= require 'api/0.1/samurai/expiration_dates'
 #= require 'api/0.1/samurai/payments'
+#= require 'api/0.1/samurai/payment_error_handler'
 #= require 'api/0.1/samurai/payment_forms'
 
 # Initializes each of the Samurai modules
