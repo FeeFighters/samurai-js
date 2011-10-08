@@ -69,6 +69,20 @@ $ = jQuery
             $(this).trigger('samurai.payment', data)
           false
 
+        # Bind to the `samurai.payment` event and do the following if the payment
+        # information was invalid:
+        #
+        # * hide the `.loading` spinner
+        # * enable the submit button
+        # * change the label of the submit button to "Resubmit Payment"
+        $(this).bind 'samurai.payment', (event, data) ->
+          unless data.payment_method?.is_sensitive_data_valid
+            $(this)
+              .removeClass('loading')
+              .children('.loading').hide().end()
+              .children('button[type="submit"]')
+                .attr('disabled', false).text('Resubmit Payment')
+          
         # Bind to the `samurai.completed` event:
         #
         # * hide the button (only let them purchase once)

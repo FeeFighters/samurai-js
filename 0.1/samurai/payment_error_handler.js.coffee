@@ -15,6 +15,8 @@ $ = jQuery
       summary_header: 'We found some errors in the information you were trying to submit:'
       not_numeric: 'must be a number.'
       too_short: 'is too short.'
+      too_long: 'is too long.'
+      failed_checksum: 'is not valid.'
     }
 
     # Keeps a list of all instantiated error handlers.
