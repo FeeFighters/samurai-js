@@ -27,6 +27,9 @@
           <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
         
           
+          <a class="source" href="payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
+        
+          
           <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
         
           
@@ -123,13 +126,13 @@ and pass it to the callback function</p>
         <div class='highlight'><pre>    <span class="nv">payment = </span><span class="nf">(data, callback) -&gt;</span>
       <span class="nx">rpc</span><span class="p">.</span><span class="nx">request</span> <span class="p">{</span>
         <span class="nv">url: </span><span class="nx">transparentRedirectUrl</span>
-        <span class="nv">method: </span><span class="s2">&quot;POST&quot;</span>
+        <span class="nv">method: </span><span class="s1">&#39;POST&#39;</span>
         <span class="nv">data: </span><span class="nx">prepPaymentData</span> <span class="nx">data</span>
         <span class="nv">dataType: </span><span class="s1">&#39;json&#39;</span>
         <span class="nv">headers:</span>
           <span class="s1">&#39;Accept&#39;</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span>
       <span class="p">},</span> <span class="nf">(response) -&gt;</span>
-        <span class="nv">json = </span><span class="nx">jQuery</span><span class="p">.</span><span class="nx">parseJSON</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span>
+        <span class="nv">json = </span><span class="nx">$</span><span class="p">.</span><span class="nx">parseJSON</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span>
         <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;payment response&#39;</span>
         <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="nx">json</span>
         <span class="nx">callback</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span></pre></div>
@@ -163,7 +166,7 @@ and pass it to the callback function</p>
       <td class=code>
         <div class='highlight'><pre>    <span class="nv">attachPaymentFormHandlers = </span><span class="o">-&gt;</span>
       <span class="nv">samurai = </span><span class="k">this</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form[data-samurai-ajax]&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="o">-&gt;</span></pre></div>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form[data-samurai-ajax=&quot;&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="o">-&gt;</span></pre></div>
       </td>
     </tr>
     
@@ -187,7 +190,7 @@ and pass it to the callback function</p>
       </td>
       <td class=code>
         <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">submit</span> <span class="nf">(event) -&gt;</span>
-          <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+          <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;samurai.loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">()</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
@@ -201,6 +204,32 @@ and pass it to the callback function</p>
       <td class=docs>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-9">&#182;</a>
+        </div>
+        <p>Bind to the <code>samurai.payment</code> event and do the following if the payment
+information was invalid:</p>
+
+<ul>
+<li>hide the <code>.loading</code> spinner</li>
+<li>enable the submit button</li>
+<li>change the label of the submit button to &quot;Resubmit Payment&quot;</li>
+</ul>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;samurai.payment&#39;</span><span class="p">,</span> <span class="nf">(event, data) -&gt;</span>
+          <span class="nx">unless</span> <span class="nx">data</span><span class="p">.</span><span class="nx">payment_method</span><span class="o">?</span><span class="p">.</span><span class="nx">is_sensitive_data_valid</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">end</span><span class="p">()</span>
+              <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Resubmit Payment&#39;</span><span class="p">)</span>
+          </pre></div>
+      </td>
+    </tr>
+    
+    <tr id='section-10'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-10">&#182;</a>
         </div>
         <p>Bind to the <code>samurai.completed</code> event:</p>
 
@@ -220,10 +249,10 @@ and pass it to the callback function</p>
       </td>
     </tr>
     
-    <tr id='section-10'>
+    <tr id='section-11'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-10">&#182;</a>
+          <a class="pilcrow" href="#section-11">&#182;</a>
         </div>
         <p>Export public API</p>
 
@@ -236,3 +265,4 @@ and pass it to the callback function</p>
   </table>
 </div>
 </body>
+</html>

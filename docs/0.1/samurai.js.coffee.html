@@ -27,6 +27,9 @@
           <a class="source" href="samurai/expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
         
           
+          <a class="source" href="samurai/payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
+        
+          
           <a class="source" href="samurai/payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
         
           
@@ -76,6 +79,7 @@
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/card_preview&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/expiration_dates&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payments&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payment_error_handler&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payment_forms&#39;</span></pre></div>
       </td>
     </tr>
@@ -87,7 +91,7 @@
         </div>
         <p>Initializes each of the Samurai modules</p>
 
-<p>This is called by the bootloader&rsquo;s .init() function,
+<p>This is called by the bootloader&#39;s .init() function,
 once the full Samurai.js library is loaded on the page</p>
       </td>
       <td class=code>
@@ -118,7 +122,7 @@ once the full Samurai.js library is loaded on the page</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-5">&#182;</a>
         </div>
-        <p>Override the .ready() command, since we&rsquo;re ready, we want to immediate trigger the callback</p>
+        <p>Override the .ready() command, since we&#39;re ready, we want to immediate trigger the callback</p>
       </td>
       <td class=code>
         <div class='highlight'><pre>  <span class="vi">@ready = </span><span class="nf">(callback) -&gt;</span> <span class="nx">callback</span><span class="p">()</span></pre></div>
@@ -143,3 +147,4 @@ once the full Samurai.js library is loaded on the page</p>
   </table>
 </div>
 </body>
+</html>
