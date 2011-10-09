@@ -7,13 +7,14 @@ $ = jQuery
 # Module for constructing samurai-compatible payment forms
 @module "Samurai", ->
   @PaymentForms = do ->
+    log = Samurai.log
 
     init = ->
       buildPaymentForms()
 
     # Build the payment forms, if we find any container elements on the page
     buildPaymentForms = ->
-      $('*[data-samurai-payment-form]').each (index, container) ->
+      $('*[data-samurai-payment-form=""]').each (index, container) ->
         buildPaymentForm index, container
       $('.samurai-placeholders').each (i, container) ->
         setFormPlaceholders(container)
@@ -21,9 +22,10 @@ $ = jQuery
 
     # Contruct a payment form and append it to the container
     buildPaymentForm = (index, container) ->
-      Samurai.log 'Adding payment_form to:'
-      Samurai.log container
+      log 'Adding payment_form to:', container
       $(container).append paymentFormHtml(container)
+      if Samurai.PaymentErrorHandler
+        new Samurai.PaymentErrorHandler($(container).find('form').first())
 
     # Load the payment form html of the appropriate "style"
     # (We detect form styles using `samurai-...` class names)
@@ -31,9 +33,9 @@ $ = jQuery
       for style, html of forms
         unless style == 'default'
           if $(container).hasClass('samurai-'+style)
-            Samurai.log 'Rendering form style: '+style
+            log 'Rendering form style: '+style
             return html
-      Samurai.log 'Rendering form style: default'
+      log 'Rendering form style: default'
       forms.default
 
     # Hash of form styles HTML (inlined)
@@ -51,15 +53,16 @@ $ = jQuery
 
     # Setup placeholders on form fields in this `container`
     setFormPlaceholders = (container) ->
-      $(container).find('[name="credit_card[first_name]"]').attr 'placeholder', 'First Name'
-      $(container).find('[name="credit_card[last_name]"]').attr 'placeholder', 'Last Name'
-      $(container).find('[name="credit_card[address_1]"]').attr 'placeholder', 'Address'
-      $(container).find('[name="credit_card[address_2]"]').attr 'placeholder', 'Apartment or Suite'
-      $(container).find('[name="credit_card[city]"]').attr 'placeholder', 'City'
-      $(container).find('[name="credit_card[state]"]').attr 'placeholder', 'State'
-      $(container).find('[name="credit_card[zip]"]').attr 'placeholder', 'Zipcode'
-      $(container).find('[name="credit_card[card_number]"]').attr 'placeholder', 'Credit Card Number'
-      $(container).find('[name="credit_card[cvv]"]').attr 'placeholder', 'CVV'
+      $container = $(container)
+      $container.find('[name="credit_card[first_name]"]').attr 'placeholder', 'First Name'
+      $container.find('[name="credit_card[last_name]"]').attr 'placeholder', 'Last Name'
+      $container.find('[name="credit_card[address_1]"]').attr 'placeholder', 'Address'
+      $container.find('[name="credit_card[address_2]"]').attr 'placeholder', 'Apartment or Suite'
+      $container.find('[name="credit_card[city]"]').attr 'placeholder', 'City'
+      $container.find('[name="credit_card[state]"]').attr 'placeholder', 'State'
+      $container.find('[name="credit_card[zip]"]').attr 'placeholder', 'Zipcode'
+      $container.find('[name="credit_card[card_number]"]').attr 'placeholder', 'Credit Card Number'
+      $container.find('[name="credit_card[cvv]"]').attr 'placeholder', 'CVV'
 
     # Support placeholders on old browsers
     setFormPlaceholdersForOldBrowsers = ->

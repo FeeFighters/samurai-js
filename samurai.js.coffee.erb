@@ -1,13 +1,13 @@
 <%
   version ||= 0.1
   root_url = if Rails.env.development?
-    'http://127.0.0.1:3000'
+    #'http://127.0.0.1:3000'
+    'http://192.168.1.105:3000'
   elsif Rails.env.staging?
     'https://samurai-staging.feefighters.com'
   else
     'https://samurai.feefighters.com'
   end
-  #root_url = Rails.env.development? ? 'http://192.168.1.119:3000' : 'https://samurai.feefighters.com'
 %>
 # Samurai Async Loader
 # -----------------
@@ -62,15 +62,28 @@ window.Samurai =
 
   # Simple logging utility method, only outputs if `Samurai.config.debug`
   # Accepts either a String or an Object, dumps to console
-  log: (data) ->
+  log: (data...) ->
     return unless Samurai.config.debug
-    if typeof data == "string" 
-      console.log 'Samurai: '+data 
+    return unless console?
+
+    # IE has a buggy console object, where every method is an 'object', instead of a 'function',
+    # so coffeescript splats fail miserably when .apply is called on the console.log method
+    # in the compiled code.
+    buggyConsole = !!(typeof console.log is 'object')
+    log = (level, d...) ->
+      if buggyConsole 
+        console[level](d)
+      else
+        console[level](d...)
+
+    if typeof data[0] is "string" 
+      data[0] = 'Samurai: '+data[0]
+      log 'log', data...
     else 
       if "debug" of console
-        console.debug data
+        log 'debug', data...
       else
-        console.info data
+        log 'info', data...
 
   # array of callback functions to be executed when Samurai is loaded
   readyCallbacks: []
