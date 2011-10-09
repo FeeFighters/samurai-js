@@ -42,7 +42,7 @@ window.Samurai =
       onComplete()
 
   # Load the main Samurai javascript
-  # This is called as the onComplete callback to loadVendorJs()
+  # This is called as the onComplete callback to `loadVendorJs()`
   loadSamuraiJs: ->
     jQuery.noConflict() unless Samurai._$ is jQuery # try not to interfere with existing jQuery/Prototype/etc
     $script '<%= root_url + asset_path("api/#{version}/samurai.js") %>', ->
@@ -76,7 +76,13 @@ window.Samurai =
   readyCallbacks: []
 
   # consumers of Samurai.js can use `Samurai.ready()` to delay code that relies on Samurai being fully initialized
-  # eg:  `Samurai.ready(function() { alert(Samurai.Utilities.cardBrandFromNumber('4111')) });
+  # eg:
+  #
+  # ```javascript
+  # Samurai.ready(function() {
+  #   alert(Samurai.Utilities.cardBrandFromNumber('4111'));
+  # });
+  # ```
   ready: (callback) ->
     @readyCallbacks.push callback
 

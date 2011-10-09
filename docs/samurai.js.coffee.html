@@ -119,6 +119,7 @@ Calling this function sets <code>@config</code> and begins the loading process</
       <td class=code>
         <div class='highlight'><pre>  <span class="nv">init: </span><span class="nf">(@config={}) -&gt;</span>
     <span class="vi">@config.forceLoad = </span><span class="p">[]</span> <span class="nx">unless</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">forceLoad</span><span class="o">?</span>
+    <span class="nx">@_</span><span class="nv">$ = </span><span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="c1"># map the old $ to make sure the jQuery we&#39;ll load in a second doesn&#39;t overwrite it</span>
     <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;Bootstrapping...&#39;</span>
     <span class="nx">@loadSamuraiCss</span><span class="p">()</span>
     <span class="nx">@loadVendorJs</span> <span class="nx">@loadSamuraiJs</span></pre></div>
@@ -152,11 +153,11 @@ Calling this function sets <code>@config</code> and begins the loading process</
           <a class="pilcrow" href="#section-7">&#182;</a>
         </div>
         <p>Load the main Samurai javascript
-This is called as the onComplete callback to loadVendorJs()</p>
+This is called as the onComplete callback to <code>loadVendorJs()</code></p>
       </td>
       <td class=code>
         <div class='highlight'><pre>  <span class="nv">loadSamuraiJs: </span><span class="o">-&gt;</span>
-    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">()</span>   <span class="c1"># try not to interfere with existing jQuery/Prototype/etc</span>
+    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">()</span> <span class="nx">unless</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">_$</span> <span class="o">is</span> <span class="nx">jQuery</span> <span class="c1"># try not to interfere with existing jQuery/Prototype/etc</span>
     <span class="nx">$script</span> <span class="s1">&#39;http://127.0.0.1:3000/assets/api/0.1/samurai.js&#39;</span><span class="p">,</span> <span class="o">-&gt;</span></pre></div>
       </td>
     </tr>
@@ -242,7 +243,12 @@ Accepts either a String or an Object, dumps to console</p>
           <a class="pilcrow" href="#section-13">&#182;</a>
         </div>
         <p>consumers of Samurai.js can use <code>Samurai.ready()</code> to delay code that relies on Samurai being fully initialized
-eg:  Samurai.ready(function() { alert(Samurai.Utilities.cardBrandFromNumber(&lsquo;4111&rsquo;)) });</p>
+eg:</p>
+
+<pre><code class="javascript">Samurai.ready(function() {
+  alert(Samurai.Utilities.cardBrandFromNumber(&#39;4111&#39;));
+});
+</code></pre>
       </td>
       <td class=code>
         <div class='highlight'><pre>  <span class="nv">ready: </span><span class="nf">(callback) -&gt;</span>
@@ -268,3 +274,4 @@ eg:  Samurai.ready(function() { alert(Samurai.Utilities.cardBrandFromNumber(&lsq
   </table>
 </div>
 </body>
+</html>
