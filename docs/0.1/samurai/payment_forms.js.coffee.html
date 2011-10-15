@@ -2,142 +2,187 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
-  <title>payment_forms.js.coffee</title>
-  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
-</head>
-<body>
-<div id='container'>
-  <div id="background"></div>
+  <title>payment_forms.js.coffee.erb</title>
+
+  <link href="/assets/docs.css" media="screen" rel="stylesheet" type="text/css" />
+
+
   
-  <div id="jump_to">
-    Jump To &hellip;
-    <div id="jump_wrapper">
-      <div id="jump_page">
-        
+    <script type="text/javascript" src="https://use.typekit.com/yxg1bfk.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  
+</head>
+<body class='code-documentation'>
+  <header>
+    <h1 class="logo">
+            <a href="/" class="samurai"><span class="ir mark"></span><span class="ir home"></span><span class="ir type">Samurai</span></a>
+            <span class="by">by</span>
+            <a href="http://feefighters.com" class="ir feefighters">FeeFighters</a>
+     </h1>
+
+    <nav class='subnav'>
+      <ul>
+         <li><a href="/">Home</a></li>
+         <li><a href="/about">About</a></li>
+         <li><a href="/pricing">Pricing</a></li>
+         <li><a href="/features">Features</a></li>
+         <li><a href="http://samurai-support.feefighters.com/">Support</a></li>
+      </ul>
+    </nav>
+
+    <nav class="developers">
+      <ul>
+        <li><a href="/developers"><span class="icon">Developers</span></a></li>
+      </ul>
+    </nav>
+
+    <div></div>
+  </header>
+
+  
+    <div id="section_jump">
+      Jump To
+      <div id="section_jump_wrapper">
+        <div id="section_page">
+          <a href="/developers/samurai-js/docs/" class="source">Table of Contents</a>
           
-          <a class="source" href="../samurai.js.coffee.html">0.1/samurai.js.coffee</a>
-        
+            
+            <a class="source" href="../samurai.js.coffee.html">0.1/samurai.js.coffee</a>
           
-          <a class="source" href="base.js.coffee.html">0.1/samurai/base.js.coffee</a>
-        
+            
+            <a class="source" href="base.js.coffee.html">0.1/samurai/base.js.coffee</a>
           
-          <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
-        
+            
+            <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
           
-          <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
-        
+            
+            <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
           
-          <a class="source" href="payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
-        
+            
+            <a class="source" href="payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
           
-          <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
-        
+            
+            <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
           
-          <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
-        
+            
+            <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
           
-          <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
-        
+            
+            <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
           
-          <a class="source" href="../../samurai.js.coffee.html">samurai.js.coffee</a>
-        
+            
+            <a class="source" href="../../samurai.js.coffee.html">samurai.js.coffee</a>
+          
+        </div>
       </div>
     </div>
-  </div>
   
-  <table cellspacing=0 cellpadding=0>
-  <thead>
-    <tr>
-      <th class=docs><h1>payment_forms.js.coffee</h1></th>
-      <th class=code></th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr id='section-1'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-1">&#182;</a>
-        </div>
-        <p>= depend_on &#39;api&#47;0.1&#47;samurai&#47;payment_forms&#47;default.html.erb&#39;</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-Samurai_Payment_Forms_Module'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-Samurai_Payment_Forms_Module">&#182;</a>
-        </div>
-        <h2>Samurai Payment Forms Module</h2>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-3'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-3">&#182;</a>
-        </div>
-        <p>Module for constructing samurai-compatible payment forms</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+  <nav class="breadcrumb">
+    <div class="wrapper">
+      <a href="/developers">Developer Resources</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js">Samurai.js</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js/docs">Code Documentation</a> <span class="arrow">&gt;</span>
+      <span class="current">payment_forms.js.coffee.erb</span>
+    </div>
+  </nav>
+
+  <div id='container'>
+    <div id="background"></div>
+
+    <table cellspacing=0 cellpadding=0>
+    <thead>
+      <tr>
+        <th class=docs><h1>payment_forms.js.coffee.erb</h1></th>
+        <th class=code></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr id='section-1'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          <p>= depend_on &#39;api&#47;0.1&#47;samurai&#47;payment_forms&#47;default.html.erb&#39;</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-Samurai_Payment_Forms_Module'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-Samurai_Payment_Forms_Module">&#182;</a>
+          </div>
+          <h2>Samurai Payment Forms Module</h2>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-3'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>Module for constructing samurai-compatible payment forms</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
   <span class="vi">@PaymentForms = </span><span class="nx">do</span> <span class="o">-&gt;</span>
     <span class="nv">log = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span>
 
     <span class="nv">init = </span><span class="o">-&gt;</span>
       <span class="nx">buildPaymentForms</span><span class="p">()</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-4'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-4">&#182;</a>
-        </div>
-        <p>Build the payment forms, if we find any container elements on the page</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">buildPaymentForms = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-4'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>Build the payment forms, if we find any container elements on the page</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">buildPaymentForms = </span><span class="o">-&gt;</span>
       <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;*[data-samurai-payment-form=&quot;&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="nf">(index, container) -&gt;</span>
         <span class="nx">buildPaymentForm</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">container</span>
       <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.samurai-placeholders&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="nf">(i, container) -&gt;</span>
         <span class="nx">setFormPlaceholders</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
       <span class="nx">setFormPlaceholdersForOldBrowsers</span><span class="p">()</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-5'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-5">&#182;</a>
-        </div>
-        <p>Contruct a payment form and append it to the container</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">buildPaymentForm = </span><span class="nf">(index, container) -&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-5'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>Contruct a payment form and append it to the container</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">buildPaymentForm = </span><span class="nf">(index, container) -&gt;</span>
       <span class="nx">log</span> <span class="s1">&#39;Adding payment_form to:&#39;</span><span class="p">,</span> <span class="nx">container</span>
       <span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">).</span><span class="nx">append</span> <span class="nx">paymentFormHtml</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
       <span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">PaymentErrorHandler</span>
         <span class="k">new</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">PaymentErrorHandler</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">first</span><span class="p">())</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-6'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-6">&#182;</a>
-        </div>
-        <p>Load the payment form html of the appropriate &quot;style&quot;
+        </td>
+      </tr>
+      
+      <tr id='section-6'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>Load the payment form html of the appropriate &quot;style&quot;
 (We detect form styles using <code>samurai-...</code> class names)</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">paymentFormHtml = </span><span class="nf">(container) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">paymentFormHtml = </span><span class="nf">(container) -&gt;</span>
       <span class="k">for</span> <span class="nx">style</span><span class="p">,</span> <span class="nx">html</span> <span class="k">of</span> <span class="nx">forms</span>
         <span class="nx">unless</span> <span class="nx">style</span> <span class="o">==</span> <span class="s1">&#39;default&#39;</span>
           <span class="k">if</span> <span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;samurai-&#39;</span><span class="o">+</span><span class="nx">style</span><span class="p">)</span>
@@ -145,18 +190,18 @@
             <span class="k">return</span> <span class="nx">html</span>
       <span class="nx">log</span> <span class="s1">&#39;Rendering form style: default&#39;</span>
       <span class="nx">forms</span><span class="p">.</span><span class="nx">default</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-7'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-7">&#182;</a>
-        </div>
-        <p>Hash of form styles HTML (inlined)</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">forms =</span>
+        </td>
+      </tr>
+      
+      <tr id='section-7'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>Hash of form styles HTML (inlined)</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">forms =</span>
       <span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">&lt;form action=&quot;#&quot; method=&quot;POST&quot; class=&quot;samurai&quot; data-samurai-ajax&gt;</span>
 <span class="s1">&lt;fieldset&gt;</span>
@@ -246,18 +291,18 @@
 <span class="s1">&lt;/form&gt;</span>
 
 <span class="s1">&#39;&#39;&#39;</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-8'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-8">&#182;</a>
-        </div>
-        <p>Setup placeholders on form fields in this <code>container</code></p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">setFormPlaceholders = </span><span class="nf">(container) -&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-8'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>Setup placeholders on form fields in this <code>container</code></p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">setFormPlaceholders = </span><span class="nf">(container) -&gt;</span>
       <span class="nv">$container = </span><span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
       <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[first_name]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;First Name&#39;</span>
       <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[last_name]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Last Name&#39;</span>
@@ -268,37 +313,37 @@
       <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[zip]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Zipcode&#39;</span>
       <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[card_number]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Credit Card Number&#39;</span>
       <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[cvv]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;CVV&#39;</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-9'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-9">&#182;</a>
-        </div>
-        <p>Support placeholders on old browsers</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">setFormPlaceholdersForOldBrowsers = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-9'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>Support placeholders on old browsers</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">setFormPlaceholdersForOldBrowsers = </span><span class="o">-&gt;</span>
       <span class="nx">unless</span> <span class="s1">&#39;placeholder&#39;</span> <span class="k">of</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
         <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.samurai label&quot;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">)</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-10'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-10">&#182;</a>
-        </div>
-        <p>Export public API</p>
+        </td>
+      </tr>
+      
+      <tr id='section-10'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>Export public API</p>
 
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">}</span></pre></div>
-      </td>
-    </tr>
-    
-  </table>
-</div>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      
+    </table>
+  </div>
 </body>
 </html>

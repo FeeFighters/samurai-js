@@ -3,96 +3,141 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <title>card_preview.js.coffee</title>
-  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
-</head>
-<body>
-<div id='container'>
-  <div id="background"></div>
+
+  <link href="/assets/docs.css" media="screen" rel="stylesheet" type="text/css" />
+
+
   
-  <div id="jump_to">
-    Jump To &hellip;
-    <div id="jump_wrapper">
-      <div id="jump_page">
-        
+    <script type="text/javascript" src="https://use.typekit.com/yxg1bfk.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  
+</head>
+<body class='code-documentation'>
+  <header>
+    <h1 class="logo">
+            <a href="/" class="samurai"><span class="ir mark"></span><span class="ir home"></span><span class="ir type">Samurai</span></a>
+            <span class="by">by</span>
+            <a href="http://feefighters.com" class="ir feefighters">FeeFighters</a>
+     </h1>
+
+    <nav class='subnav'>
+      <ul>
+         <li><a href="/">Home</a></li>
+         <li><a href="/about">About</a></li>
+         <li><a href="/pricing">Pricing</a></li>
+         <li><a href="/features">Features</a></li>
+         <li><a href="http://samurai-support.feefighters.com/">Support</a></li>
+      </ul>
+    </nav>
+
+    <nav class="developers">
+      <ul>
+        <li><a href="/developers"><span class="icon">Developers</span></a></li>
+      </ul>
+    </nav>
+
+    <div></div>
+  </header>
+
+  
+    <div id="section_jump">
+      Jump To
+      <div id="section_jump_wrapper">
+        <div id="section_page">
+          <a href="/developers/samurai-js/docs/" class="source">Table of Contents</a>
           
-          <a class="source" href="../samurai.js.coffee.html">0.1/samurai.js.coffee</a>
-        
+            
+            <a class="source" href="../samurai.js.coffee.html">0.1/samurai.js.coffee</a>
           
-          <a class="source" href="base.js.coffee.html">0.1/samurai/base.js.coffee</a>
-        
+            
+            <a class="source" href="base.js.coffee.html">0.1/samurai/base.js.coffee</a>
           
-          <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
-        
+            
+            <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
           
-          <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
-        
+            
+            <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
           
-          <a class="source" href="payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
-        
+            
+            <a class="source" href="payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
           
-          <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
-        
+            
+            <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
           
-          <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
-        
+            
+            <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
           
-          <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
-        
+            
+            <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
           
-          <a class="source" href="../../samurai.js.coffee.html">samurai.js.coffee</a>
-        
+            
+            <a class="source" href="../../samurai.js.coffee.html">samurai.js.coffee</a>
+          
+        </div>
       </div>
     </div>
-  </div>
   
-  <table cellspacing=0 cellpadding=0>
-  <thead>
-    <tr>
-      <th class=docs><h1>card_preview.js.coffee</h1></th>
-      <th class=code></th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr id='section-Samurai_Card_Previews_Module'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-Samurai_Card_Previews_Module">&#182;</a>
-        </div>
-        <h2>Samurai Card Previews Module</h2>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-2'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-2">&#182;</a>
-        </div>
-        <p>Module for observing the credit_card[number] field, and displaying the proper card images</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+  <nav class="breadcrumb">
+    <div class="wrapper">
+      <a href="/developers">Developer Resources</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js">Samurai.js</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js/docs">Code Documentation</a> <span class="arrow">&gt;</span>
+      <span class="current">card_preview.js.coffee</span>
+    </div>
+  </nav>
+
+  <div id='container'>
+    <div id="background"></div>
+
+    <table cellspacing=0 cellpadding=0>
+    <thead>
+      <tr>
+        <th class=docs><h1>card_preview.js.coffee</h1></th>
+        <th class=code></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr id='section-Samurai_Card_Previews_Module'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-Samurai_Card_Previews_Module">&#182;</a>
+          </div>
+          <h2>Samurai Card Previews Module</h2>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-2'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <p>Module for observing the credit_card[number] field, and displaying the proper card images</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
   <span class="vi">@CardPreview = </span><span class="nx">do</span> <span class="o">-&gt;</span>
     <span class="nv">cardNumberField = </span><span class="p">[]</span>
     <span class="nv">cardPreviews = </span><span class="kc">null</span>
     <span class="nv">showAccepted = </span><span class="kc">true</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-3'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-3">&#182;</a>
-        </div>
-        <p>Initialize the module
+        </td>
+      </tr>
+      
+      <tr id='section-3'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>Initialize the module
 Attach event handlers on jQuery.ready()
 Build &amp; display the card preview images</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">init = </span><span class="o">-&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">init = </span><span class="o">-&gt;</span>
       <span class="nv">cardNumberField = </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[name=&#39;credit_card[card_number]&#39;]&quot;</span><span class="p">)</span>
       <span class="k">if</span> <span class="nx">cardNumberField</span><span class="p">.</span><span class="nx">length</span>
         <span class="nx">attachEventHandlers</span><span class="p">()</span>
@@ -101,18 +146,18 @@ Build &amp; display the card preview images</p>
           <span class="nx">cacheCardPreviews</span><span class="p">()</span>
           <span class="nx">clearCardPreviews</span><span class="p">()</span>
           <span class="nx">checkCardForPreview</span><span class="p">()</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-4'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-4">&#182;</a>
-        </div>
-        <p>Attach event handlers to the form fields</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">attachEventHandlers = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-4'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>Attach event handlers to the form fields</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">attachEventHandlers = </span><span class="o">-&gt;</span>
       <span class="nx">cardNumberField</span><span class="p">.</span><span class="nx">keyup</span> <span class="o">=&gt;</span>
         <span class="nx">fadeAcceptedCards</span><span class="p">()</span> <span class="k">if</span> <span class="nx">showAccepted</span>
         <span class="nx">clearCardPreviews</span><span class="p">()</span>
@@ -122,90 +167,90 @@ Build &amp; display the card preview images</p>
         <span class="nx">clearCardPreviews</span><span class="p">()</span>
         <span class="nx">checkCardForPreview</span><span class="p">()</span>
         <span class="kc">true</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-5'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-5">&#182;</a>
-        </div>
-        <p>Cache the card preview elements, so we aren&#39;t looking them up every time</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">cacheCardPreviews = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-5'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>Cache the card preview elements, so we aren&#39;t looking them up every time</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">cacheCardPreviews = </span><span class="o">-&gt;</span>
       <span class="nv">cardPreviews = </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[data-samurai-card-previews] span&#39;</span><span class="p">)</span> <span class="nx">unless</span> <span class="nx">cardPreviews</span><span class="o">?</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-6'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-6">&#182;</a>
-        </div>
-        <p>Check if the card number matches a brand, and display that brand</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">checkCardForPreview = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-6'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>Check if the card number matches a brand, and display that brand</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">checkCardForPreview = </span><span class="o">-&gt;</span>
       <span class="nv">cardBrand = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">cardBrandFromNumber</span> <span class="nx">cardNumberField</span><span class="p">.</span><span class="nx">val</span><span class="p">()</span>
       <span class="nx">previewCard</span><span class="p">(</span><span class="nx">cardBrand</span><span class="p">)</span> <span class="k">if</span> <span class="nx">cardBrand</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-7'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-7">&#182;</a>
-        </div>
-        <p>Clear the displayed card brand</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">clearCardPreviews = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-7'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>Clear the displayed card brand</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">clearCardPreviews = </span><span class="o">-&gt;</span>
       <span class="nx">cardPreviews</span><span class="p">.</span><span class="nx">removeClass</span> <span class="s1">&#39;active&#39;</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-8'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-8">&#182;</a>
-        </div>
-        <p>Display a specific card brand</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">previewCard = </span><span class="nf">(card) -&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-8'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>Display a specific card brand</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">previewCard = </span><span class="nf">(card) -&gt;</span>
       <span class="nx">cardPreviews</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">card</span><span class="p">).</span><span class="nx">addClass</span> <span class="s1">&#39;active&#39;</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-9'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-9">&#182;</a>
-        </div>
-        <p>Fade out the card images (once the user starts typing)</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">fadeAcceptedCards = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-9'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>Fade out the card images (once the user starts typing)</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">fadeAcceptedCards = </span><span class="o">-&gt;</span>
       <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[data-samurai-card-previews]&#39;</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s1">&#39;show-accepted&#39;</span>
       <span class="nv">showAccepted = </span><span class="kc">false</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-10'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-10">&#182;</a>
-        </div>
-        <p>Export public API</p>
+        </td>
+      </tr>
+      
+      <tr id='section-10'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>Export public API</p>
 
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">}</span></pre></div>
-      </td>
-    </tr>
-    
-  </table>
-</div>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      
+    </table>
+  </div>
 </body>
 </html>

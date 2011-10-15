@@ -2,79 +2,124 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
-  <title>payments.js.coffee</title>
-  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
-</head>
-<body>
-<div id='container'>
-  <div id="background"></div>
+  <title>payments.js.coffee.erb</title>
+
+  <link href="/assets/docs.css" media="screen" rel="stylesheet" type="text/css" />
+
+
   
-  <div id="jump_to">
-    Jump To &hellip;
-    <div id="jump_wrapper">
-      <div id="jump_page">
-        
+    <script type="text/javascript" src="https://use.typekit.com/yxg1bfk.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  
+</head>
+<body class='code-documentation'>
+  <header>
+    <h1 class="logo">
+            <a href="/" class="samurai"><span class="ir mark"></span><span class="ir home"></span><span class="ir type">Samurai</span></a>
+            <span class="by">by</span>
+            <a href="http://feefighters.com" class="ir feefighters">FeeFighters</a>
+     </h1>
+
+    <nav class='subnav'>
+      <ul>
+         <li><a href="/">Home</a></li>
+         <li><a href="/about">About</a></li>
+         <li><a href="/pricing">Pricing</a></li>
+         <li><a href="/features">Features</a></li>
+         <li><a href="http://samurai-support.feefighters.com/">Support</a></li>
+      </ul>
+    </nav>
+
+    <nav class="developers">
+      <ul>
+        <li><a href="/developers"><span class="icon">Developers</span></a></li>
+      </ul>
+    </nav>
+
+    <div></div>
+  </header>
+
+  
+    <div id="section_jump">
+      Jump To
+      <div id="section_jump_wrapper">
+        <div id="section_page">
+          <a href="/developers/samurai-js/docs/" class="source">Table of Contents</a>
           
-          <a class="source" href="../samurai.js.coffee.html">0.1/samurai.js.coffee</a>
-        
+            
+            <a class="source" href="../samurai.js.coffee.html">0.1/samurai.js.coffee</a>
           
-          <a class="source" href="base.js.coffee.html">0.1/samurai/base.js.coffee</a>
-        
+            
+            <a class="source" href="base.js.coffee.html">0.1/samurai/base.js.coffee</a>
           
-          <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
-        
+            
+            <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
           
-          <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
-        
+            
+            <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
           
-          <a class="source" href="payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
-        
+            
+            <a class="source" href="payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
           
-          <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
-        
+            
+            <a class="source" href="payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
           
-          <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
-        
+            
+            <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
           
-          <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
-        
+            
+            <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
           
-          <a class="source" href="../../samurai.js.coffee.html">samurai.js.coffee</a>
-        
+            
+            <a class="source" href="../../samurai.js.coffee.html">samurai.js.coffee</a>
+          
+        </div>
       </div>
     </div>
-  </div>
   
-  <table cellspacing=0 cellpadding=0>
-  <thead>
-    <tr>
-      <th class=docs><h1>payments.js.coffee</h1></th>
-      <th class=code></th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr id='section-Samurai_Payment_Forms_Module'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-Samurai_Payment_Forms_Module">&#182;</a>
-        </div>
-        <h2>Samurai Payment Forms Module</h2>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-2'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-2">&#182;</a>
-        </div>
-        <p>Module for performing ajax payment transactions</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
+
+  <nav class="breadcrumb">
+    <div class="wrapper">
+      <a href="/developers">Developer Resources</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js">Samurai.js</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js/docs">Code Documentation</a> <span class="arrow">&gt;</span>
+      <span class="current">payments.js.coffee.erb</span>
+    </div>
+  </nav>
+
+  <div id='container'>
+    <div id="background"></div>
+
+    <table cellspacing=0 cellpadding=0>
+    <thead>
+      <tr>
+        <th class=docs><h1>payments.js.coffee.erb</h1></th>
+        <th class=code></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr id='section-Samurai_Payment_Forms_Module'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-Samurai_Payment_Forms_Module">&#182;</a>
+          </div>
+          <h2>Samurai Payment Forms Module</h2>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-2'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-2">&#182;</a>
+          </div>
+          <p>Module for performing ajax payment transactions</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
   <span class="vi">@Payments = </span><span class="nx">do</span> <span class="o">-&gt;</span>
     <span class="nv">rpc = </span><span class="kc">null</span>  <span class="c1"># our easyXDM socket</span>
     <span class="nv">transparentRedirectUrl = </span><span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span> <span class="k">then</span> <span class="s2">&quot;/uber_gateway_mock/v1/payment_methods&quot;</span> <span class="k">else</span> <span class="s2">&quot;https://api.samurai.feefighters.com/v1/payment_methods&quot;</span> <span class="c1"># API endpoint</span>
@@ -82,48 +127,48 @@
     <span class="nv">init = </span><span class="o">-&gt;</span>
       <span class="nx">setupRpc</span><span class="p">()</span> <span class="nx">unless</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">withoutPayments</span>  <span class="c1"># initialize the easyXDM framework</span>
       <span class="nx">attachPaymentFormHandlers</span><span class="p">()</span>  <span class="c1"># attach event handlers to any payment forms</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-3'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-3">&#182;</a>
-        </div>
-        <p>Expose the payment method on the Samurai object, for convenience</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>      <span class="nv">Samurai.payment = </span><span class="nx">payment</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-4'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-4">&#182;</a>
-        </div>
-        <p>Setup the easyXDM socket</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">setupRpc = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-3'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>Expose the payment method on the Samurai object, for convenience</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>      <span class="nv">Samurai.payment = </span><span class="nx">payment</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-4'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>Setup the easyXDM socket</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">setupRpc = </span><span class="o">-&gt;</span>
       <span class="nv">remote = </span><span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span> <span class="k">then</span> <span class="s2">&quot;/provider.html&quot;</span> <span class="k">else</span> <span class="s2">&quot;https://api.samurai.feefighters.com/provider.html&quot;</span>
       <span class="nv">rpc = </span><span class="k">new</span> <span class="nx">easyXDM</span><span class="p">.</span><span class="nx">Rpc</span> <span class="p">{</span>
         <span class="nv">remote: </span><span class="nx">remote</span>
       <span class="p">},</span> <span class="p">{</span> <span class="nv">remote: </span><span class="p">{</span> <span class="nv">request: </span><span class="p">{}</span> <span class="p">}}</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-5'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-5">&#182;</a>
-        </div>
-        <p>This is the main payment api call
+        </td>
+      </tr>
+      
+      <tr id='section-5'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>This is the main payment api call
 It will generate a <code>payment_method_token</code> based on the supplied credit card data,
 and pass it to the callback function</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">payment = </span><span class="nf">(data, callback) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">payment = </span><span class="nf">(data, callback) -&gt;</span>
       <span class="nx">rpc</span><span class="p">.</span><span class="nx">request</span> <span class="p">{</span>
         <span class="nv">url: </span><span class="nx">transparentRedirectUrl</span>
         <span class="nv">method: </span><span class="s1">&#39;POST&#39;</span>
@@ -136,46 +181,46 @@ and pass it to the callback function</p>
         <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;payment response&#39;</span>
         <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="nx">json</span>
         <span class="nx">callback</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-6'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-6">&#182;</a>
-        </div>
-        <p>Add the extra data fields that we need to add, ie: <code>redirect_url</code></p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">prepPaymentData = </span><span class="nf">(data) -&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-6'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>Add the extra data fields that we need to add, ie: <code>redirect_url</code></p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">prepPaymentData = </span><span class="nf">(data) -&gt;</span>
       <span class="nv">data.redirect_url = </span><span class="s1">&#39;http://location/&#39;</span>
       <span class="nv">data.merchant_key = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">merchant_key</span>
       <span class="nv">data.sandbox = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">sandbox</span>
       <span class="nv">data.ignore_merchant_key = </span><span class="kc">true</span> <span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span><span class="o">?</span>
       <span class="nx">data</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-7'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-7">&#182;</a>
-        </div>
-        <p>Attach to any forms with <code>data-samurai-ajax</code>, and make them ajax-aware</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">attachPaymentFormHandlers = </span><span class="o">-&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-7'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>Attach to any forms with <code>data-samurai-ajax</code>, and make them ajax-aware</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">attachPaymentFormHandlers = </span><span class="o">-&gt;</span>
       <span class="nv">samurai = </span><span class="k">this</span>
       <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form[data-samurai-ajax=&quot;&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="o">-&gt;</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-8'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-8">&#182;</a>
-        </div>
-        <p>On submit:</p>
+        </td>
+      </tr>
+      
+      <tr id='section-8'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>On submit:</p>
 
 <ul>
 <li>stop event propagation</li>
@@ -187,9 +232,9 @@ and pass it to the callback function</p>
 <li>in the callback function, trigger the <code>samurai.payment</code> event on the form</li>
 </ul></li>
 </ul>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">submit</span> <span class="nf">(event) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">submit</span> <span class="nf">(event) -&gt;</span>
           <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;samurai.loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">()</span>
@@ -197,15 +242,15 @@ and pass it to the callback function</p>
           <span class="nx">payment</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">formParams</span><span class="p">(),</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span>
             <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;samurai.payment&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
           <span class="kc">false</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-9'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-9">&#182;</a>
-        </div>
-        <p>Bind to the <code>samurai.payment</code> event and do the following if the payment
+        </td>
+      </tr>
+      
+      <tr id='section-9'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>Bind to the <code>samurai.errors-shown</code> event and do the following if the payment
 information was invalid:</p>
 
 <ul>
@@ -213,25 +258,24 @@ information was invalid:</p>
 <li>enable the submit button</li>
 <li>change the label of the submit button to &quot;Resubmit Payment&quot;</li>
 </ul>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;samurai.payment&#39;</span><span class="p">,</span> <span class="nf">(event, data) -&gt;</span>
-          <span class="nx">unless</span> <span class="nx">data</span><span class="p">.</span><span class="nx">payment_method</span><span class="o">?</span><span class="p">.</span><span class="nx">is_sensitive_data_valid</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">end</span><span class="p">()</span>
-              <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Resubmit Payment&#39;</span><span class="p">)</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;samurai.errors-shown&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
+          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">end</span><span class="p">()</span>
+            <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Resubmit Payment&#39;</span><span class="p">)</span>
           </pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-10'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-10">&#182;</a>
-        </div>
-        <p>Bind to the <code>samurai.completed</code> event:</p>
+        </td>
+      </tr>
+      
+      <tr id='section-10'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>Bind to the <code>samurai.completed</code> event:</p>
 
 <ul>
 <li>hide the button (only let them purchase once)</li>
@@ -239,30 +283,30 @@ information was invalid:</p>
 <li>hide the <code>.loading</code> spinner</li>
 <li>show the <code>.results</code> container</li>
 </ul>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;samurai.completed&#39;</span><span class="p">,</span> <span class="nf">(event, data) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;samurai.completed&#39;</span><span class="p">,</span> <span class="nf">(event, data) -&gt;</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">()</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">()</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.results&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">()</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-11'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-11">&#182;</a>
-        </div>
-        <p>Export public API</p>
+        </td>
+      </tr>
+      
+      <tr id='section-11'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-11">&#182;</a>
+          </div>
+          <p>Export public API</p>
 
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">,</span> <span class="nx">payment</span><span class="p">}</span></pre></div>
-      </td>
-    </tr>
-    
-  </table>
-</div>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">,</span> <span class="nx">payment</span><span class="p">}</span></pre></div>
+        </td>
+      </tr>
+      
+    </table>
+  </div>
 </body>
 </html>

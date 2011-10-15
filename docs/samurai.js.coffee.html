@@ -2,91 +2,136 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
-  <title>samurai.js.coffee</title>
-  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
-</head>
-<body>
-<div id='container'>
-  <div id="background"></div>
+  <title>samurai.js.coffee.erb</title>
+
+  <link href="/assets/docs.css" media="screen" rel="stylesheet" type="text/css" />
+
+
   
-  <div id="jump_to">
-    Jump To &hellip;
-    <div id="jump_wrapper">
-      <div id="jump_page">
-        
+    <script type="text/javascript" src="https://use.typekit.com/yxg1bfk.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  
+</head>
+<body class='code-documentation'>
+  <header>
+    <h1 class="logo">
+            <a href="/" class="samurai"><span class="ir mark"></span><span class="ir home"></span><span class="ir type">Samurai</span></a>
+            <span class="by">by</span>
+            <a href="http://feefighters.com" class="ir feefighters">FeeFighters</a>
+     </h1>
+
+    <nav class='subnav'>
+      <ul>
+         <li><a href="/">Home</a></li>
+         <li><a href="/about">About</a></li>
+         <li><a href="/pricing">Pricing</a></li>
+         <li><a href="/features">Features</a></li>
+         <li><a href="http://samurai-support.feefighters.com/">Support</a></li>
+      </ul>
+    </nav>
+
+    <nav class="developers">
+      <ul>
+        <li><a href="/developers"><span class="icon">Developers</span></a></li>
+      </ul>
+    </nav>
+
+    <div></div>
+  </header>
+
+  
+    <div id="section_jump">
+      Jump To
+      <div id="section_jump_wrapper">
+        <div id="section_page">
+          <a href="/developers/samurai-js/docs/" class="source">Table of Contents</a>
           
-          <a class="source" href="0.1/samurai.js.coffee.html">0.1/samurai.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai.js.coffee.html">0.1/samurai.js.coffee</a>
           
-          <a class="source" href="0.1/samurai/base.js.coffee.html">0.1/samurai/base.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai/base.js.coffee.html">0.1/samurai/base.js.coffee</a>
           
-          <a class="source" href="0.1/samurai/card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai/card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
           
-          <a class="source" href="0.1/samurai/expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai/expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
           
-          <a class="source" href="0.1/samurai/payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai/payment_error_handler.js.coffee.html">0.1/samurai/payment_error_handler.js.coffee</a>
           
-          <a class="source" href="0.1/samurai/payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai/payment_forms.js.coffee.html">0.1/samurai/payment_forms.js.coffee</a>
           
-          <a class="source" href="0.1/samurai/payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai/payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
           
-          <a class="source" href="0.1/samurai/utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
-        
+            
+            <a class="source" href="0.1/samurai/utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
           
-          <a class="source" href="samurai.js.coffee.html">samurai.js.coffee</a>
-        
+            
+            <a class="source" href="samurai.js.coffee.html">samurai.js.coffee</a>
+          
+        </div>
       </div>
     </div>
-  </div>
   
-  <table cellspacing=0 cellpadding=0>
-  <thead>
-    <tr>
-      <th class=docs><h1>samurai.js.coffee</h1></th>
-      <th class=code></th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <tr id='section-1'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-1">&#182;</a>
-        </div>
-        
-      </td>
-      <td class=code>
-        <div class='highlight'><pre></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-Samurai_Async_Loader'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-Samurai_Async_Loader">&#182;</a>
-        </div>
-        <h2>Samurai Async Loader</h2>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-3'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-3">&#182;</a>
-        </div>
-        <p>Include script.js here, so we can use it for async file loading</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="o">`</span><span class="err">/*!</span>
+
+  <nav class="breadcrumb">
+    <div class="wrapper">
+      <a href="/developers">Developer Resources</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js">Samurai.js</a> <span class="arrow">&gt;</span>
+      <a href="/developers/samurai-js/docs">Code Documentation</a> <span class="arrow">&gt;</span>
+      <span class="current">samurai.js.coffee.erb</span>
+    </div>
+  </nav>
+
+  <div id='container'>
+    <div id="background"></div>
+
+    <table cellspacing=0 cellpadding=0>
+    <thead>
+      <tr>
+        <th class=docs><h1>samurai.js.coffee.erb</h1></th>
+        <th class=code></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr id='section-1'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-1">&#182;</a>
+          </div>
+          
+        </td>
+        <td class=code>
+          <div class='highlight'><pre></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-Samurai_Async_Loader'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-Samurai_Async_Loader">&#182;</a>
+          </div>
+          <h2>Samurai Async Loader</h2>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-3'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-3">&#182;</a>
+          </div>
+          <p>Include script.js here, so we can use it for async file loading</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="o">`</span><span class="err">/*!</span>
   <span class="o">*</span> <span class="nx">$script</span><span class="p">.</span><span class="nx">js</span> <span class="nx">v1</span><span class="p">.</span><span class="mi">3</span>
   <span class="o">*</span> <span class="nx">https</span><span class="o">:</span><span class="err">//github.com/ded/script.js</span>
   <span class="o">*</span> <span class="nv">Copyright: </span><span class="nx">@ded</span> <span class="o">&amp;</span> <span class="nx">@fat</span> <span class="o">-</span> <span class="nx">Dustin</span> <span class="nx">Diaz</span><span class="p">,</span> <span class="nx">Jacob</span> <span class="nx">Thornton</span> <span class="mi">2011</span>
@@ -94,145 +139,145 @@
   <span class="o">*</span> <span class="nv">License: </span><span class="nx">MIT</span>
   <span class="o">*</span><span class="err">/</span>
 <span class="o">!</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">){</span><span class="nx">function</span> <span class="nx">s</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">c</span><span class="p">){</span><span class="nx">var</span> <span class="nx">e</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">),</span><span class="nx">f</span><span class="o">=</span><span class="nx">j</span><span class="p">;</span><span class="nx">e</span><span class="p">.</span><span class="nx">onload</span><span class="o">=</span><span class="nx">e</span><span class="p">.</span><span class="nx">onerror</span><span class="o">=</span><span class="nx">e</span><span class="p">[</span><span class="nx">o</span><span class="p">]</span><span class="o">=</span><span class="nx">function</span><span class="p">(){</span><span class="nx">e</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span><span class="o">&amp;&amp;!</span><span class="sr">/^c|loade/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">m</span><span class="p">])</span><span class="o">||</span><span class="nx">f</span><span class="o">||</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">onload</span><span class="o">=</span><span class="nx">e</span><span class="p">[</span><span class="nx">o</span><span class="p">]</span><span class="o">=</span><span class="kc">null</span><span class="p">,</span><span class="nx">f</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nx">h</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="nx">c</span><span class="p">())},</span><span class="nx">e</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nx">e</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">a</span><span class="p">,</span><span class="nx">d</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">d</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">)}</span><span class="nx">function</span> <span class="nx">q</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="nx">p</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="k">return</span><span class="o">!</span><span class="nx">b</span><span class="p">(</span><span class="nx">a</span><span class="p">)})}</span><span class="nx">var</span> <span class="nx">d</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="nx">e</span><span class="o">=</span><span class="p">{},</span><span class="nx">f</span><span class="o">=</span><span class="p">{},</span><span class="nx">g</span><span class="o">=</span><span class="p">{},</span><span class="nx">h</span><span class="o">=</span><span class="p">{},</span><span class="nx">i</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="nx">j</span><span class="o">=!</span><span class="mi">1</span><span class="p">,</span><span class="nx">k</span><span class="o">=</span><span class="s2">&quot;push&quot;</span><span class="p">,</span><span class="nx">l</span><span class="o">=</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="nx">m</span><span class="o">=</span><span class="s2">&quot;readyState&quot;</span><span class="p">,</span><span class="nx">n</span><span class="o">=</span><span class="s2">&quot;addEventListener&quot;</span><span class="p">,</span><span class="nx">o</span><span class="o">=</span><span class="s2">&quot;onreadystatechange&quot;</span><span class="p">,</span><span class="nx">p</span><span class="o">=</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">for</span><span class="p">(</span><span class="nx">var</span> <span class="nx">c</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">d</span><span class="o">=</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">c</span><span class="o">&lt;</span><span class="nx">d</span><span class="p">;</span><span class="o">++</span><span class="nx">c</span><span class="p">)</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">b</span><span class="p">(</span><span class="nx">a</span><span class="p">[</span><span class="nx">c</span><span class="p">]))</span><span class="k">return</span> <span class="nx">j</span><span class="p">;</span><span class="k">return</span> <span class="mi">1</span><span class="p">};</span><span class="o">!</span><span class="nx">b</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="nx">b</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="nx">b</span><span class="p">[</span><span class="nx">n</span><span class="p">](</span><span class="nx">l</span><span class="p">,</span><span class="nx">function</span> <span class="nx">u</span><span class="p">(){</span><span class="nx">b</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span><span class="nx">u</span><span class="p">,</span><span class="nx">j</span><span class="p">),</span><span class="nx">b</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;complete&quot;</span><span class="p">},</span><span class="nx">j</span><span class="p">),</span><span class="nx">b</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;loading&quot;</span><span class="p">);</span><span class="nx">var</span> <span class="nx">r</span><span class="o">=</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">d</span><span class="p">){</span><span class="nx">function</span> <span class="nx">o</span><span class="p">(){</span><span class="k">if</span><span class="p">(</span><span class="o">!--</span><span class="nx">m</span><span class="p">){</span><span class="nx">e</span><span class="p">[</span><span class="nx">l</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nx">j</span><span class="o">&amp;&amp;</span><span class="nx">j</span><span class="p">();</span><span class="k">for</span><span class="p">(</span><span class="nx">var</span> <span class="nx">a</span> <span class="k">in</span> <span class="nx">g</span><span class="p">)</span><span class="nx">p</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">),</span><span class="nx">n</span><span class="p">)</span><span class="o">&amp;&amp;!</span><span class="nx">q</span><span class="p">(</span><span class="nx">g</span><span class="p">[</span><span class="nx">a</span><span class="p">],</span><span class="nx">n</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="nx">g</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">=</span><span class="p">[])}}</span><span class="nx">function</span> <span class="nx">n</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">call</span><span class="o">?</span><span class="nx">a</span><span class="p">()</span><span class="o">:</span><span class="nx">e</span><span class="p">[</span><span class="nx">a</span><span class="p">]}</span><span class="nx">a</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span><span class="o">?</span><span class="nx">a</span><span class="o">:</span><span class="p">[</span><span class="nx">a</span><span class="p">];</span><span class="nx">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">b</span><span class="o">&amp;&amp;</span><span class="nx">b</span><span class="p">.</span><span class="nx">call</span><span class="p">,</span><span class="nx">j</span><span class="o">=</span><span class="nx">i</span><span class="o">?</span><span class="nx">b</span><span class="o">:</span><span class="nx">d</span><span class="p">,</span><span class="nx">l</span><span class="o">=</span><span class="nx">i</span><span class="o">?</span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">:</span><span class="nx">b</span><span class="p">,</span><span class="nx">m</span><span class="o">=</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">c</span><span class="p">(</span><span class="nx">function</span><span class="p">(){</span><span class="nx">q</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="nx">h</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">?</span><span class="p">(</span><span class="nx">l</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="nx">f</span><span class="p">[</span><span class="nx">l</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="nx">h</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">==</span><span class="mi">2</span><span class="o">&amp;&amp;</span><span class="nx">o</span><span class="p">())</span><span class="o">:</span><span class="p">(</span><span class="nx">h</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nx">l</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="nx">f</span><span class="p">[</span><span class="nx">l</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="nx">s</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">path</span><span class="o">?</span><span class="nx">r</span><span class="p">.</span><span class="nx">path</span><span class="o">+</span><span class="nx">a</span><span class="o">+</span><span class="s2">&quot;.js&quot;</span><span class="o">:</span><span class="nx">a</span><span class="p">,</span><span class="nx">o</span><span class="p">))})},</span><span class="mi">0</span><span class="p">);</span><span class="k">return</span> <span class="nx">r</span><span class="p">};</span><span class="nx">r</span><span class="p">.</span><span class="nx">get</span><span class="o">=</span><span class="nx">s</span><span class="p">,</span><span class="nx">r</span><span class="p">.</span><span class="nx">ready</span><span class="o">=</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">){</span><span class="nx">a</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span><span class="o">?</span><span class="nx">a</span><span class="o">:</span><span class="p">[</span><span class="nx">a</span><span class="p">];</span><span class="nx">var</span> <span class="nx">d</span><span class="o">=</span><span class="p">[];</span><span class="o">!</span><span class="nx">q</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="nx">e</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">||</span><span class="nx">d</span><span class="p">[</span><span class="nx">k</span><span class="p">](</span><span class="nx">a</span><span class="p">)})</span><span class="o">&amp;&amp;</span><span class="nx">p</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="k">return</span> <span class="nx">e</span><span class="p">[</span><span class="nx">a</span><span class="p">]})</span><span class="o">?</span><span class="nx">b</span><span class="p">()</span><span class="o">:!</span><span class="nx">function</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span><span class="nx">g</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">=</span><span class="nx">g</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span><span class="o">||</span><span class="p">[],</span><span class="nx">g</span><span class="p">[</span><span class="nx">a</span><span class="p">][</span><span class="nx">k</span><span class="p">](</span><span class="nx">b</span><span class="p">),</span><span class="nx">c</span><span class="o">&amp;&amp;</span><span class="nx">c</span><span class="p">(</span><span class="nx">d</span><span class="p">)}(</span><span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">));</span><span class="k">return</span> <span class="nx">r</span><span class="p">};</span><span class="nx">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">a</span><span class="p">.</span><span class="nx">$script</span><span class="p">;</span><span class="nx">r</span><span class="p">.</span><span class="nx">noConflict</span><span class="o">=</span><span class="nx">function</span><span class="p">(){</span><span class="nx">a</span><span class="p">.</span><span class="nx">$script</span><span class="o">=</span><span class="nx">t</span><span class="p">;</span><span class="k">return</span> <span class="k">this</span><span class="p">},</span><span class="k">typeof</span> <span class="nx">module</span><span class="o">!=</span><span class="s2">&quot;undefined&quot;</span><span class="o">&amp;&amp;</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="o">?</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="o">=</span><span class="nx">r</span><span class="o">:</span><span class="nx">a</span><span class="p">.</span><span class="nx">$script</span><span class="o">=</span><span class="nx">r</span><span class="p">}(</span><span class="k">this</span><span class="p">,</span><span class="nb">document</span><span class="p">,</span><span class="nx">setTimeout</span><span class="p">)</span><span class="o">`</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-4'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-4">&#182;</a>
-        </div>
-        <p>Setup the core Samurai object,
+        </td>
+      </tr>
+      
+      <tr id='section-4'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-4">&#182;</a>
+          </div>
+          <p>Setup the core Samurai object,
 only what we need to load Samurai.js and its dependencies</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre><span class="nb">window</span><span class="p">.</span><span class="nv">Samurai =</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre><span class="nb">window</span><span class="p">.</span><span class="nv">Samurai =</span>
   <span class="nv">config: </span><span class="p">{}</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-5'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-5">&#182;</a>
-        </div>
-        <p>Bootstrap initializer for Samurai
+        </td>
+      </tr>
+      
+      <tr id='section-5'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-5">&#182;</a>
+          </div>
+          <p>Bootstrap initializer for Samurai
 Calling this function sets <code>@config</code> and begins the loading process</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">init: </span><span class="nf">(@config={}) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">init: </span><span class="nf">(@config={}) -&gt;</span>
     <span class="vi">@config.forceLoad = </span><span class="p">[]</span> <span class="nx">unless</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">forceLoad</span><span class="o">?</span>
     <span class="nx">@_</span><span class="nv">$ = </span><span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="c1"># map the old $ to make sure the jQuery we&#39;ll load in a second doesn&#39;t overwrite it</span>
     <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;Bootstrapping...&#39;</span>
     <span class="nx">@loadSamuraiCss</span><span class="p">()</span>
     <span class="nx">@loadVendorJs</span> <span class="nx">@loadSamuraiJs</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-6'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-6">&#182;</a>
-        </div>
-        <p>Load our vendor javascript</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">loadVendorJs: </span><span class="nf">(onComplete) -&gt;</span>
+        </td>
+      </tr>
+      
+      <tr id='section-6'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-6">&#182;</a>
+          </div>
+          <p>Load our vendor javascript</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">loadVendorJs: </span><span class="nf">(onComplete) -&gt;</span>
     <span class="nv">vendor_scripts = </span><span class="p">[]</span>
-    <span class="nx">vendor_scripts</span><span class="p">.</span><span class="nx">push</span> <span class="s1">&#39;http://192.168.1.105:3000/assets/api/0.1/jquery-1.6.2.min.js&#39;</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">jQuery</span><span class="o">?</span>  <span class="c1"># include jQuery if it doesn&#39;t already exist</span>
+    <span class="nx">vendor_scripts</span><span class="p">.</span><span class="nx">push</span> <span class="s1">&#39;http://127.0.0.1:3000/assets/api/0.1/jquery-1.6.2.min.js&#39;</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">jQuery</span><span class="o">?</span>  <span class="c1"># include jQuery if it doesn&#39;t already exist</span>
     <span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">debugEasyXDM</span>  <span class="c1"># Load easyXDM for cross-domain messaging (debug or minimized version)</span>
-      <span class="nx">vendor_scripts</span><span class="p">.</span><span class="nx">push</span> <span class="s1">&#39;http://192.168.1.105:3000/assets/api/0.1/easyXDM-2.4.15.118/easyXDM.debug.js&#39;</span>
+      <span class="nx">vendor_scripts</span><span class="p">.</span><span class="nx">push</span> <span class="s1">&#39;http://127.0.0.1:3000/assets/api/0.1/easyXDM-2.4.15.118/easyXDM.debug.js&#39;</span>
     <span class="k">else</span>
-      <span class="nx">vendor_scripts</span><span class="p">.</span><span class="nx">push</span> <span class="s1">&#39;http://192.168.1.105:3000/assets/api/0.1/easyXDM-2.4.15.118/easyXDM.min.js&#39;</span>
+      <span class="nx">vendor_scripts</span><span class="p">.</span><span class="nx">push</span> <span class="s1">&#39;http://127.0.0.1:3000/assets/api/0.1/easyXDM-2.4.15.118/easyXDM.min.js&#39;</span>
     <span class="nx">$script</span> <span class="nx">vendor_scripts</span><span class="p">,</span> <span class="o">-&gt;</span>  <span class="c1"># Here we do the actual async laod, with a callback for onComplete</span>
-      <span class="nx">$script</span> <span class="s1">&#39;http://192.168.1.105:3000/assets/api/0.1/jquery.formparams.min.js&#39;</span>  <span class="c1"># jQuery is available, so load the jQuery plugins</span>
+      <span class="nx">$script</span> <span class="s1">&#39;http://127.0.0.1:3000/assets/api/0.1/jquery.formparams.min.js&#39;</span>  <span class="c1"># jQuery is available, so load the jQuery plugins</span>
       <span class="nx">onComplete</span><span class="p">()</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-7'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-7">&#182;</a>
-        </div>
-        <p>Load the main Samurai javascript
+        </td>
+      </tr>
+      
+      <tr id='section-7'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-7">&#182;</a>
+          </div>
+          <p>Load the main Samurai javascript
 This is called as the onComplete callback to <code>loadVendorJs()</code></p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">loadSamuraiJs: </span><span class="o">-&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">loadSamuraiJs: </span><span class="o">-&gt;</span>
     <span class="nx">jQuery</span><span class="p">.</span><span class="nx">noConflict</span><span class="p">()</span> <span class="nx">unless</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">_$</span> <span class="o">is</span> <span class="nx">jQuery</span> <span class="c1"># try not to interfere with existing jQuery/Prototype/etc</span>
-    <span class="nx">$script</span> <span class="s1">&#39;http://192.168.1.105:3000/assets/api/0.1/samurai.js&#39;</span><span class="p">,</span> <span class="o">-&gt;</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-8'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-8">&#182;</a>
-        </div>
-        <p>Samurai is loaded, so call the new initializer</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>      <span class="nb">window</span><span class="p">.</span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">)</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-9'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-9">&#182;</a>
-        </div>
-        <p>Load the Samurai CSS</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">loadSamuraiCss: </span><span class="o">-&gt;</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-10'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-10">&#182;</a>
-        </div>
-        <p>Build a link tag and insert it into the head</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">head = </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nx">$script</span> <span class="s1">&#39;http://127.0.0.1:3000/assets/api/0.1/samurai.js&#39;</span><span class="p">,</span> <span class="o">-&gt;</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-8'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-8">&#182;</a>
+          </div>
+          <p>Samurai is loaded, so call the new initializer</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>      <span class="nb">window</span><span class="p">.</span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">)</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-9'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>Load the Samurai CSS</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">loadSamuraiCss: </span><span class="o">-&gt;</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-10'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
+          <p>Build a link tag and insert it into the head</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">head = </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="nv">link = </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">)</span>
     <span class="nv">link.type = </span><span class="s1">&#39;text/css&#39;</span>
     <span class="nv">link.media = </span><span class="s1">&#39;screen&#39;</span>
     <span class="nv">link.rel = </span><span class="s1">&#39;stylesheet&#39;</span>
-    <span class="nv">link.href = </span><span class="s1">&#39;http://192.168.1.105:3000/assets/api/0.1/samurai.css&#39;</span>
+    <span class="nv">link.href = </span><span class="s1">&#39;http://127.0.0.1:3000/assets/api/0.1/samurai.css&#39;</span>
     <span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link</span><span class="p">)</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-11'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-11">&#182;</a>
-        </div>
-        <p>Simple logging utility method, only outputs if <code>Samurai.config.debug</code>
+        </td>
+      </tr>
+      
+      <tr id='section-11'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-11">&#182;</a>
+          </div>
+          <p>Simple logging utility method, only outputs if <code>Samurai.config.debug</code>
 Accepts either a String or an Object, dumps to console</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">log: </span><span class="nf">(data...) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">log: </span><span class="nf">(data...) -&gt;</span>
     <span class="k">return</span> <span class="nx">unless</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">debug</span>
     <span class="k">return</span> <span class="nx">unless</span> <span class="nx">console</span><span class="o">?</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-12'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-12">&#182;</a>
-        </div>
-        <p>IE has a buggy console object, where every method is an &#39;object&#39;, instead of a &#39;function&#39;,
+        </td>
+      </tr>
+      
+      <tr id='section-12'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-12">&#182;</a>
+          </div>
+          <p>IE has a buggy console object, where every method is an &#39;object&#39;, instead of a &#39;function&#39;,
 so coffeescript splats fail miserably when .apply is called on the console.log method
 in the compiled code.</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>    <span class="nv">buggyConsole = </span><span class="o">!!</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="o">is</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>    <span class="nv">buggyConsole = </span><span class="o">!!</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="o">is</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span>
     <span class="nv">log = </span><span class="nf">(level, d...) -&gt;</span>
       <span class="k">if</span> <span class="nx">buggyConsole</span> 
         <span class="nx">console</span><span class="p">[</span><span class="nx">level</span><span class="p">](</span><span class="nx">d</span><span class="p">)</span>
@@ -247,56 +292,56 @@ in the compiled code.</p>
         <span class="nx">log</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">...</span>
       <span class="k">else</span>
         <span class="nx">log</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">...</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-13'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-13">&#182;</a>
-        </div>
-        <p>array of callback functions to be executed when Samurai is loaded</p>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">readyCallbacks: </span><span class="p">[]</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-14'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-14">&#182;</a>
-        </div>
-        <p>consumers of Samurai.js can use <code>Samurai.ready()</code> to delay code that relies on Samurai being fully initialized
+        </td>
+      </tr>
+      
+      <tr id='section-13'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-13">&#182;</a>
+          </div>
+          <p>array of callback functions to be executed when Samurai is loaded</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">readyCallbacks: </span><span class="p">[]</span></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-14'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-14">&#182;</a>
+          </div>
+          <p>consumers of Samurai.js can use <code>Samurai.ready()</code> to delay code that relies on Samurai being fully initialized
 eg:</p>
 
 <pre><code class="javascript">Samurai.ready(function() {
   alert(Samurai.Utilities.cardBrandFromNumber(&#39;4111&#39;));
 });
 </code></pre>
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">ready: </span><span class="nf">(callback) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">ready: </span><span class="nf">(callback) -&gt;</span>
     <span class="nx">@readyCallbacks</span><span class="p">.</span><span class="nx">push</span> <span class="nx">callback</span></pre></div>
-      </td>
-    </tr>
-    
-    <tr id='section-15'>
-      <td class=docs>
-        <div class="pilwrap">
-          <a class="pilcrow" href="#section-15">&#182;</a>
-        </div>
-        <p><em>NOTE: This configuration is deprecated.</em>
+        </td>
+      </tr>
+      
+      <tr id='section-15'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-15">&#182;</a>
+          </div>
+          <p><em>NOTE: This configuration is deprecated.</em>
 (The payments module is now loaded by default.  To disable it, set the <code>withoutPayments: true</code> configuration.)</p>
 
-      </td>
-      <td class=code>
-        <div class='highlight'><pre>  <span class="nv">shouldForceLoad: </span><span class="nf">(moduleName) -&gt;</span>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre>  <span class="nv">shouldForceLoad: </span><span class="nf">(moduleName) -&gt;</span>
     <span class="nx">jQuery</span><span class="p">.</span><span class="nx">inArray</span><span class="p">(</span><span class="nx">moduleName</span><span class="p">,</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">forceLoad</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span></pre></div>
-      </td>
-    </tr>
-    
-  </table>
-</div>
+        </td>
+      </tr>
+      
+    </table>
+  </div>
 </body>
 </html>
