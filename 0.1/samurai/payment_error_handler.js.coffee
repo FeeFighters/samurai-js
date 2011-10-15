@@ -45,7 +45,6 @@ $ = jQuery
       @config = $.extend(
         inputErrorClass: 'error',
         labelErrorClass: 'error',
-        descriptionClass: 'error-description',
         errorSummaryClass: 'error-summary'
         @config)
 
@@ -175,6 +174,5 @@ $ = jQuery
       @form
         .find('.'+@config.inputErrorClass).removeClass(@config.inputErrorClass).end()
         .find('.'+@config.labelErrorClass).removeClass(@config.labelErrorClass).end()
-        .find('.'+@config.descriptionClass).remove().end()
         .find('.'+@config.errorSummaryClass).remove()
       @currentErrorMessages = []
