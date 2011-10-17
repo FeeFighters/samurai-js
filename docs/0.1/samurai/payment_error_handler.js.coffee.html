@@ -208,7 +208,6 @@ but would just like to use different class names.</p>
           <div class='highlight'><pre>      <span class="vi">@config = </span><span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span>
         <span class="nv">inputErrorClass: </span><span class="s1">&#39;error&#39;</span><span class="p">,</span>
         <span class="nv">labelErrorClass: </span><span class="s1">&#39;error&#39;</span><span class="p">,</span>
-        <span class="nv">descriptionClass: </span><span class="s1">&#39;error-description&#39;</span><span class="p">,</span>
         <span class="nv">errorSummaryClass: </span><span class="s1">&#39;error-summary&#39;</span>
         <span class="nx">@config</span><span class="p">)</span>
 
@@ -377,17 +376,7 @@ key of the returned message.</p>
             <span class="k">if</span> <span class="nx">label</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span> <span class="k">then</span> <span class="nv">label = </span><span class="nx">input</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="nx">label</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span>
               <span class="nv">fieldName = </span><span class="nx">message</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">].</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/_/</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
-            <span class="k">else</span>
-              <span class="nv">fieldName = </span><span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">label</span><span class="p">.</span><span class="nx">text</span><span class="p">()).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/:$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1"># strip trailing colon from labels that have it</span>
-
-            <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span> <span class="s2">&quot;&lt;li&gt;&lt;em class=\&quot;field-with-error-name\&quot;&gt;#{fieldName}&lt;/em&gt; #{text}&lt;/li&gt;&quot;</span>
-          <span class="k">when</span> <span class="s1">&#39;processor&#39;</span>
-            <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span> <span class="s2">&quot;&lt;li&gt;#{text}&lt;/li&gt;&quot;</span>
-
-      <span class="nv">errorContainerHTML = </span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">      &lt;div class=&quot;</span><span class="c1">#{@config.errorSummaryClass}&quot;&gt;</span>
-        <span class="o">&lt;</span><span class="nx">strong</span><span class="o">&gt;</span><span class="c1">#{PaymentErrorHandler.ERROR_MESSAGES.summary_header}&lt;/strong&gt;</span>
-        <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span></pre></div>
+            <span class="k">else</span></pre></div>
         </td>
       </tr>
       
@@ -396,28 +385,24 @@ key of the returned message.</p>
           <div class="pilwrap">
             <a class="pilcrow" href="#section-15">&#182;</a>
           </div>
-          <p>{errors.join(&#39;&#39;)}</p>
+          <p>strip trailing colon from labels that have it</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>        <span class="o">&lt;</span><span class="err">/ul&gt;</span>
-      <span class="o">&lt;</span><span class="err">/div&gt;</span>
-      <span class="s2">&quot;&quot;&quot;</span>
+          <div class='highlight'><pre>              <span class="nv">fieldName = </span><span class="nx">$</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">label</span><span class="p">.</span><span class="nx">text</span><span class="p">()).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/:$/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 
-<span class="s2">      @form</span>
-<span class="s2">        .find(&#39;.&#39;+@config.errorSummaryClass).remove().end()</span>
-<span class="s2">        .find(&#39;[type=&quot;</span><span class="nx">submit</span><span class="err">&quot;</span><span class="p">]</span><span class="s1">&#39;).last()</span>
-<span class="s1">          .before(errorContainerHTML)</span>
+            <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span> <span class="s2">&quot;&lt;li&gt;&lt;em class=\&quot;field-with-error-name\&quot;&gt;#{fieldName}&lt;/em&gt; #{text}&lt;/li&gt;&quot;</span>
+          <span class="k">when</span> <span class="s1">&#39;processor&#39;</span>
+            <span class="nx">errors</span><span class="p">.</span><span class="nx">push</span> <span class="s2">&quot;&lt;li&gt;#{text}&lt;/li&gt;&quot;</span>
 
+      <span class="nv">errorContainerHTML = </span><span class="s2">&quot;&lt;div class=\&quot;#{@config.errorSummaryClass}\&quot;&gt;</span>
+<span class="s2">        &lt;strong&gt;#{PaymentErrorHandler.ERROR_MESSAGES.summary_header}&lt;/strong&gt;</span>
+<span class="s2">        &lt;ul&gt;#{errors.join(&#39;&#39;)}&lt;/ul&gt;</span>
+<span class="s2">      &lt;/div&gt;&quot;</span>
 
-<span class="s1"># DIVIDER</span>
-
-<span class="s1">    reset: =&gt;</span>
-<span class="s1">      @form</span>
-<span class="s1">        .find(&#39;</span><span class="p">.</span><span class="s1">&#39;+@config.inputErrorClass).removeClass(@config.inputErrorClass).end()</span>
-<span class="s1">        .find(&#39;</span><span class="p">.</span><span class="s1">&#39;+@config.labelErrorClass).removeClass(@config.labelErrorClass).end()</span>
-<span class="s1">        .find(&#39;</span><span class="p">.</span><span class="s1">&#39;+@config.descriptionClass).remove().end()</span>
-<span class="s1">        .find(&#39;</span><span class="p">.</span><span class="err">&#39;</span><span class="o">+</span><span class="nx">@config</span><span class="p">.</span><span class="nx">errorSummaryClass</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
-      <span class="vi">@currentErrorMessages = </span><span class="p">[]</span></pre></div>
+      <span class="nx">@form</span>
+        <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">@config</span><span class="p">.</span><span class="nx">errorSummaryClass</span><span class="p">).</span><span class="nx">remove</span><span class="p">().</span><span class="nx">end</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">last</span><span class="p">()</span>
+          <span class="p">.</span><span class="nx">before</span><span class="p">(</span><span class="nx">errorContainerHTML</span><span class="p">)</span></pre></div>
         </td>
       </tr>
       
@@ -430,7 +415,12 @@ key of the returned message.</p>
 
         </td>
         <td class=code>
-          <div class='highlight'><pre></pre></div>
+          <div class='highlight'><pre>    <span class="nv">reset: </span><span class="o">=&gt;</span>
+      <span class="nx">@form</span>
+        <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">@config</span><span class="p">.</span><span class="nx">inputErrorClass</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">@config</span><span class="p">.</span><span class="nx">inputErrorClass</span><span class="p">).</span><span class="nx">end</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">@config</span><span class="p">.</span><span class="nx">labelErrorClass</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">@config</span><span class="p">.</span><span class="nx">labelErrorClass</span><span class="p">).</span><span class="nx">end</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">@config</span><span class="p">.</span><span class="nx">errorSummaryClass</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
+      <span class="vi">@currentErrorMessages = </span><span class="p">[]</span></pre></div>
         </td>
       </tr>
       

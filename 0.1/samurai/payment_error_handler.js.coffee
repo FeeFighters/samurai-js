@@ -149,20 +149,17 @@ $ = jQuery
             if label.length is 0
               fieldName = message.context.split('.')[1].replace(/_/, ' ')
             else
-              fieldName = $.trim(label.text()).replace(/:$/, '') # strip trailing colon from labels that have it
+              # strip trailing colon from labels that have it
+              fieldName = $.trim(label.text()).replace(/:$/, '')
 
             errors.push "<li><em class=\"field-with-error-name\">#{fieldName}</em> #{text}</li>"
           when 'processor'
             errors.push "<li>#{text}</li>"
 
-      errorContainerHTML = """
-      <div class="#{@config.errorSummaryClass}">
+      errorContainerHTML = "<div class=\"#{@config.errorSummaryClass}\">
         <strong>#{PaymentErrorHandler.ERROR_MESSAGES.summary_header}</strong>
-        <ul>
-          #{errors.join('')}
-        </ul>
-      </div>
-      """
+        <ul>#{errors.join('')}</ul>
+      </div>"
 
       @form
         .find('.'+@config.errorSummaryClass).remove().end()
