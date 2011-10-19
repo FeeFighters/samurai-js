@@ -6,8 +6,8 @@ $ = jQuery
 @module "Samurai", ->
   @Payments = do ->
     rpc = null  # our easyXDM socket
-    transparentRedirectUrl = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/v1/payment_methods'" :
-      %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods"} %> # API endpoint
+    transparentRedirectUrl = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json'" :
+      %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json"} %> # API endpoint
 
     init = ->
       setupRpc() unless Samurai.config.withoutPayments  # initialize the easyXDM framework
