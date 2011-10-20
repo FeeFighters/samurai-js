@@ -16,6 +16,7 @@ $ = jQuery
       not_numeric: 'must be a number.'
       too_short: 'is too short.'
       too_long: 'is too long.'
+      is_blank: 'is required.'
       failed_checksum: 'is not valid.'
       declined: 'Your card was declined.'
     }
