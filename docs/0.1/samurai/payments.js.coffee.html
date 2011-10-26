@@ -122,7 +122,7 @@
           <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
   <span class="vi">@Payments = </span><span class="nx">do</span> <span class="o">-&gt;</span>
     <span class="nv">rpc = </span><span class="kc">null</span>  <span class="c1"># our easyXDM socket</span>
-    <span class="nv">transparentRedirectUrl = </span><span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span> <span class="k">then</span> <span class="s2">&quot;/uber_gateway_mock/v1/payment_methods&quot;</span> <span class="k">else</span> <span class="s2">&quot;https://api.samurai.feefighters.com/v1/payment_methods&quot;</span> <span class="c1"># API endpoint</span>
+    <span class="nv">transparentRedirectUrl = </span><span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span> <span class="k">then</span> <span class="s2">&quot;/uber_gateway_mock/v1/payment_methods&quot;</span> <span class="k">else</span> <span class="s2">&quot;https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json&quot;</span> <span class="c1"># API endpoint</span>
 
     <span class="nv">init = </span><span class="o">-&gt;</span>
       <span class="nx">setupRpc</span><span class="p">()</span> <span class="nx">unless</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">withoutPayments</span>  <span class="c1"># initialize the easyXDM framework</span>
