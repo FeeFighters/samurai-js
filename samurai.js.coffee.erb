@@ -2,6 +2,8 @@
   version ||= 0.1
   root_url = if Rails.env.development?
     'http://127.0.0.1:3000'
+  elsif Rails.env.test?
+    ''
   elsif Rails.env.staging?
     'https://samurai-staging.feefighters.com'
   else
@@ -70,15 +72,15 @@ window.Samurai =
     # in the compiled code.
     buggyConsole = !!(typeof console.log is 'object')
     log = (level, d...) ->
-      if buggyConsole 
+      if buggyConsole
         console[level](d)
       else
         console[level](d...)
 
-    if typeof data[0] is "string" 
+    if typeof data[0] is "string"
       data[0] = 'Samurai: '+data[0]
       log 'log', data...
-    else 
+    else
       if "debug" of console
         log 'debug', data...
       else
