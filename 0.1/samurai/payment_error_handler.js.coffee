@@ -1,6 +1,6 @@
 # Samurai Payment Error Handler Module
 # ------------------------
-$ = jQuery
+$ = jQuerySamurai
 
 # Module for handling errors returned by the Samurai Payment module
 @module "Samurai", ->
@@ -22,14 +22,14 @@ $ = jQuery
     }
 
     # Keeps a list of all instantiated error handlers.
-    @errorHandlers: [] 
+    @errorHandlers: []
 
     # Used to return a reference to the error handler of a form or
     # instantiate one if one doesn't exist, yet.
     # Make sure that the `element` argument is an actual DOM element
     # and not a jQuery collection.
     @for: (element) ->
-      if element instanceof jQuery
+      if element instanceof jQuerySamurai
         element = element.get(0)
 
       for [el, handler] in PaymentErrorHandler.errorHandlers
@@ -79,7 +79,7 @@ $ = jQuery
     # When it finds an error, it triggers the `samurai.show-error` event and passes on
     # the affected input field and the humanized error message. This allows you to
     # intercept the `show-error` event and handle the display of errors yourself.
-    # If not, the built-in `highlightFieldWithError` method will respond to this event 
+    # If not, the built-in `highlightFieldWithError` method will respond to this event
     # and highlight the erroneous field in the default style.
     handleErrorsFromResponse: (response) ->
       messages = @extractMessagesFromResponse(response)
@@ -112,7 +112,7 @@ $ = jQuery
       # sometimes a message is returned as a shallow object in an array of messages,
       # sometimes it's inside an additional `message` object wrapper. This expression
       # makes sure the two are the same.
-      messages = $.map messages, (m) -> if m.message then m.message else m 
+      messages = $.map messages, (m) -> if m.message then m.message else m
 
     # Returns the error context, a jQuery collection that contains the element with invalid value
     # (if there is one) and the humanized error text that corresponds to the message key
@@ -139,7 +139,7 @@ $ = jQuery
       errors = []
       for message in messages
         [context, input, text] = @parseErrorMessage(message)
-        
+
         switch context
           when 'input'
             # try to find the nearest label to get the name of the field that contains

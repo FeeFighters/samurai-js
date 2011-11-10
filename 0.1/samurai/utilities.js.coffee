@@ -1,5 +1,5 @@
 # General utilities module
-$ = jQuery
+$ = jQuerySamurai
 
 # Samurai Utilities Module
 # ------------------------

@@ -1,7 +1,7 @@
 # Samurai Expiration Dates Module
 # ------------------------
 
-$ = jQuery
+$ = jQuerySamurai
 
 # Module for adjusting expiration-date selectors to make them more user-friendly
 # _WIP!_

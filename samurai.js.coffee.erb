@@ -25,7 +25,6 @@ window.Samurai =
   # Calling this function sets `@config` and begins the loading process
   init: (@config={}) ->
     @config.forceLoad = [] unless @config.forceLoad?
-    @_$ = window.$ # map the old $ to make sure the jQuery we'll load in a second doesn't overwrite it
     Samurai.log 'Bootstrapping...'
     @loadSamuraiCss()
     @loadVendorJs @loadSamuraiJs
@@ -33,19 +32,18 @@ window.Samurai =
   # Load our vendor javascript
   loadVendorJs: (onComplete) ->
     vendor_scripts = []
-    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.6.2.min.js") %>' if not jQuery?  # include jQuery if it doesn't already exist
+    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.6.2.samurai.min.js") %>' if not jQuerySamurai?  # include jQuerySamurai if it doesn't already exist
     if Samurai.config.debugEasyXDM  # Load easyXDM for cross-domain messaging (debug or minimized version)
       vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.debug.js") %>'
     else
       vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.min.js") %>'
     $script vendor_scripts, ->  # Here we do the actual async laod, with a callback for onComplete
-      $script '<%= root_url + asset_path("api/#{version}/jquery.formparams.min.js") %>'  # jQuery is available, so load the jQuery plugins
+      $script '<%= root_url + asset_path("api/#{version}/jquery.formparams.samurai.min.js") %>'  # jQuerySamurai is available, so load the jQuerySamurai plugins
       onComplete()
 
   # Load the main Samurai javascript
   # This is called as the onComplete callback to `loadVendorJs()`
   loadSamuraiJs: ->
-    jQuery.noConflict() unless Samurai._$ is jQuery # try not to interfere with existing jQuery/Prototype/etc
     $script '<%= root_url + asset_path("api/#{version}/samurai.js") %>', ->
       # Samurai is loaded, so call the new initializer
       window.Samurai.init(window.Samurai.config)
@@ -103,4 +101,4 @@ window.Samurai =
   # *NOTE: This configuration is deprecated.*
   # (The payments module is now loaded by default.  To disable it, set the `withoutPayments: true` configuration.)
   shouldForceLoad: (moduleName) ->
-    jQuery.inArray(moduleName, @config.forceLoad) > -1
+    jQuerySamurai.inArray(moduleName, @config.forceLoad) > -1

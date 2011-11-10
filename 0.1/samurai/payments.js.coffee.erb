@@ -1,6 +1,6 @@
 # Samurai Payment Forms Module
 # ------------------------
-$ = jQuery
+$ = jQuerySamurai
 
 # Module for performing ajax payment transactions
 @module "Samurai", ->
@@ -81,7 +81,7 @@ $ = jQuery
             .children('.loading').hide().end()
             .children('button[type="submit"]')
               .attr('disabled', false).text('Resubmit Payment')
-          
+
         # Bind to the `samurai.completed` event:
         #
         # * hide the button (only let them purchase once)

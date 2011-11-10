@@ -1,6 +1,6 @@
 # Samurai Card Previews Module
 # ------------------------
-$ = jQuery
+$ = jQuerySamurai
 
 # Module for observing the credit_card[number] field, and displaying the proper card images
 @module "Samurai", ->
