@@ -59,36 +59,36 @@ $ = Samurai.jQuery
         # * trigger the `samurai.loading` event
         # * display the `.loading` spinner, and change the button style to inactive
         # * call `Samurai.payment()` to submit the credit card data
-        #   * in the callback function, trigger the `samurai.payment` event on the form
+        #   * in the callback function, trigger the `payment` event on the form
         $(this).submit (event) ->
           event.preventDefault()
-          $(this).trigger('samurai.loading').addClass('loading')
+          $(this).trigger('loading').addClass('loading')
           $(this).children('.loading').show()
           $(this).children('button[type="submit"]').attr('disabled', true)
           payment $(this).formParams(), (data) =>
-            $(this).trigger('samurai.payment', data)
+            $(this).trigger('payment', data)
           false
 
-        # Bind to the `samurai.errors-shown` event and do the following if the payment
+        # Bind to the `errors-shown` event and do the following if the payment
         # information was invalid:
         #
         # * hide the `.loading` spinner
         # * enable the submit button
         # * change the label of the submit button to "Resubmit Payment"
-        $(this).bind 'samurai.errors-shown', (event) ->
+        $(this).bind 'errors-shown', (event) ->
           $(this)
             .removeClass('loading')
             .children('.loading').hide().end()
             .children('button[type="submit"]')
               .attr('disabled', false).text('Resubmit Payment')
 
-        # Bind to the `samurai.completed` event:
+        # Bind to the `completed` event:
         #
         # * hide the button (only let them purchase once)
         # * set the `.loading` class on the form
         # * hide the `.loading` spinner
         # * show the `.results` container
-        $(this).bind 'samurai.completed', (event, data) ->
+        $(this).bind 'completed', (event, data) ->
           $(this).children('button[type="submit"]').hide()
           $(this).removeClass('loading').addClass('complete')
           $(this).children('.loading').hide()

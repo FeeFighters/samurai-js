@@ -51,10 +51,10 @@ $ = Samurai.jQuery
 
       @form = $(@form)
       @form
-        .bind('samurai.payment', @handlePaymentEvent)
+        .bind('payment', @handlePaymentEvent)
         .submit(@reset)
-        .bind('samurai.show-error', @highlightFieldWithErrors)
-        .bind('samurai.errors-shown', @showErrorSummary)
+        .bind('show-error', @highlightFieldWithErrors)
+        .bind('errors-shown', @showErrorSummary)
       @currentErrorMessages = []
       PaymentErrorHandler.errorHandlers.push [@form.get(0), this]
       log 'Error handler attached to ', @form
@@ -67,16 +67,16 @@ $ = Samurai.jQuery
 
     # Loops through the messages block and calls the `parseErrorMessage` method
     # for each message with a class of `error`. At the end of the method,
-    # a `samurai.errors-shown` event is triggered, which we hook into to
+    # a `errors-shown` event is triggered, which we hook into to
     # provide users a summary of all errors.
     #
-    # This method will usually get called by handlePaymentEvent when a samurai.payment event
+    # This method will usually get called by handlePaymentEvent when a `payment` event
     # is triggered, but you can easily use it on its own like this:
     #
     # `Samurai.PaymentErrorHandler.for($('#myform').get(0)).handleErrorsFromResponse(jsonResponse)`
     #
     # Note that this method doesn't handle the display of errors.
-    # When it finds an error, it triggers the `samurai.show-error` event and passes on
+    # When it finds an error, it triggers the `show-error` event and passes on
     # the affected input field and the humanized error message. This allows you to
     # intercept the `show-error` event and handle the display of errors yourself.
     # If not, the built-in `highlightFieldWithError` method will respond to this event
@@ -87,11 +87,11 @@ $ = Samurai.jQuery
       for message in messages
         if message.class is 'error' or message.subclass is 'error'
           [context, input, text] = @parseErrorMessage(message)
-          @form.trigger 'samurai.show-error', [input, text, message]
+          @form.trigger 'show-error', [input, text, message]
           @currentErrorMessages.push(message)
 
       if @currentErrorMessages.length > 0
-        @form.trigger 'samurai.errors-shown', [@currentErrorMessages]
+        @form.trigger 'errors-shown', [@currentErrorMessages]
 
     # Performs a deep traversal of the response object, and looks for
     # message arrays along the way. This method is needed because sometimes
@@ -133,7 +133,7 @@ $ = Samurai.jQuery
       label = input.siblings('label')
       if label.length is 0 then label = input.closest('label')
       label.addClass @config.labelErrorClass
-      @form.trigger 'samurai.error-shown', [input, text]
+      @form.trigger 'error-shown', [input, text]
 
     showErrorSummary: (event, messages) =>
       errors = []
