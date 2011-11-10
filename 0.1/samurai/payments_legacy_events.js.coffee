@@ -13,18 +13,28 @@ $ = Samurai.jQuery
       samurai = this
       $('form').each ->
 
-        $(this).bind 'loading' (event, data) ->
-          $(this).trigger 'samurai.loading', data
+        $(this).bind 'loading', (event) ->
+          Samurai.log 'Triggering legacy event: samurai.loading'
+          $(this).trigger 'samurai.loading'
 
-        $(this).bind 'payment' (event, data) ->
+        $(this).bind 'payment', (event, data) ->
+          Samurai.log 'Triggering legacy event: samurai.payment'
           $(this).trigger 'samurai.payment', data
 
-        $(this).bind 'errors-shown' (event, data) ->
-          $(this).trigger 'samurai.errors-shown', data
+        $(this).bind 'errors-shown', (event, input, text) ->
+          Samurai.log 'Triggering legacy event: samurai.errors-shown'
+          $(this).trigger 'samurai.errors-shown', [input, text]
 
-        $(this).bind 'show-error' (event, data) ->
-          $(this).trigger 'samurai.show-error', data
+        $(this).bind 'show-error', (event, input, text, message) ->
+          Samurai.log 'Triggering legacy event: samurai.show-error'
+          $(this).trigger 'samurai.show-error', [input, text, message]
 
-        $(this).bind 'completed' (event, data) ->
-          $(this).trigger 'samurai.completed', data
+        # This one is user-triggered, so it is flipped
+        $(this).bind 'samurai.completed', (event) ->
+          Samurai.log 'Responding to legacy event: samurai.completed'
+          $(this).trigger 'completed'
+
+    # Export public API
+    {init}
+
 

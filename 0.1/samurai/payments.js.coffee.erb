@@ -88,7 +88,7 @@ $ = Samurai.jQuery
         # * set the `.loading` class on the form
         # * hide the `.loading` spinner
         # * show the `.results` container
-        $(this).bind 'completed', (event, data) ->
+        $(this).bind 'completed', (event) ->
           $(this).children('button[type="submit"]').hide()
           $(this).removeClass('loading').addClass('complete')
           $(this).children('.loading').hide()
