@@ -4,6 +4,7 @@
 # Require each of the modules, using Sprockets
 #= require 'api/0.1/samurai/base'
 #= require 'api/0.1/samurai/utilities'
+#= require 'api/0.1/samurai/events'
 #= require 'api/0.1/samurai/card_preview'
 #= require 'api/0.1/samurai/expiration_dates'
 #= require 'api/0.1/samurai/payments'

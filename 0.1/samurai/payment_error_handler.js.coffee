@@ -29,7 +29,7 @@ $ = Samurai.jQuery
     # Make sure that the `element` argument is an actual DOM element
     # and not a jQuery collection.
     @for: (element) ->
-      if element instanceof jQuerySamurai
+      if element instanceof Samurai.jQuery
         element = element.get(0)
 
       for [el, handler] in PaymentErrorHandler.errorHandlers
