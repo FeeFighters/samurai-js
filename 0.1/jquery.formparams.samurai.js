@@ -43,9 +43,9 @@
 		formParams: function( convert ) {
 			if ( this[0].nodeName.toLowerCase() == 'form' && this[0].elements ) {
 
-				return jQuery(jQuery.makeArray(this[0].elements)).getParams(convert);
+				return jQuerySamurai(jQuerySamurai.makeArray(this[0].elements)).getParams(convert);
 			}
-			return jQuery("input[name], textarea[name], select[name]", this[0]).getParams(convert);
+			return jQuerySamurai("input[name], textarea[name], select[name]", this[0]).getParams(convert);
 		},
 		getParams: function( convert ) {
 			var data = {},
@@ -105,4 +105,4 @@
 		}
 	});
 
-})(jQuery)
+})(jQuerySamurai)
