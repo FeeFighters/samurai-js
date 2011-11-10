@@ -17,7 +17,6 @@
 @Samurai.init = (@config={})->
   Samurai.log 'Bootstrapped. Initializing, with config:'
   Samurai.log @config
-  @jQuery = jQuery
 
   # Initialize Samurai modules!
   Samurai.PaymentForms.init()

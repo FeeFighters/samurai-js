@@ -32,12 +32,12 @@ window.Samurai =
   # Load our vendor javascript
   loadVendorJs: (onComplete) ->
     vendor_scripts = []
-    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.6.2.samurai.min.js") %>' if not jQuerySamurai?  # include jQuerySamurai if it doesn't already exist
+    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.7.samurai.min.js") %>' if not Samurai.jQuery?  # include jQuery if it doesn't already exist
     if Samurai.config.debugEasyXDM  # Load easyXDM for cross-domain messaging (debug or minimized version)
       vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.debug.js") %>'
     else
       vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.min.js") %>'
-    $script vendor_scripts, ->  # Here we do the actual async laod, with a callback for onComplete
+    $script vendor_scripts, ->  # Here we do the actual async load, with a callback for onComplete
       $script '<%= root_url + asset_path("api/#{version}/jquery.formparams.samurai.min.js") %>'  # jQuerySamurai is available, so load the jQuerySamurai plugins
       onComplete()
 
@@ -101,4 +101,4 @@ window.Samurai =
   # *NOTE: This configuration is deprecated.*
   # (The payments module is now loaded by default.  To disable it, set the `withoutPayments: true` configuration.)
   shouldForceLoad: (moduleName) ->
-    jQuerySamurai.inArray(moduleName, @config.forceLoad) > -1
+    Samurai.jQuery.inArray(moduleName, @config.forceLoad) > -1

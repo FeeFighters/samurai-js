@@ -1,6 +1,6 @@
 # Samurai Payment Error Handler Module
 # ------------------------
-$ = jQuerySamurai
+$ = Samurai.jQuery
 
 # Module for handling errors returned by the Samurai Payment module
 @module "Samurai", ->
