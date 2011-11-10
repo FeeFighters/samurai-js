@@ -56,6 +56,9 @@
             <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
           
             
+            <a class="source" href="events.js.coffee.html">0.1/samurai/events.js.coffee</a>
+          
+            
             <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
           
             
@@ -66,6 +69,9 @@
           
             
             <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
+          
+            
+            <a class="source" href="payments_legacy_events.js.coffee.html">0.1/samurai/payments_legacy_events.js.coffee</a>
           
             
             <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
@@ -107,7 +113,7 @@
           <h2>Samurai Payment Error Handler Module</h2>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
+          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">jQuery</span></pre></div>
         </td>
       </tr>
       
@@ -157,7 +163,7 @@ for these keys. Feel free to overwrite it with your own.</p>
           <p>Keeps a list of all instantiated error handlers.</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="vi">@errorHandlers: </span><span class="p">[]</span> </pre></div>
+          <div class='highlight'><pre>    <span class="vi">@errorHandlers: </span><span class="p">[]</span></pre></div>
         </td>
       </tr>
       
@@ -173,7 +179,7 @@ and not a jQuery collection.</p>
         </td>
         <td class=code>
           <div class='highlight'><pre>    <span class="vi">@for: </span><span class="nf">(element) -&gt;</span>
-      <span class="k">if</span> <span class="nx">element</span> <span class="k">instanceof</span> <span class="nx">jQuery</span>
+      <span class="k">if</span> <span class="nx">element</span> <span class="k">instanceof</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">jQuery</span>
         <span class="nv">element = </span><span class="nx">element</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
       <span class="k">for</span> <span class="p">[</span><span class="nx">el</span><span class="p">,</span> <span class="nx">handler</span><span class="p">]</span> <span class="k">in</span> <span class="nx">PaymentErrorHandler</span><span class="p">.</span><span class="nx">errorHandlers</span>
@@ -214,10 +220,10 @@ but would just like to use different class names.</p>
 
       <span class="vi">@form = </span><span class="nx">$</span><span class="p">(</span><span class="nx">@form</span><span class="p">)</span>
       <span class="nx">@form</span>
-        <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;samurai.payment&#39;</span><span class="p">,</span> <span class="nx">@handlePaymentEvent</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;payment&#39;</span><span class="p">,</span> <span class="nx">@handlePaymentEvent</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">submit</span><span class="p">(</span><span class="nx">@reset</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;samurai.show-error&#39;</span><span class="p">,</span> <span class="nx">@highlightFieldWithErrors</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;samurai.errors-shown&#39;</span><span class="p">,</span> <span class="nx">@showErrorSummary</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;show-error&#39;</span><span class="p">,</span> <span class="nx">@highlightFieldWithErrors</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;errors-shown&#39;</span><span class="p">,</span> <span class="nx">@showErrorSummary</span><span class="p">)</span>
       <span class="vi">@currentErrorMessages = </span><span class="p">[]</span>
       <span class="nx">PaymentErrorHandler</span><span class="p">.</span><span class="nx">errorHandlers</span><span class="p">.</span><span class="nx">push</span> <span class="p">[</span><span class="nx">@form</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="k">this</span><span class="p">]</span>
       <span class="nx">log</span> <span class="s1">&#39;Error handler attached to &#39;</span><span class="p">,</span> <span class="nx">@form</span></pre></div>
@@ -246,19 +252,19 @@ need it to do more than that.</p>
           </div>
           <p>Loops through the messages block and calls the <code>parseErrorMessage</code> method
 for each message with a class of <code>error</code>. At the end of the method,
-a <code>samurai.errors-shown</code> event is triggered, which we hook into to
+a <code>errors-shown</code> event is triggered, which we hook into to
 provide users a summary of all errors.</p>
 
-<p>This method will usually get called by handlePaymentEvent when a samurai.payment event
+<p>This method will usually get called by handlePaymentEvent when a <code>payment</code> event
 is triggered, but you can easily use it on its own like this:</p>
 
 <p><code>Samurai.PaymentErrorHandler.for($(&#39;#myform&#39;).get(0)).handleErrorsFromResponse(jsonResponse)</code></p>
 
 <p>Note that this method doesn&#39;t handle the display of errors.
-When it finds an error, it triggers the <code>samurai.show-error</code> event and passes on
+When it finds an error, it triggers the <code>show-error</code> event and passes on
 the affected input field and the humanized error message. This allows you to
 intercept the <code>show-error</code> event and handle the display of errors yourself.
-If not, the built-in <code>highlightFieldWithError</code> method will respond to this event 
+If not, the built-in <code>highlightFieldWithError</code> method will respond to this event
 and highlight the erroneous field in the default style.</p>
         </td>
         <td class=code>
@@ -268,11 +274,11 @@ and highlight the erroneous field in the default style.</p>
       <span class="k">for</span> <span class="nx">message</span> <span class="k">in</span> <span class="nx">messages</span>
         <span class="k">if</span> <span class="nx">message</span><span class="p">.</span><span class="k">class</span> <span class="o">is</span> <span class="s1">&#39;error&#39;</span> <span class="o">or</span> <span class="nx">message</span><span class="p">.</span><span class="nx">subclass</span> <span class="o">is</span> <span class="s1">&#39;error&#39;</span>
           <span class="p">[</span><span class="nx">context</span><span class="p">,</span> <span class="nx">input</span><span class="p">,</span> <span class="nx">text</span><span class="p">]</span> <span class="o">=</span> <span class="nx">@parseErrorMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
-          <span class="nx">@form</span><span class="p">.</span><span class="nx">trigger</span> <span class="s1">&#39;samurai.show-error&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">input</span><span class="p">,</span> <span class="nx">text</span><span class="p">,</span> <span class="nx">message</span><span class="p">]</span>
+          <span class="nx">@form</span><span class="p">.</span><span class="nx">trigger</span> <span class="s1">&#39;show-error&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">input</span><span class="p">,</span> <span class="nx">text</span><span class="p">,</span> <span class="nx">message</span><span class="p">]</span>
           <span class="nx">@currentErrorMessages</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
 
       <span class="k">if</span> <span class="nx">@currentErrorMessages</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
-        <span class="nx">@form</span><span class="p">.</span><span class="nx">trigger</span> <span class="s1">&#39;samurai.errors-shown&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">@currentErrorMessages</span><span class="p">]</span></pre></div>
+        <span class="nx">@form</span><span class="p">.</span><span class="nx">trigger</span> <span class="s1">&#39;errors-shown&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">@currentErrorMessages</span><span class="p">]</span></pre></div>
         </td>
       </tr>
       
@@ -312,7 +318,7 @@ sometimes it&#39;s inside an additional <code>message</code> object wrapper. Thi
 makes sure the two are the same.</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>      <span class="nv">messages = </span><span class="nx">$</span><span class="p">.</span><span class="nx">map</span> <span class="nx">messages</span><span class="p">,</span> <span class="nf">(m) -&gt;</span> <span class="k">if</span> <span class="nx">m</span><span class="p">.</span><span class="nx">message</span> <span class="k">then</span> <span class="nx">m</span><span class="p">.</span><span class="nx">message</span> <span class="k">else</span> <span class="nx">m</span> </pre></div>
+          <div class='highlight'><pre>      <span class="nv">messages = </span><span class="nx">$</span><span class="p">.</span><span class="nx">map</span> <span class="nx">messages</span><span class="p">,</span> <span class="nf">(m) -&gt;</span> <span class="k">if</span> <span class="nx">m</span><span class="p">.</span><span class="nx">message</span> <span class="k">then</span> <span class="nx">m</span><span class="p">.</span><span class="nx">message</span> <span class="k">else</span> <span class="nx">m</span></pre></div>
         </td>
       </tr>
       
@@ -351,13 +357,13 @@ and the error message as arguments.</p>
       <span class="nv">label = </span><span class="nx">input</span><span class="p">.</span><span class="nx">siblings</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
       <span class="k">if</span> <span class="nx">label</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span> <span class="k">then</span> <span class="nv">label = </span><span class="nx">input</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
       <span class="nx">label</span><span class="p">.</span><span class="nx">addClass</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">labelErrorClass</span>
-      <span class="nx">@form</span><span class="p">.</span><span class="nx">trigger</span> <span class="s1">&#39;samurai.error-shown&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">input</span><span class="p">,</span> <span class="nx">text</span><span class="p">]</span>
+      <span class="nx">@form</span><span class="p">.</span><span class="nx">trigger</span> <span class="s1">&#39;error-shown&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">input</span><span class="p">,</span> <span class="nx">text</span><span class="p">]</span>
 
     <span class="nv">showErrorSummary: </span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">messages</span><span class="p">)</span> <span class="o">=&gt;</span>
       <span class="nv">errors = </span><span class="p">[]</span>
       <span class="k">for</span> <span class="nx">message</span> <span class="k">in</span> <span class="nx">messages</span>
         <span class="p">[</span><span class="nx">context</span><span class="p">,</span> <span class="nx">input</span><span class="p">,</span> <span class="nx">text</span><span class="p">]</span> <span class="o">=</span> <span class="nx">@parseErrorMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span>
-        
+
         <span class="k">switch</span> <span class="nx">context</span>
           <span class="k">when</span> <span class="s1">&#39;input&#39;</span></pre></div>
         </td>

@@ -56,6 +56,9 @@
             <a class="source" href="samurai/card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
           
             
+            <a class="source" href="samurai/events.js.coffee.html">0.1/samurai/events.js.coffee</a>
+          
+            
             <a class="source" href="samurai/expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
           
             
@@ -66,6 +69,9 @@
           
             
             <a class="source" href="samurai/payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
+          
+            
+            <a class="source" href="samurai/payments_legacy_events.js.coffee.html">0.1/samurai/payments_legacy_events.js.coffee</a>
           
             
             <a class="source" href="samurai/utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
@@ -121,10 +127,12 @@
         <td class=code>
           <div class='highlight'><pre><span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/base&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/utilities&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/events&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/card_preview&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/expiration_dates&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payments&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payment_error_handler&#39;</span>
+<span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payments_legacy_events&#39;</span>
 <span class="o">=</span> <span class="nx">require</span> <span class="s1">&#39;api/0.1/samurai/payment_forms&#39;</span></pre></div>
         </td>
       </tr>
@@ -142,8 +150,7 @@ once the full Samurai.js library is loaded on the page</p>
         <td class=code>
           <div class='highlight'><pre><span class="vi">@Samurai.init = </span><span class="nf">(@config={})-&gt;</span>
   <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;Bootstrapped. Initializing, with config:&#39;</span>
-  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="nx">@config</span>
-  <span class="vi">@jQuery = </span><span class="nx">jQuery</span></pre></div>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="nx">@config</span></pre></div>
         </td>
       </tr>
       
@@ -158,7 +165,8 @@ once the full Samurai.js library is loaded on the page</p>
           <div class='highlight'><pre>  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">PaymentForms</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
   <span class="nx">Samurai</span><span class="p">.</span><span class="nx">CardPreview</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
   <span class="nx">Samurai</span><span class="p">.</span><span class="nx">ExpirationDates</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
-  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">Payments</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span></pre></div>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">Payments</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+  <span class="nx">Samurai</span><span class="p">.</span><span class="nx">PaymentsLegacyEvents</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span></pre></div>
         </td>
       </tr>
       

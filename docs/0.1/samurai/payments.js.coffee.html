@@ -56,6 +56,9 @@
             <a class="source" href="card_preview.js.coffee.html">0.1/samurai/card_preview.js.coffee</a>
           
             
+            <a class="source" href="events.js.coffee.html">0.1/samurai/events.js.coffee</a>
+          
+            
             <a class="source" href="expiration_dates.js.coffee.html">0.1/samurai/expiration_dates.js.coffee</a>
           
             
@@ -66,6 +69,9 @@
           
             
             <a class="source" href="payments.js.coffee.html">0.1/samurai/payments.js.coffee</a>
+          
+            
+            <a class="source" href="payments_legacy_events.js.coffee.html">0.1/samurai/payments_legacy_events.js.coffee</a>
           
             
             <a class="source" href="utilities.js.coffee.html">0.1/samurai/utilities.js.coffee</a>
@@ -107,7 +113,7 @@
           <h2>Samurai Payment Forms Module</h2>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">jQuery</span></pre></div>
+          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">jQuery</span></pre></div>
         </td>
       </tr>
       
@@ -229,18 +235,18 @@ and pass it to the callback function</p>
 <li>call <code>Samurai.payment()</code> to submit the credit card data
 
 <ul>
-<li>in the callback function, trigger the <code>samurai.payment</code> event on the form</li>
+<li>in the callback function, trigger the <code>payment</code> event on the form</li>
 </ul></li>
 </ul>
         </td>
         <td class=code>
           <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">submit</span> <span class="nf">(event) -&gt;</span>
           <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;samurai.loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
+          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">()</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
           <span class="nx">payment</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">formParams</span><span class="p">(),</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;samurai.payment&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;payment&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
           <span class="kc">false</span></pre></div>
         </td>
       </tr>
@@ -250,7 +256,7 @@ and pass it to the callback function</p>
           <div class="pilwrap">
             <a class="pilcrow" href="#section-9">&#182;</a>
           </div>
-          <p>Bind to the <code>samurai.errors-shown</code> event and do the following if the payment
+          <p>Bind to the <code>errors-shown</code> event and do the following if the payment
 information was invalid:</p>
 
 <ul>
@@ -260,13 +266,12 @@ information was invalid:</p>
 </ul>
         </td>
         <td class=code>
-          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;samurai.errors-shown&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
+          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;errors-shown&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
             <span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
             <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">end</span><span class="p">()</span>
             <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Resubmit Payment&#39;</span><span class="p">)</span>
-          </pre></div>
+              <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Resubmit Payment&#39;</span><span class="p">)</span></pre></div>
         </td>
       </tr>
       
@@ -275,7 +280,7 @@ information was invalid:</p>
           <div class="pilwrap">
             <a class="pilcrow" href="#section-10">&#182;</a>
           </div>
-          <p>Bind to the <code>samurai.completed</code> event:</p>
+          <p>Bind to the <code>completed</code> event:</p>
 
 <ul>
 <li>hide the button (only let them purchase once)</li>
@@ -285,7 +290,7 @@ information was invalid:</p>
 </ul>
         </td>
         <td class=code>
-          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;samurai.completed&#39;</span><span class="p">,</span> <span class="nf">(event, data) -&gt;</span>
+          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;completed&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">()</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
           <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">()</span>
