@@ -19,6 +19,7 @@ $ = Samurai.jQuery
       is_blank: 'is required.'
       failed_checksum: 'is not valid.'
       declined: 'Your card was declined.'
+      is_invalid: 'This transaction is invalid. Please contact support.'
     }
 
     # Keeps a list of all instantiated error handlers.
@@ -90,8 +91,10 @@ $ = Samurai.jQuery
           @form.trigger 'show-error', [input, text, message]
           @currentErrorMessages.push(message)
 
-      if @currentErrorMessages.length > 0
-        @form.trigger 'errors-shown', [@currentErrorMessages]
+      if @currentErrorMessages.length == 0
+        @currentErrorMessages.push {subclass:'error', context:'processor.transaction', key:'is_invalid'}
+
+      @form.trigger 'errors-shown', [@currentErrorMessages]
 
     # Performs a deep traversal of the response object, and looks for
     # message arrays along the way. This method is needed because sometimes
