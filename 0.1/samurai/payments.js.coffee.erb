@@ -78,7 +78,7 @@ $ = Samurai.jQuery
           $(this).trigger('loading').addClass('loading')
           $(this).children('.loading').show()
           $(this).children('button[type="submit"]').attr('disabled', true)
-          payment $(this).formParams(), (data) =>
+          payment $(this).formParams(false), (data) =>
             $(this).trigger('payment', data)
           false
 
