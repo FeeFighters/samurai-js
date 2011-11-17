@@ -10,6 +10,7 @@ $ = Samurai.jQuery
       %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json"} %> # API endpoint
 
     init = ->
+      preparePaymentForms()
       setupRpc() unless Samurai.config.withoutPayments  # initialize the easyXDM framework
       attachPaymentFormHandlers()  # attach event handlers to any payment forms
 
@@ -18,6 +19,7 @@ $ = Samurai.jQuery
 
     # Setup the easyXDM socket
     setupRpc = ->
+      Samurai.log 'Setting up RPC Provider'
       remote = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/provider.html'" :
       %{if Samurai.config.mock then "/provider.html" else "https://api.samurai.feefighters.com/provider.html"} %>
       rpc = new easyXDM.Rpc {
@@ -49,14 +51,25 @@ $ = Samurai.jQuery
       data.ignore_merchant_key = true if Samurai.config.mock?
       data
 
+    preparePaymentForms = ->
+      # Disable the submit button, while load the rest of the payments stack
+      Samurai.log 'Disabling payment forms while loading setupRPC'
+      $('form[data-samurai-ajax=""] button[type="submit"]').attr('disabled', true).text('Loading...')
+
     # Attach to any forms with `data-samurai-ajax`, and make them ajax-aware
     attachPaymentFormHandlers = ->
+      Samurai.log 'Attaching payment form handlers, and re-enabling submit buttons'
+
       samurai = this
       $('form[data-samurai-ajax=""]').each ->
+
+        # Re-enable the submit buttons
+        $(this).children('button[type="submit"]').attr('disabled', false).text('Submit Payment')
+
         # On submit:
         #
         # * stop event propagation
-        # * trigger the `samurai.loading` event
+        # * trigger the `loading` event
         # * display the `.loading` spinner, and change the button style to inactive
         # * call `Samurai.payment()` to submit the credit card data
         #   * in the callback function, trigger the `payment` event on the form
