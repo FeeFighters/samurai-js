@@ -20,6 +20,7 @@ $ = Samurai.jQuery
       failed_checksum: 'is not valid.'
       declined: 'Your card was declined.'
       is_invalid: 'This transaction is invalid. Please contact support.'
+      duplicate: 'Duplicate transaction detected. This transaction was not processed.'
     }
 
     # Keeps a list of all instantiated error handlers.
@@ -64,7 +65,7 @@ $ = Samurai.jQuery
     # in its default implementation, but you can always replace it with your own if you
     # need it to do more than that.
     handlePaymentEvent: (event, response) =>
-      @handleErrorsFromResponse(response)
+      @handleErrorsFromResponse(response) if @extractMessagesFromResponse(response).length > 0
 
     # Loops through the messages block and calls the `parseErrorMessage` method
     # for each message with a class of `error`. At the end of the method,
