@@ -18,9 +18,10 @@ $ = Samurai.jQuery
       too_long: 'is too long.'
       is_blank: 'is required.'
       failed_checksum: 'is not valid.'
+      invalid: 'is not valid.'
       declined: 'Your card was declined.'
-      is_invalid: 'This transaction is invalid. Please contact support.'
       duplicate: 'Duplicate transaction detected. This transaction was not processed.'
+      unknown: 'This transaction is invalid. Please contact support.'
     }
 
     # Keeps a list of all instantiated error handlers.
@@ -93,7 +94,10 @@ $ = Samurai.jQuery
           @currentErrorMessages.push(message)
 
       if @currentErrorMessages.length == 0
-        @currentErrorMessages.push {subclass:'error', context:'processor.transaction', key:'is_invalid'}
+        @currentErrorMessages.push {subclass:'error', context:'processor.transaction', key:'unknown'}
+
+      # Make sure the errors are unique'd
+      @currentErrorMessages = $.grep @currentErrorMessages, (v,k) => $.inArray(v,@currentErrorMessages) == k
 
       @form.trigger 'errors-shown', [@currentErrorMessages]
 
@@ -160,6 +164,9 @@ $ = Samurai.jQuery
             errors.push "<li><em class=\"field-with-error-name\">#{fieldName}</em> #{text}</li>"
           when 'processor'
             errors.push "<li>#{text}</li>"
+
+      # Make sure the errors are unique'd
+      errors = $.grep errors, (v,k) => $.inArray(v,errors) == k
 
       errorContainerHTML = "<div class=\"#{@config.errorSummaryClass}\">
         <strong>#{PaymentErrorHandler.ERROR_MESSAGES.summary_header}</strong>
