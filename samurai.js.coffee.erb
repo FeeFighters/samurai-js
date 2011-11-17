@@ -24,6 +24,7 @@ window.Samurai =
   # Bootstrap initializer for Samurai
   # Calling this function sets `@config` and begins the loading process
   init: (@config={}) ->
+    @config.debug = true if window.location.href.match(/samurai-js-debug=1/)
     @config.forceLoad = [] unless @config.forceLoad?
     Samurai.log 'Bootstrapping...'
     @loadSamuraiCss()
@@ -76,7 +77,7 @@ window.Samurai =
         console[level](d...)
 
     if typeof data[0] is "string"
-      data[0] = 'Samurai: '+data[0]
+      data[0] = (new Date()).toISOString()+' Samurai: '+data[0]
       log 'log', data...
     else
       if "debug" of console
