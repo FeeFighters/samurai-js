@@ -10,44 +10,47 @@
     'https://samurai.feefighters.com'
   end
 %>
-# Samurai Async Loader
-# -----------------
+# Samurai Base
+# ------------------------
 
-# Include script.js here, so we can use it for async file loading
-`<%= File.open(File.dirname(__FILE__)+"/#{version}/script.min.js").read %>`
+# helper so we can use modules to break functionality into separate files
+# See:  https://github.com/jashkenas/coffee-script/wiki/Easy-modules-with-CoffeeScript
+@module = (names, fn) ->
+  names = names.split '.' if typeof names is 'string'
+  space = @[names.shift()] ||= {}
+  space.module ||= @module
+  if names.length
+    space.module names, fn
+  else
+    fn.call space
 
-# Setup the core Samurai object,
-# only what we need to load Samurai.js and its dependencies
+
+# Setup the core Samurai object
 window.Samurai =
   config: {}
 
-  # Bootstrap initializer for Samurai
-  # Calling this function sets `@config` and begins the loading process
-  init: (@config={}) ->
+  # Initializes each of the Samurai modules
+  init: (@config={})->
     @config.debug = true if window.location.href.match(/samurai-js-debug=1/)
     @config.forceLoad = [] unless @config.forceLoad?
-    Samurai.log 'Bootstrapping...'
     @loadSamuraiCss()
-    @loadVendorJs @loadSamuraiJs
+    Samurai.log 'Loaded. Initializing, with config:'
+    Samurai.log @config
 
-  # Load our vendor javascript
-  loadVendorJs: (onComplete) ->
-    vendor_scripts = []
-    vendor_scripts.push '<%= root_url + asset_path("api/#{version}/jquery-1.7.samurai.min.js") %>' if not Samurai.jQuery?  # include jQuery if it doesn't already exist
-    if Samurai.config.debugEasyXDM  # Load easyXDM for cross-domain messaging (debug or minimized version)
-      vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.debug.js") %>'
-    else
-      vendor_scripts.push '<%= root_url + asset_path("api/#{version}/easyXDM-2.4.15.118/easyXDM.min.js") %>'
-    $script vendor_scripts, ->  # Here we do the actual async load, with a callback for onComplete
-      $script '<%= root_url + asset_path("api/#{version}/jquery.formparams.samurai.min.js") %>'  # jQuerySamurai is available, so load the jQuerySamurai plugins
-      onComplete()
+    Samurai.jQuery =>
+      # Initialize Samurai modules!
+      Samurai.PaymentForms.init()
+      Samurai.CardPreview.init()
+      Samurai.ExpirationDates.init()
+      Samurai.Payments.init()
 
-  # Load the main Samurai javascript
-  # This is called as the onComplete callback to `loadVendorJs()`
-  loadSamuraiJs: ->
-    $script '<%= root_url + asset_path("api/#{version}/samurai.js") %>', ->
-      # Samurai is loaded, so call the new initializer
-      window.Samurai.init(window.Samurai.config)
+      # Override the .ready() command, since we're ready, we want to immediate trigger the callback
+      @ready = (callback) -> callback()
+
+      # Trigger the ready() callbacks
+      for callback in @readyCallbacks
+        callback()
+      true
 
   # Load the Samurai CSS
   loadSamuraiCss: ->
@@ -99,7 +102,3 @@ window.Samurai =
   ready: (callback) ->
     @readyCallbacks.push callback
 
-  # *NOTE: This configuration is deprecated.*
-  # (The payments module is now loaded by default.  To disable it, set the `withoutPayments: true` configuration.)
-  shouldForceLoad: (moduleName) ->
-    Samurai.jQuery.inArray(moduleName, @config.forceLoad) > -1
