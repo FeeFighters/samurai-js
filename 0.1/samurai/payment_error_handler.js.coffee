@@ -17,6 +17,7 @@ $ = Samurai.jQuery
       too_short: 'is too short.'
       too_long: 'is too long.'
       is_blank: 'is required.'
+      blank: 'is required.'
       failed_checksum: 'is not valid.'
       invalid: 'is not valid.'
       declined: 'Your card was declined.'
