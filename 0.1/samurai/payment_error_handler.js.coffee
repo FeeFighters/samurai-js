@@ -94,9 +94,6 @@ $ = Samurai.jQuery
           @form.trigger 'show-error', [input, text, message]
           @currentErrorMessages.push(message)
 
-      if @currentErrorMessages.length == 0
-        @currentErrorMessages.push {subclass:'error', context:'processor.transaction', key:'unknown'}
-
       # Make sure the errors are unique'd
       @currentErrorMessages = $.grep @currentErrorMessages, (v,k) => $.inArray(v,@currentErrorMessages) == k
 
@@ -129,7 +126,10 @@ $ = Samurai.jQuery
       [context, field] = message.context.split('.')
       input = @form.find '[name="credit_card['+field+']"]'
       text = PaymentErrorHandler.ERROR_MESSAGES[message.key]
-      [context, input, text]
+      if text?
+        [context, input, text]
+      else
+        ['processor', null, PaymentErrorHandler.ERROR_MESSAGES['unknown']]
 
     # The default error renderer for Samurai. Adds the `error` class names to the
     # input field and its nearest label.
