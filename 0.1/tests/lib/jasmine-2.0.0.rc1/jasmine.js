@@ -1641,6 +1641,8 @@ jasmine.PrettyPrinter.prototype.format = function(value) {
       this.emitScalar('Function');
     } else if (typeof value.nodeType === 'number') {
       this.emitScalar('HTMLNode');
+    } else if (value.selector) {
+      this.emitScalar('HTMLNode');
     } else if (value instanceof Date) {
       this.emitScalar('Date(' + value + ')');
     } else if (value.__Jasmine_been_here_before__) {
