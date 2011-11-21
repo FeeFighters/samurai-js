@@ -88,16 +88,21 @@ $ = Samurai.jQuery
     handleErrorsFromResponse: (response) ->
       messages = @extractMessagesFromResponse(response)
 
+      # Sort the messages so that we handle the higher-priority messages first
+      messages = messages.sort (a,b) ->
+        test = (v) -> $.inArray v, ['is_blank', 'not_numeric', 'too_short', 'too_long', 'failed_checksum']
+        test(a.key || '') - test(b.key || '')
+
+      # Make sure the errors are unique'd, by message.context
+      messages = $.grep messages, (v,k) -> $.inArray(v.context, messages.map (m) -> m.context) == k
+
       for message in messages
         if message.class is 'error' or message.subclass is 'error'
           [context, input, text] = @parseErrorMessage(message)
           @form.trigger 'show-error', [input, text, message]
           @currentErrorMessages.push(message)
 
-      # Make sure the errors are unique'd
-      @currentErrorMessages = $.grep @currentErrorMessages, (v,k) => $.inArray(v,@currentErrorMessages) == k
-
-      @form.trigger 'errors-shown', [@currentErrorMessages]
+      @form.trigger 'errors-shown', [@currentErrorMessages] if @currentErrorMessages.length > 0
 
     # Performs a deep traversal of the response object, and looks for
     # message arrays along the way. This method is needed because sometimes

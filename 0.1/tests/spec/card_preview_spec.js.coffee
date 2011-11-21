@@ -1,4 +1,4 @@
-$ = jQuery
+$ = Samurai.jQuery
 
 describe "card_preview", ->
 
