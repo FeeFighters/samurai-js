@@ -1,3 +1,5 @@
+jQuery = Samurai.jQuery
+
 var readFixtures = function() {
   return jasmine.getFixtures().proxyCallTo_('read', arguments);
 };

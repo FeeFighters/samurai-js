@@ -875,7 +875,7 @@ jasmine.Env.prototype.compareObjects_ = function(a, b, mismatchKeys, mismatchVal
     }
   }
   for (property in b) {
-    if (property == '__Jasmine_been_here_before__') continue;
+    if (property == '__Jasmine_been_here_before__' || property == 'dataset') continue;
     if (!this.equals_(a[property], b[property], mismatchKeys, mismatchValues)) {
       mismatchValues.push("'" + property + "' was '" + (b[property] ? jasmine.util.htmlEscape(b[property].toString()) : b[property]) + "' in expected, but was '" + (a[property] ? jasmine.util.htmlEscape(a[property].toString()) : a[property]) + "' in actual.");
     }
@@ -928,6 +928,18 @@ jasmine.Env.prototype.equals_ = function(a, b, mismatchKeys, mismatchValues) {
 
   if (jasmine.isNumber_(a) && jasmine.isNumber_(b)) {
     return (a == b);
+  }
+
+  if (jasmine.isArray_(a) && jasmine.isArray_(b)) {
+    if (a.length != b.length) return false;
+    for (i = 0; i < a.length; i++) {
+      if (!this.equals_(a[i], b[i])) return false;
+    }
+    return true;
+  }
+
+  if (a.selector && b.selector) {
+    return this.equals_(a[0], b[0]);
   }
 
   if (typeof a === "object" && typeof b === "object") {
