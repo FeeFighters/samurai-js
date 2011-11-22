@@ -8,7 +8,8 @@ describe "payment_error_handler", ->
   beforeEach ->
     jasmine.getFixtures().set '''
 <form action="/samurai-rocks" method="POST" id="test_form">
-<input id="credit_card_card_number" name="credit_card[card_number]" size="30" type="text" value="" autocomplete="off" />
+  <input id="credit_card_card_number" name="credit_card[card_number]" size="30" type="text" value="" autocomplete="off" />
+  <input id="credit_card_cvv" name="credit_card[cvv]" size="30" type="text" value="" autocomplete="off" />
 </form>
 '''
     test_form = $('#test_form')
@@ -75,7 +76,7 @@ describe "payment_error_handler", ->
         testPaymentErrorHandler.handleErrorsFromResponse response
         expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'is required.', messages[0]]
         expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[cvv]"]'), 'is required.', messages[3]]
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('nothing'), 'Your card was declined.', messages[4]]
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'Your card was declined.', messages[4]]
 
       it 'should trigger the errors-shown event on the form', ->
         spyOn(test_form, 'trigger')
@@ -150,7 +151,7 @@ describe "payment_error_handler", ->
         ]
         spyOn(test_form, 'trigger')
         testPaymentErrorHandler.handleErrorsFromResponse response
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'This transaction is invalid. Please contact support.', messages[0]]
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'An unknown error occurred. Please contact support.', messages[0]]
 
       it 'should not trigger show-error if only info messages are found', ->
         response.transaction.processor_response.messages = messages = [
@@ -161,4 +162,38 @@ describe "payment_error_handler", ->
         testPaymentErrorHandler.handleErrorsFromResponse response
         expect(test_form.trigger).not.toHaveBeenCalled()
 
+      it 'should trigger the proper responses with a processor.configuration error', ->
+        response.transaction.processor_response.messages = messages = [
+          { "context":"processor.configuration",   "key":"invalid",  "subclass":"error" }
+          { "context":"processor.avs_result_code", "key":"B",        "subclass":"info" }
+        ]
+        spyOn(test_form, 'trigger')
+        testPaymentErrorHandler.handleErrorsFromResponse response
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'This processor is not configured properly. Please contact support.', messages[0]]
 
+      it 'should trigger the proper responses with a processor.transaction invalid error', ->
+        response.transaction.processor_response.messages = messages = [
+          { "context":"processor.transaction",      "key":"invalid",  "subclass":"error" }
+          { "context":"processor.avs_result_code",  "key":"B",        "subclass":"info" }
+        ]
+        spyOn(test_form, 'trigger')
+        testPaymentErrorHandler.handleErrorsFromResponse response
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'This transaction is invalid. Please contact support.', messages[0]]
+
+      it 'should trigger the proper responses with a processor.transaction declined error', ->
+        response.transaction.processor_response.messages = messages = [
+          { "context":"processor.transaction",      "key":"declined",   "subclass":"error" }
+          { "context":"processor.avs_result_code",  "key":"B",          "subclass":"info" }
+        ]
+        spyOn(test_form, 'trigger')
+        testPaymentErrorHandler.handleErrorsFromResponse response
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'Your card was declined.', messages[0]]
+
+      it 'should trigger the proper responses with a processor.transaction duplicate error', ->
+        response.transaction.processor_response.messages = messages = [
+          { "context":"processor.transaction",      "key":"duplicate",  "subclass":"error" }
+          { "context":"processor.avs_result_code",  "key":"B",          "subclass":"info" }
+        ]
+        spyOn(test_form, 'trigger')
+        testPaymentErrorHandler.handleErrorsFromResponse response
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'Duplicate transaction detected. This transaction was not processed.', messages[0]]

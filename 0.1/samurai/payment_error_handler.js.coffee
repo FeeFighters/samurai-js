@@ -11,19 +11,23 @@ $ = Samurai.jQuery
     # we need to convert them to a human-readable form before we show
     # them to the user. This hash contains the default translations
     # for these keys. Feel free to overwrite it with your own.
-    @ERROR_MESSAGES = {
-      summary_header: 'We found some errors in the information you were trying to submit:'
-      not_numeric: 'must be a number.'
-      too_short: 'is too short.'
-      too_long: 'is too long.'
-      is_blank: 'is required.'
-      blank: 'is required.'
-      failed_checksum: 'is not valid.'
-      invalid: 'is not valid.'
-      declined: 'Your card was declined.'
-      duplicate: 'Duplicate transaction detected. This transaction was not processed.'
-      unknown: 'This transaction is invalid. Please contact support.'
-    }
+    @ERROR_MESSAGES:
+      'input\.*':
+        summary_header: 'We found some errors in the information you were trying to submit:'
+        not_numeric: 'must be a number.'
+        too_short: 'is too short.'
+        too_long: 'is too long.'
+        is_blank: 'is required.'
+        blank: 'is required.'
+        failed_checksum: 'is not valid.'
+        invalid: 'is not valid.'
+      'processor.transaction':
+        invalid: 'This transaction is invalid. Please contact support.'
+        declined: 'Your card was declined.'
+        duplicate: 'Duplicate transaction detected. This transaction was not processed.'
+      'processor.configuration':
+        invalid: 'This processor is not configured properly. Please contact support.'
+      unknown: 'An unknown error occurred. Please contact support.'
 
     # Keeps a list of all instantiated error handlers.
     @errorHandlers: []
@@ -130,11 +134,17 @@ $ = Samurai.jQuery
     parseErrorMessage: (message) ->
       [context, field] = message.context.split('.')
       input = @form.find '[name="credit_card['+field+']"]'
-      text = PaymentErrorHandler.ERROR_MESSAGES[message.key]
-      if text?
-        [context, input, text]
-      else
-        ['processor', null, PaymentErrorHandler.ERROR_MESSAGES['unknown']]
+
+      for context_key, value of PaymentErrorHandler.ERROR_MESSAGES
+        if message.context.match(context_key)
+          text = value[message.key]
+          if text?
+            if input and input.length
+              return [context, input, text]
+            else
+              return [context, null, text]
+
+      ['processor', null, PaymentErrorHandler.ERROR_MESSAGES['unknown']]
 
     # The default error renderer for Samurai. Adds the `error` class names to the
     # input field and its nearest label.
