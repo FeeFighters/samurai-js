@@ -1,6 +1,11 @@
 namespace :samurai_js do
+  task :setup do
+    rm_rf "api"
+    system "mkdir api && cd api && ln -s ../Rakefile && ln -s ../0.1"
+  end
+
   desc "Compile the Samurai.js library for distribution"
-  task :compile do
+  task :compile => :setup do
     require 'sprockets'
     require 'pathname'
     require 'ostruct'
@@ -14,7 +19,7 @@ namespace :samurai_js do
     end
     def asset_path(asset); asset; end
 
-    root = Pathname.new(__FILE__).dirname.parent.realpath
+    root = Pathname.new(__FILE__).dirname.join('api').parent.realpath
     env    = Sprockets::Environment.new(root) do |env|
       env.logger  = Logger.new(STDOUT)
       env.version = "test-0.1"
@@ -40,7 +45,7 @@ namespace :samurai_js do
   desc "Run the jasmine test suite, output JUnit XML"
   task :test => :compile do
     rm_rf "0.1/tests/results.xml"
-    system "cd 0.1/tests && jasmine-headless-webkit -j jasmine.yml --report results.xml"
+    system "cd api/0.1/tests && jasmine-headless-webkit -j jasmine.yml --report results.xml"
   end
 end
 
