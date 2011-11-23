@@ -40,7 +40,7 @@ namespace :samurai_js do
   desc "Run the jasmine test suite, output JUnit XML"
   task :test => :compile do
     rm_rf "0.1/tests/results.xml"
-    system "cd 0.1/tests && bundle exec jasmine-headless-webkit -j jasmine.yml --report results.xml"
+    system "cd 0.1/tests && jasmine-headless-webkit -j jasmine.yml --report results.xml"
   end
 end
 
