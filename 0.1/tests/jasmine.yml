@@ -1,0 +1,21 @@
+src_files:
+  - lib/jasmine-2.0.0.rc1/jasmine.js
+  - lib/jasmine-2.0.0.rc1/jasmine-html.js
+  - lib/jasmine-2.0.0.rc1/jasmine.css
+  - dist/api/*/samurai.js
+  - lib/jasmine-jquery-1.3.1.js
+helpers:
+  - support/**/*
+spec_files:
+  - "**/*_spec.*"
+src_dir: .
+spec_dir: dist/api/0.1/tests/spec
+skip_core: true
+vendored_helpers:
+  - jasmine-extensions
+  - intense
+  - headless_reporter_result
+  - jasmine.HeadlessConsoleReporter
+  - jasmine.JUnitReporter
+  - jsDump
+  - beautify-html
