@@ -12,8 +12,8 @@ $ = Samurai.jQuery
     # them to the user. This hash contains the default translations
     # for these keys. Feel free to overwrite it with your own.
     @ERROR_MESSAGES:
+      summary_header: 'We found some errors in the information you were trying to submit:'
       'input\.*':
-        summary_header: 'We found some errors in the information you were trying to submit:'
         not_numeric: 'must be a number.'
         too_short: 'is too short.'
         too_long: 'is too long.'
