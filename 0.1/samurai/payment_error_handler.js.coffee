@@ -28,7 +28,7 @@ $ = Samurai.jQuery
         duplicate: 'Duplicate transaction detected. This transaction was not processed.'
       'processor.configuration':
         invalid: 'This processor is not configured properly. Please contact support.'
-      unknown: 'An unknown error occurred. Please contact support.'
+      unknown: 'The transaction was not successful.'
 
     # Keeps a list of all instantiated error handlers.
     @errorHandlers: []
