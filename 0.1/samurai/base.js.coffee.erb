@@ -33,7 +33,7 @@ window.Samurai =
   init: (@config={})->
     @config.debug = true if window.location.href.match(/samurai-js-debug=1/)
     @config.forceLoad = [] unless @config.forceLoad?
-    @loadSamuraiCss()
+    @loadSamuraiCss() unless @config.withoutCss?
     Samurai.log 'Loaded. Initializing, with config:'
     Samurai.log @config
 
