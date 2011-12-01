@@ -21,6 +21,7 @@ $ = Samurai.jQuery
         blank: 'is required.'
         failed_checksum: 'is not valid.'
         invalid: 'is not valid.'
+        failed_validation: 'is not valid.'
       'processor.transaction':
         invalid: 'This transaction is invalid. Please contact support.'
         declined: 'Your card was declined.'
