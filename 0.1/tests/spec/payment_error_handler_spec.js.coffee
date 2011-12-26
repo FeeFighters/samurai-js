@@ -74,9 +74,9 @@ describe "payment_error_handler", ->
       it 'should trigger the show-error event on the form for each error', ->
         spyOn(test_form, 'trigger')
         testPaymentErrorHandler.handleErrorsFromResponse response
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'is required.', messages[0]]
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[cvv]"]'), 'is required.', messages[3]]
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'Your card was declined.', messages[4]]
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'The card number was blank.', messages[0]]
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[cvv]"]'), 'The CVV was blank.', messages[3]]
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'The card was declined.', messages[4]]
 
       it 'should trigger the errors-shown event on the form', ->
         spyOn(test_form, 'trigger')
@@ -94,7 +94,7 @@ describe "payment_error_handler", ->
           ]
           spyOn(test_form, 'trigger')
           testPaymentErrorHandler.handleErrorsFromResponse response
-          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'is required.', messages[1]]
+          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'The card number was blank.', messages[1]]
           expect(test_form.trigger).toHaveBeenCalledWith 'errors-shown', [[messages[1]]]
           expect(test_form.trigger.calls.length).toEqual(2)
 
@@ -107,7 +107,7 @@ describe "payment_error_handler", ->
           ]
           spyOn(test_form, 'trigger')
           testPaymentErrorHandler.handleErrorsFromResponse response
-          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'must be a number.', messages[2]]
+          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'The card number was invalid.', messages[2]]
           expect(test_form.trigger).toHaveBeenCalledWith 'errors-shown', [[messages[2]]]
           expect(test_form.trigger.calls.length).toEqual(2)
 
@@ -119,7 +119,7 @@ describe "payment_error_handler", ->
           ]
           spyOn(test_form, 'trigger')
           testPaymentErrorHandler.handleErrorsFromResponse response
-          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'is too short.', messages[2]]
+          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'The card number was too short.', messages[2]]
           expect(test_form.trigger).toHaveBeenCalledWith 'errors-shown', [[messages[2]]]
           expect(test_form.trigger.calls.length).toEqual(2)
 
@@ -130,7 +130,7 @@ describe "payment_error_handler", ->
           ]
           spyOn(test_form, 'trigger')
           testPaymentErrorHandler.handleErrorsFromResponse response
-          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'is too long.', messages[1]]
+          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'The card number was too long.', messages[1]]
           expect(test_form.trigger).toHaveBeenCalledWith 'errors-shown', [[messages[1]]]
           expect(test_form.trigger.calls.length).toEqual(2)
 
@@ -140,7 +140,7 @@ describe "payment_error_handler", ->
           ]
           spyOn(test_form, 'trigger')
           testPaymentErrorHandler.handleErrorsFromResponse response
-          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'is not valid.', messages[0]]
+          expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [$('[name="credit_card[card_number]"]'), 'The card number was invalid.', messages[0]]
           expect(test_form.trigger).toHaveBeenCalledWith 'errors-shown', [[messages[0]]]
           expect(test_form.trigger.calls.length).toEqual(2)
 
@@ -162,15 +162,6 @@ describe "payment_error_handler", ->
         testPaymentErrorHandler.handleErrorsFromResponse response
         expect(test_form.trigger).not.toHaveBeenCalled()
 
-      it 'should trigger the proper responses with a processor.configuration error', ->
-        response.transaction.processor_response.messages = messages = [
-          { "context":"processor.configuration",   "key":"invalid",  "subclass":"error" }
-          { "context":"processor.avs_result_code", "key":"B",        "subclass":"info" }
-        ]
-        spyOn(test_form, 'trigger')
-        testPaymentErrorHandler.handleErrorsFromResponse response
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'This processor is not configured properly. Please contact support.', messages[0]]
-
       it 'should trigger the proper responses with a processor.transaction invalid error', ->
         response.transaction.processor_response.messages = messages = [
           { "context":"processor.transaction",      "key":"invalid",  "subclass":"error" }
@@ -178,7 +169,7 @@ describe "payment_error_handler", ->
         ]
         spyOn(test_form, 'trigger')
         testPaymentErrorHandler.handleErrorsFromResponse response
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'This transaction is invalid. Please contact support.', messages[0]]
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'An unknown error occurred. Please contact support.', messages[0]]
 
       it 'should trigger the proper responses with a processor.transaction declined error', ->
         response.transaction.processor_response.messages = messages = [
@@ -187,7 +178,7 @@ describe "payment_error_handler", ->
         ]
         spyOn(test_form, 'trigger')
         testPaymentErrorHandler.handleErrorsFromResponse response
-        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'Your card was declined.', messages[0]]
+        expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'The card was declined.', messages[0]]
 
       it 'should trigger the proper responses with a processor.transaction duplicate error', ->
         response.transaction.processor_response.messages = messages = [

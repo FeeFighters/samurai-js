@@ -7,28 +7,53 @@ $ = Samurai.jQuery
   log = Samurai.log
 
   class @PaymentErrorHandler
-    # Since error messages are returned in key form only,
-    # we need to convert them to a human-readable form before we show
-    # them to the user. This hash contains the default translations
-    # for these keys. Feel free to overwrite it with your own.
-    @ERROR_MESSAGES:
-      summary_header: 'We found some errors in the information you were trying to submit:'
-      'input\.*':
-        not_numeric: 'must be a number.'
-        too_short: 'is too short.'
-        too_long: 'is too long.'
-        is_blank: 'is required.'
-        blank: 'is required.'
-        failed_checksum: 'is not valid.'
-        invalid: 'is not valid.'
-        failed_validation: 'is not valid.'
-      'processor.transaction':
-        invalid: 'This transaction is invalid. Please contact support.'
-        declined: 'Your card was declined.'
-        duplicate: 'Duplicate transaction detected. This transaction was not processed.'
-      'processor.configuration':
-        invalid: 'This processor is not configured properly. Please contact support.'
-      unknown: 'The transaction was not successful.'
+    @DEFAULT_RESPONSE_MAPPINGS = {
+      # Transaction Responses
+      'info processor.transaction success'      : 'The transaction was successful.',
+      'error processor.transaction declined'    : 'The card was declined.',
+      'error processor.issuer call'             : 'Call the card issuer for further instructions.',
+      'error processor.issuer unavailable'      : 'The authorization did not respond within the alloted time.',
+      'error input.card_number invalid'         : 'The card number was invalid.',
+      'error input.expiry_month invalid'        : 'The expiration date month was invalid, or prior to today.',
+      'error input.expiry_year invalid'         : 'The expiration date year was invalid, or prior to today.',
+      'error processor.pin invalid'             : 'The PIN number is incorrect.',
+      'error input.amount invalid'              : 'The transaction amount was invalid.',
+      'error processor.transaction declined_insufficient_funds' : 'The transaction was declined due to insufficient funds.',
+      'error processor.network_gateway merchant_invalid'        : 'The Merchant Number is incorrect.',
+      'error input.merchant_login invalid'      : 'The merchant ID is not valid or active.',
+      'error input.store_number invalid'        : 'Invalid Store Number.',
+      'error processor.bank_info invalid'       : 'Invalid banking information.',
+      'error processor.transaction not_allowed' : 'This transaction type is not allowed.',
+      'error processor.transaction type_invalid'    : 'Requested transaction type is not allowed for this card/merchant.',
+      'error processor.transaction method_invalid'  : 'The requested transaction could not be performed for this merchant.',
+      'error input.amount exceeds_limit'            : 'The maximum transaction amount was exceeded.',
+      'error input.cvv invalid'                     : 'The CVV code was not correct.',
+      'error processor.network_gateway communication_error'     : 'There was a fatal communication error.',
+      'error processor.network_gateway unresponsive'            : 'The processing network is temporarily unavailable.',
+      'error processor.network_gateway merchant_invalid'        : 'The merchant number is not on file.',
+      'error processor.transaction duplicate'        : 'Duplicate transaction detected. This transaction was not processed.',
+
+      # CVV Responses
+      'error input.cvv declined' : 'The CVV code was not correct.',
+
+      # Input validations
+      'error input.card_number is_blank'        : 'The card number was blank.',
+      'error input.card_number not_numeric'     : 'The card number was invalid.',
+      'error input.card_number too_short'       : 'The card number was too short.',
+      'error input.card_number too_long'        : 'The card number was too long.',
+      'error input.card_number failed_checksum' : 'The card number was invalid.',
+      'error input.card_number is_invalid'      : 'The card number was invalid.',
+      'error input.cvv is_blank'                : 'The CVV was blank.',
+      'error input.cvv not_numeric'             : 'The CVV was invalid.',
+      'error input.cvv too_short'               : 'The CVV was too short.',
+      'error input.cvv too_long'                : 'The CVV was too long.',
+      'error input.expiry_month is_blank'       : 'The expiration month was blank.',
+      'error input.expiry_month not_numeric'    : 'The expiration month was invalid.',
+      'error input.expiry_month is_invalid'     : 'The expiration month was invalid.',
+      'error input.expiry_year is_blank'        : 'The expiration year was blank.',
+      'error input.expiry_year not_numeric'     : 'The expiration year was invalid.',
+      'error input.expiry_year is_invalid'      : 'The expiration year was invalid.',
+    }
 
     # Keeps a list of all instantiated error handlers.
     @errorHandlers: []
@@ -135,17 +160,11 @@ $ = Samurai.jQuery
     parseErrorMessage: (message) ->
       [context, field] = message.context.split('.')
       input = @form.find '[name="credit_card['+field+']"]'
+      input = if input.length then input else null
 
-      for context_key, value of PaymentErrorHandler.ERROR_MESSAGES
-        if message.context.match(context_key)
-          text = value[message.key]
-          if text?
-            if input and input.length
-              return [context, input, text]
-            else
-              return [context, null, text]
-
-      ['processor', null, PaymentErrorHandler.ERROR_MESSAGES['unknown']]
+      lookup = "error #{message.context} #{message.key}"
+      text = PaymentErrorHandler.DEFAULT_RESPONSE_MAPPINGS[lookup] || 'An unknown error occurred. Please contact support.'
+      [context, input, text]
 
     # The default error renderer for Samurai. Adds the `error` class names to the
     # input field and its nearest label.
@@ -164,23 +183,7 @@ $ = Samurai.jQuery
       errors = []
       for message in messages
         [context, input, text] = @parseErrorMessage(message)
-
-        switch context
-          when 'input'
-            # try to find the nearest label to get the name of the field that contains
-            # the error. If no label is around, default to the name inside the context
-            # key of the returned message.
-            label = input.siblings('label')
-            if label.length is 0 then label = input.closest('label')
-            if label.length is 0
-              fieldName = message.context.split('.')[1].replace(/_/, ' ')
-            else
-              # strip trailing colon from labels that have it
-              fieldName = $.trim(label.text()).replace(/:$/, '')
-
-            errors.push "<li><em class=\"field-with-error-name\">#{fieldName}</em> #{text}</li>"
-          when 'processor'
-            errors.push "<li>#{text}</li>"
+        errors.push "<li>#{text}</li>"
 
       # Make sure the errors are unique'd
       errors = $.grep errors, (v,k) => $.inArray(v,errors) == k
