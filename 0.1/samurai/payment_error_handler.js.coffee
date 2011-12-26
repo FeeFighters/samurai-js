@@ -7,6 +7,9 @@ $ = Samurai.jQuery
   log = Samurai.log
 
   class @PaymentErrorHandler
+    @ERROR_MESSAGES = {
+      summary_header: 'We found some errors in the information you were trying to submit:'
+    }
     @DEFAULT_RESPONSE_MAPPINGS = {
       # Transaction Responses
       'info processor.transaction success'      : 'The transaction was successful.',
