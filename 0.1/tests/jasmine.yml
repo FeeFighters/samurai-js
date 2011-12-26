@@ -9,7 +9,7 @@ helpers:
 spec_files:
   - "**/*_spec.*"
 src_dir: .
-spec_dir: dist/api/0.1/tests/spec
+spec_dir: spec
 skip_core: true
 vendored_helpers:
   - jasmine-extensions
@@ -19,3 +19,4 @@ vendored_helpers:
   - jasmine.JUnitReporter
   - jsDump
   - beautify-html
+runner_output: "runner.html"
