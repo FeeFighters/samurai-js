@@ -6,10 +6,15 @@ $ = Samurai.jQuery
 @module "Samurai", ->
   @Payments = do ->
     rpc = null  # our easyXDM socket
-    transparentRedirectUrl = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json'" :
-      %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json"} %> # API endpoint
+    remote = 'https://api.samurai.feefighters.com/provider.html'
+    transparentRedirectUrl = 'https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json'
 
     init = ->
+      transparentRedirectUrl = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json'" :
+        %{if Samurai.config.mock then "/uber_gateway_mock/v1/payment_methods" else "https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json"} %> # API endpoint
+      remote = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/provider.html'" :
+      %{if Samurai.config.mock then "/provider.html" else "https://api.samurai.feefighters.com/provider.html"} %>
+
       preparePaymentForms()
       setupRpc() unless Samurai.config.withoutPayments  # initialize the easyXDM framework
       attachPaymentFormHandlers()  # attach event handlers to any payment forms
@@ -20,8 +25,6 @@ $ = Samurai.jQuery
     # Setup the easyXDM socket
     setupRpc = ->
       Samurai.log 'Setting up RPC Provider'
-      remote = <%= Rails.env.production? ? "'https://api.samurai.feefighters.com/provider.html'" :
-      %{if Samurai.config.mock then "/provider.html" else "https://api.samurai.feefighters.com/provider.html"} %>
       rpc = new easyXDM.Rpc {
         remote: remote
       }, { remote: { request: {} }}
