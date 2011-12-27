@@ -9,6 +9,7 @@ $ = Samurai.jQuery
   class @PaymentErrorHandler
     @ERROR_MESSAGES = {
       summary_header: 'We found some errors in the information you were trying to submit:'
+      default: 'An unknown error occurred. Please contact support.'
     }
     @DEFAULT_RESPONSE_MAPPINGS = {
       # Transaction Responses
@@ -171,7 +172,7 @@ $ = Samurai.jQuery
       input = if input.length then input else null
 
       lookup = "error #{message.context} #{message.key}"
-      text = PaymentErrorHandler.DEFAULT_RESPONSE_MAPPINGS[lookup] || 'An unknown error occurred. Please contact support.'
+      text = PaymentErrorHandler.DEFAULT_RESPONSE_MAPPINGS[lookup] || PaymentErrorHandler.ERROR_MESSAGES['default']
       [context, input, text]
 
     # The default error renderer for Samurai. Adds the `error` class names to the

@@ -4,12 +4,14 @@ describe "payment_error_handler", ->
 
   testPaymentErrorHandler = null
   test_form = null
+  messages = null
 
   beforeEach ->
     jasmine.getFixtures().set '''
 <form action="/samurai-rocks" method="POST" id="test_form">
   <input id="credit_card_card_number" name="credit_card[card_number]" size="30" type="text" value="" autocomplete="off" />
   <input id="credit_card_cvv" name="credit_card[cvv]" size="30" type="text" value="" autocomplete="off" />
+  <input type="submit" />
 </form>
 '''
     test_form = $('#test_form')
@@ -188,3 +190,26 @@ describe "payment_error_handler", ->
         spyOn(test_form, 'trigger')
         testPaymentErrorHandler.handleErrorsFromResponse response
         expect(test_form.trigger).toHaveBeenCalledWith 'show-error', [null, 'Duplicate transaction detected. This transaction was not processed.', messages[0]]
+
+
+  describe 'showing error summary', ->
+    beforeEach ->
+      messages = [
+        { subclass:'error', context:'input.card_number', key:'is_blank'}
+        { subclass:'error', context:'input.cvv', key:'is_blank'}
+        { subclass:'error', context:'processor.transaction', key:'declined'}
+        { subclass:'error', context:'abc', key:'123'}
+        { subclass:'error', context:'def', key:'456'}
+      ]
+
+    it 'should add a error summary div', ->
+      testPaymentErrorHandler.showErrorSummary null, messages
+      expect(test_form).toContain '.error-summary'
+
+    it 'should add an li for each error', ->
+      testPaymentErrorHandler.showErrorSummary null, messages
+      expect(test_form.find('.error-summary li').length).toEqual 4
+      expect(test_form.find('.error-summary li')).toHaveText /card number was blank/
+      expect(test_form.find('.error-summary li')).toHaveText /CVV was blank/
+      expect(test_form.find('.error-summary li')).toHaveText /card was declined/
+      expect(test_form.find('.error-summary li')).toHaveText /An unknown error occurred. Please contact support./
