@@ -255,7 +255,7 @@ provide users a summary of all errors.</p>
 <p>This method will usually get called by handlePaymentEvent when a <code>payment</code> event
 is triggered, but you can easily use it on its own like this:</p>
 
-<p><code>Samurai.PaymentErrorHandler.for($(&#39;#myform&#39;).get(0)).handleErrorsFromResponse(jsonResponse)</code></p>
+<p><code>Samurai.PaymentErrorHandler.forForm($(&#39;#myform&#39;).get(0)).handleErrorsFromResponse(jsonResponse)</code></p>
 
 <p>Note that this method doesn&#39;t handle the display of errors.
 When it finds an error, it triggers the <code>show-error</code> event and passes on

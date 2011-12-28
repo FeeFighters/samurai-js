@@ -15,12 +15,12 @@ describe "payment_error_handler", ->
 </form>
 '''
     test_form = $('#test_form')
-    testPaymentErrorHandler = Samurai.PaymentErrorHandler.for(test_form)
+    testPaymentErrorHandler = Samurai.PaymentErrorHandler.forForm(test_form)
 
 
   describe "on init", ->
     it "should find the cached payment error handler", ->
-      expect(testPaymentErrorHandler).toEqual Samurai.PaymentErrorHandler.for(test_form)
+      expect(testPaymentErrorHandler).toEqual Samurai.PaymentErrorHandler.forForm(test_form)
 
   describe "handling a payment event", ->
     describe "if there are messages", ->

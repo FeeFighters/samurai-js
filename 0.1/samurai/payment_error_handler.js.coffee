@@ -71,7 +71,7 @@ $ = Samurai.jQuery
     # instantiate one if one doesn't exist, yet.
     # Make sure that the `element` argument is an actual DOM element
     # and not a jQuery collection.
-    @for: (element) ->
+    @forForm: (element) ->
       if element instanceof Samurai.jQuery
         element = element.get(0)
 
@@ -79,6 +79,9 @@ $ = Samurai.jQuery
         return handler if el is element
 
       return new PaymentErrorHandler $(element)
+
+    # Deprecated because of reserved word use. Will be removed in v0.2
+    @for: @forForm
 
     # Setup the error handler for `@form` and respond to the payment,
     # submit and show-error events.
@@ -116,7 +119,7 @@ $ = Samurai.jQuery
     # This method will usually get called by handlePaymentEvent when a `payment` event
     # is triggered, but you can easily use it on its own like this:
     #
-    # `Samurai.PaymentErrorHandler.for($('#myform').get(0)).handleErrorsFromResponse(jsonResponse)`
+    # `Samurai.PaymentErrorHandler.forForm($('#myform').get(0)).handleErrorsFromResponse(jsonResponse)`
     #
     # Note that this method doesn't handle the display of errors.
     # When it finds an error, it triggers the `show-error` event and passes on
