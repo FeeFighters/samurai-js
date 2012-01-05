@@ -136,7 +136,7 @@ $ = Samurai.jQuery
         test(a.key || '') - test(b.key || '')
 
       # Make sure the errors are unique'd, by message.context
-      messages = $.grep messages, (v,k) -> $.inArray(v.context, messages.map (m) -> m.context) == k
+      messages = $.grep messages, (v,k) -> $.inArray(v.context, $.map messages, (m) -> m.context) == k
 
       for message in messages
         if message.class is 'error' or message.subclass is 'error'
