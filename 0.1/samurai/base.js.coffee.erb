@@ -31,6 +31,8 @@ window.Samurai =
 
   # Initializes each of the Samurai modules
   init: (@config={})->
+    if window.location.href.match(/^file:\/\//)
+      throw "Oops! You're trying to use Samurai on a page that was loaded using a file:// URL, which makes the gods of cross-site scripting very, very angry. Try loading the same page via http(s)://."
     @config.debug = true if window.location.href.match(/samurai-js-debug=1/)
     @config.forceLoad = [] unless @config.forceLoad?
     @loadSamuraiCss() unless @config.withoutCss?
