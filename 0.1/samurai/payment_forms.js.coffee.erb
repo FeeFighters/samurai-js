@@ -24,8 +24,14 @@ $ = Samurai.jQuery
     buildPaymentForm = (index, container) ->
       log 'Adding payment_form to:', container
       $(container).append paymentFormHtml(container)
+
+      # By default, attach a payment error handler AND a renderer
       if Samurai.PaymentErrorHandler
-        new Samurai.PaymentErrorHandler($(container).find('form').first())
+        form = $(container).find('form').first()
+        new Samurai.PaymentErrorHandler(form)
+
+        if Samurai.PaymentErrorRenderer
+          Samurai.PaymentErrorRenderer.forForm(form)
 
     # Load the payment form html of the appropriate "style"
     # (We detect form styles using `samurai-...` class names)

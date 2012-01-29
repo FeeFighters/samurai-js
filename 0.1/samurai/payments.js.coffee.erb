@@ -69,6 +69,15 @@ $ = Samurai.jQuery
         # Re-enable the submit buttons
         $(this).children('button[type="submit"]').attr('disabled', false).text('Submit Payment')
 
+        # Attach a default payment error renderer if the
+        # `data-samurai-disable-error-rendering` attribute isn't set and
+        # provided we haven't already done so
+        
+        if Samurai.PaymentErrorRenderer and
+           !$(this).attr('data-samurai-disable-error-rendering')?
+
+          Samurai.PaymentErrorRenderer.forForm(this)
+
         # On submit:
         #
         # * stop event propagation
@@ -91,7 +100,7 @@ $ = Samurai.jQuery
         # * hide the `.loading` spinner
         # * enable the submit button
         # * change the label of the submit button to "Resubmit Payment"
-        $(this).bind 'errors-shown', (event) ->
+        $(this).bind 'errors', (event) ->
           $(this)
             .removeClass('loading')
             .children('.loading').hide().end()

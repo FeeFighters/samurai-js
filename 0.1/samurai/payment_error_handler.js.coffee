@@ -7,11 +7,9 @@ $ = Samurai.jQuery
   log = Samurai.log
 
   class @PaymentErrorHandler
-    @ERROR_MESSAGES = {
-      summary_header: 'We found some errors in the information you were trying to submit:'
-      default: 'An unknown error occurred. Please contact support.'
-    }
     @DEFAULT_RESPONSE_MAPPINGS = {
+      default                                   : 'An unknown error occurred. Please contact support.',
+
       # Transaction Responses
       'info processor.transaction success'      : 'The transaction was successful.',
       'error processor.transaction declined'    : 'The card was declined.',
@@ -83,24 +81,12 @@ $ = Samurai.jQuery
     # Deprecated because of reserved word use. Will be removed in v0.2
     @for: @forForm
 
-    # Setup the error handler for `@form` and respond to the payment,
-    # submit and show-error events.
-    constructor: (@form, @config={}) ->
-      # You can pass your own config values to the constructor
-      # if you're planning to let Samurai handle the display of errors,
-      # but would just like to use different class names.
-      @config = $.extend(
-        inputErrorClass: 'error',
-        labelErrorClass: 'error',
-        errorSummaryClass: 'error-summary'
-        @config)
-
+    # Setup the error handler for `@form` and respond to the payment event
+    constructor: (@form) ->
       @form = $(@form)
       @form
         .bind('payment', @handlePaymentEvent)
         .submit(@reset)
-        .bind('show-error', @highlightFieldWithErrors)
-        .bind('errors-shown', @showErrorSummary)
       @currentErrorMessages = []
       PaymentErrorHandler.errorHandlers.push [@form.get(0), this]
       log 'Error handler attached to ', @form
@@ -109,12 +95,12 @@ $ = Samurai.jQuery
     # in its default implementation, but you can always replace it with your own if you
     # need it to do more than that.
     handlePaymentEvent: (event, response) =>
-      @handleErrorsFromResponse(response) if @extractMessagesFromResponse(response).length > 0
+      @handleErrorsFromResponse(response)
 
     # Loops through the messages block and calls the `parseErrorMessage` method
-    # for each message with a class of `error`. At the end of the method,
-    # a `errors-shown` event is triggered, which we hook into to
-    # provide users a summary of all errors.
+    # for each message with a class of `error`. At the end of the method, a
+    # `errors` event is triggered, which we hook into to provide users a
+    # summary of all errors.
     #
     # This method will usually get called by handlePaymentEvent when a `payment` event
     # is triggered, but you can easily use it on its own like this:
@@ -122,13 +108,14 @@ $ = Samurai.jQuery
     # `Samurai.PaymentErrorHandler.forForm($('#myform').get(0)).handleErrorsFromResponse(jsonResponse)`
     #
     # Note that this method doesn't handle the display of errors.
-    # When it finds an error, it triggers the `show-error` event and passes on
-    # the affected input field and the humanized error message. This allows you to
-    # intercept the `show-error` event and handle the display of errors yourself.
-    # If not, the built-in `highlightFieldWithError` method will respond to this event
-    # and highlight the erroneous field in the default style.
+    # When it finds an error, it triggers the `error` event and passes on the
+    # error message. This allows you to intercept the `error` event and handle
+    # the display of errors yourself.  If not, the built-in
+    # `highlightFieldWithError` method of PaymentErrorRenderer will respond to
+    # this event and highlight the erroneous field in the default style.
     handleErrorsFromResponse: (response) ->
       messages = @extractMessagesFromResponse(response)
+      return unless messages.length
 
       # Sort the messages so that we handle the higher-priority messages first
       messages = messages.sort (a,b) ->
@@ -136,15 +123,15 @@ $ = Samurai.jQuery
         test(a.key || '') - test(b.key || '')
 
       # Make sure the errors are unique'd, by message.context
-      messages = $.grep messages, (v,k) -> $.inArray(v.context, $.map messages, (m) -> m.context) == k
+      messages = $.grep messages, (v, k) -> $.inArray(v.context, $.map messages, (m) -> m.context) == k
 
       for message in messages
         if message.class is 'error' or message.subclass is 'error'
-          [context, input, text] = @parseErrorMessage(message)
-          @form.trigger 'show-error', [input, text, message]
+          @parseErrorMessage(message)
+          @form.trigger 'error', [message]
           @currentErrorMessages.push(message)
 
-      @form.trigger 'errors-shown', [@currentErrorMessages] if @currentErrorMessages.length > 0
+      @form.trigger 'errors', [@currentErrorMessages] if @currentErrorMessages.length > 0
 
     # Performs a deep traversal of the response object, and looks for
     # message arrays along the way. This method is needed because sometimes
@@ -170,50 +157,10 @@ $ = Samurai.jQuery
     # Returns the error context, a jQuery collection that contains the element with invalid value
     # (if there is one) and the humanized error text that corresponds to the message key
     parseErrorMessage: (message) ->
-      [context, field] = message.context.split('.')
-      input = @form.find '[name="credit_card['+field+']"]'
-      input = if input.length then input else null
-
-      lookup = "error #{message.context} #{message.key}"
-      text = PaymentErrorHandler.DEFAULT_RESPONSE_MAPPINGS[lookup] || PaymentErrorHandler.ERROR_MESSAGES['default']
-      [context, input, text]
-
-    # The default error renderer for Samurai. Adds the `error` class names to the
-    # input field and its nearest label.
-    # It also triggers an `error-shown` event after these changes with the affected input element
-    # and the error message as arguments.
-    highlightFieldWithErrors: (event, input, text, message) =>
-      return if !input or input.length is 0
-
-      input.addClass @config.inputErrorClass
-      label = input.siblings('label')
-      if label.length is 0 then label = input.closest('label')
-      label.addClass @config.labelErrorClass
-      @form.trigger 'error-shown', [input, text]
-
-    showErrorSummary: (event, messages) =>
-      errors = []
-      for message in messages
-        [context, input, text] = @parseErrorMessage(message)
-        errors.push "<li>#{text}</li>"
-
-      # Make sure the errors are unique'd
-      errors = $.grep errors, (v,k) => $.inArray(v,errors) == k
-
-      errorContainerHTML = "<div class=\"#{@config.errorSummaryClass}\">
-        <strong>#{PaymentErrorHandler.ERROR_MESSAGES.summary_header}</strong>
-        <ul>#{errors.join('')}</ul>
-      </div>"
-
-      @form
-        .find('.'+@config.errorSummaryClass).remove().end()
-        .find('[type="submit"]').last()
-          .before(errorContainerHTML)
-
-    # Clears all errors and wipe the internal error message array.
+      mappings = PaymentErrorHandler.DEFAULT_RESPONSE_MAPPINGS
+      message.text = mappings["error #{message.context} #{message.key}"] || mappings.default
+      return message
+      
+    # Wipes the internal error message array.
     reset: =>
-      @form
-        .find('.'+@config.inputErrorClass).removeClass(@config.inputErrorClass).end()
-        .find('.'+@config.labelErrorClass).removeClass(@config.labelErrorClass).end()
-        .find('.'+@config.errorSummaryClass).remove()
       @currentErrorMessages = []
