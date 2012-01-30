@@ -1,3 +1,5 @@
+require 'rake/testtask'
+
 namespace :samurai_js do
   task :setup do
     rm_rf "api"
@@ -47,5 +49,12 @@ namespace :samurai_js do
     rm_rf "0.1/tests/results.xml"
     system "cd api/0.1/tests && jasmine-headless-webkit -j jasmine.yml --report results.xml"
   end
+
+  Rake::TestTask.new(:integration => :compile) do |t|
+    t.libs << 'api/0.1/integration_tests'
+    t.test_files = FileList['api/0.1/integration_tests/*.rb']
+    t.verbose = true
+  end
+  Rake::Task['samurai_js:integration'].comment = "Run the integration tests on SauceLabs"
 end
 
