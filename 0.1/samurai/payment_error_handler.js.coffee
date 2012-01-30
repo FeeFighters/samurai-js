@@ -114,7 +114,7 @@ $ = Samurai.jQuery
     # `highlightFieldWithError` method of PaymentErrorRenderer will respond to
     # this event and highlight the erroneous field in the default style.
     handleErrorsFromResponse: (response) ->
-      messages = @extractMessagesFromResponse(response)
+      messages = @extractErrorMessagesFromResponse(response)
       return unless messages.length
 
       # Sort the messages so that we handle the higher-priority messages first
@@ -126,10 +126,8 @@ $ = Samurai.jQuery
       messages = $.grep messages, (v, k) -> $.inArray(v.context, $.map messages, (m) -> m.context) == k
 
       for message in messages
-        if message.class is 'error' or message.subclass is 'error'
-          @parseErrorMessage(message)
-          @form.trigger 'error', [message]
-          @currentErrorMessages.push(message)
+        @form.trigger 'error', [message]
+        @currentErrorMessages.push(message)
 
       @form.trigger 'errors', [@currentErrorMessages] if @currentErrorMessages.length > 0
 
@@ -139,7 +137,7 @@ $ = Samurai.jQuery
     # JSON object, each with their own respective messages array. This method
     # saves you from having to remember the paths to these message arrays and
     # lumps all messages together.
-    extractMessagesFromResponse: (response) ->
+    extractErrorMessagesFromResponse: (response) ->
       messages = []
       extr = (hash) ->
         for own key, value of hash
@@ -153,9 +151,10 @@ $ = Samurai.jQuery
       # sometimes it's inside an additional `message` object wrapper. This expression
       # makes sure the two are the same.
       messages = $.map messages, (m) -> if m.message then m.message else m
+      messages = (@parseErrorMessage(m) for m in messages when m.class is 'error' or m.subclass is 'error')
+      return messages
 
-    # Returns the error context, a jQuery collection that contains the element with invalid value
-    # (if there is one) and the humanized error text that corresponds to the message key
+    # Decorates the error message with the humanized error text that corresponds to the message key
     parseErrorMessage: (message) ->
       mappings = PaymentErrorHandler.DEFAULT_RESPONSE_MAPPINGS
       message.text = mappings["error #{message.context} #{message.key}"] || mappings.default
