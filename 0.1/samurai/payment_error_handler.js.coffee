@@ -136,7 +136,7 @@ $ = Samurai.jQuery
     # you can have both the payment_method and processor responses in the same
     # JSON object, each with their own respective messages array. This method
     # saves you from having to remember the paths to these message arrays and
-    # lumps all messages together.
+    # lumps all _error_ messages together. It ignores info and other messages.
     extractErrorMessagesFromResponse: (response) ->
       messages = []
       extr = (hash) ->
@@ -151,6 +151,8 @@ $ = Samurai.jQuery
       # sometimes it's inside an additional `message` object wrapper. This expression
       # makes sure the two are the same.
       messages = $.map messages, (m) -> if m.message then m.message else m
+
+      # keep only error messages
       messages = (@parseErrorMessage(m) for m in messages when m.class is 'error' or m.subclass is 'error')
       return messages
 

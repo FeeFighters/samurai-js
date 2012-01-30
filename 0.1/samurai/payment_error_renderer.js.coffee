@@ -46,10 +46,10 @@ $ = Samurai.jQuery
       PaymentErrorRenderer.errorRenderers.push [@form.get(0), this]
       log 'Error renderer attached to ', @form
 
-    # The default error renderer for Samurai. Adds the `error` class names to the
-    # input field and its nearest label.
-    # It also triggers an `error-shown` event after these changes with the affected input element
-    # and the error message as arguments.
+    # The default error renderer for Samurai. Adds the `error` class names to
+    # the input field and its nearest label. It also triggers an `error-shown`
+    # event after these changes with the affected input element and the error
+    # message as arguments.
     highlightFieldWithErrors: (event, message) =>
       [context, field] = message.context.split('.')
       input = @form.find '[name="credit_card['+field+']"]'
@@ -81,14 +81,14 @@ $ = Samurai.jQuery
         .find('[type="submit"]').last()
           .before(errorContainerHTML)
     
-    # Clears all errors and wipe the internal error message array.
+    # Clears all errors and wipes the internal error message array.
     reset: =>
       @form
         .find('.'+@config.inputErrorClass).removeClass(@config.inputErrorClass).end()
         .find('.'+@config.labelErrorClass).removeClass(@config.labelErrorClass).end()
         .find('.'+@config.errorSummaryClass).remove()
 
-    # Detaches event listeners and destroys this renderer
+    # Detaches event listeners and destroys this renderer.
     destroy: ->
       @form
         .unbind('submit', @reset)
