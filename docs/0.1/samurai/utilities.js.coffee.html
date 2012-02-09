@@ -110,7 +110,7 @@
           <p>General utilities module</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">jQuery</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -134,8 +134,7 @@
           <p>General helper functions</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
-  <span class="vi">@Utilities = </span><span class="nx">do</span> <span class="o">-&gt;</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -147,11 +146,7 @@
           <p>Detects the brand of credit card based on the prefix of the number</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">cardBrandFromNumber = </span><span class="nf">(number) -&gt;</span>
-      <span class="nv">number = </span><span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
-      <span class="k">for</span> <span class="nx">own</span> <span class="p">{</span><span class="nx">name</span><span class="p">,</span> <span class="nx">regex</span><span class="p">}</span> <span class="k">in</span> <span class="nx">companies</span>
-        <span class="k">if</span> <span class="nx">number</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regex</span><span class="p">)</span>
-          <span class="k">return</span> <span class="nx">name</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -164,21 +159,7 @@
 <em>Note: these are matched in-order</em></p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">companies = </span><span class="p">[</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;visa&#39;</span><span class="p">,</span>          <span class="nv">regex: </span><span class="sr">/^4/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;mastercard&#39;</span><span class="p">,</span>    <span class="nv">regex: </span><span class="sr">/^(51|52|53|54|55)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;amex&#39;</span><span class="p">,</span>          <span class="nv">regex: </span><span class="sr">/^(34|37)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;discover&#39;</span><span class="p">,</span>      <span class="nv">regex: </span><span class="sr">/^(6011|62|64|65)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;diners_club&#39;</span><span class="p">,</span>   <span class="nv">regex: </span><span class="sr">/^(305|36|38)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;carte_blanche&#39;</span><span class="p">,</span> <span class="nv">regex: </span><span class="sr">/^(300|301|302|303|304|305)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;jcb&#39;</span><span class="p">,</span>           <span class="nv">regex: </span><span class="sr">/^35/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;enroute&#39;</span><span class="p">,</span>       <span class="nv">regex: </span><span class="sr">/^(2014|2149)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;solo&#39;</span><span class="p">,</span>          <span class="nv">regex: </span><span class="sr">/^(6334|6767)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;switch&#39;</span><span class="p">,</span>        <span class="nv">regex: </span><span class="sr">/^(4903|4905|4911|4936|564182|633110|6333|6759)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;maestro&#39;</span><span class="p">,</span>       <span class="nv">regex: </span><span class="sr">/^(5018|5020|5038|6304|6759|6761)/</span> <span class="p">},</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;visa&#39;</span><span class="p">,</span>          <span class="nv">regex: </span><span class="sr">/^(417500|4917|4913|4508|4844)/</span> <span class="p">},</span>   <span class="c1"># visa electron</span>
-      <span class="p">{</span> <span class="nv">name: </span><span class="s1">&#39;laser&#39;</span><span class="p">,</span>         <span class="nv">regex: </span><span class="sr">/^(6304|6706|6771|6709)/</span> <span class="p">},</span>
-    <span class="p">]</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -191,7 +172,7 @@
 
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="p">{</span><span class="nx">cardBrandFromNumber</span><span class="p">}</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       

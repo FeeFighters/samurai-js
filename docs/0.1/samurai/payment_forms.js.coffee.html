@@ -122,7 +122,7 @@
           <h2>Samurai Payment Forms Module</h2>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">jQuery</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -134,12 +134,7 @@
           <p>Module for constructing samurai-compatible payment forms</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
-  <span class="vi">@PaymentForms = </span><span class="nx">do</span> <span class="o">-&gt;</span>
-    <span class="nv">log = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span>
-
-    <span class="nv">init = </span><span class="o">-&gt;</span>
-      <span class="nx">buildPaymentForms</span><span class="p">()</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -151,12 +146,7 @@
           <p>Build the payment forms, if we find any container elements on the page</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">buildPaymentForms = </span><span class="o">-&gt;</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;*[data-samurai-payment-form=&quot;&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="nf">(index, container) -&gt;</span>
-        <span class="nx">buildPaymentForm</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">container</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.samurai-placeholders&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="nf">(i, container) -&gt;</span>
-        <span class="nx">setFormPlaceholders</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
-      <span class="nx">setFormPlaceholdersForOldBrowsers</span><span class="p">()</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -168,11 +158,7 @@
           <p>Contruct a payment form and append it to the container</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">buildPaymentForm = </span><span class="nf">(index, container) -&gt;</span>
-      <span class="nx">log</span> <span class="s1">&#39;Adding payment_form to:&#39;</span><span class="p">,</span> <span class="nx">container</span>
-      <span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">).</span><span class="nx">append</span> <span class="nx">paymentFormHtml</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
-      <span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">PaymentErrorHandler</span>
-        <span class="k">new</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">PaymentErrorHandler</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">first</span><span class="p">())</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -185,14 +171,7 @@
 (We detect form styles using <code>samurai-...</code> class names)</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">paymentFormHtml = </span><span class="nf">(container) -&gt;</span>
-      <span class="k">for</span> <span class="nx">style</span><span class="p">,</span> <span class="nx">html</span> <span class="k">of</span> <span class="nx">forms</span>
-        <span class="nx">unless</span> <span class="nx">style</span> <span class="o">==</span> <span class="s1">&#39;default&#39;</span>
-          <span class="k">if</span> <span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;samurai-&#39;</span><span class="o">+</span><span class="nx">style</span><span class="p">)</span>
-            <span class="nx">log</span> <span class="s1">&#39;Rendering form style: &#39;</span><span class="o">+</span><span class="nx">style</span>
-            <span class="k">return</span> <span class="nx">html</span>
-      <span class="nx">log</span> <span class="s1">&#39;Rendering form style: default&#39;</span>
-      <span class="nx">forms</span><span class="p">.</span><span class="nx">default</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -204,96 +183,7 @@
           <p>Hash of form styles HTML (inlined)</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">forms =</span>
-      <span class="s1">&#39;default&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">&lt;form action=&quot;#&quot; method=&quot;POST&quot; class=&quot;samurai&quot; data-samurai-ajax&gt;</span>
-<span class="s1">&lt;fieldset&gt;</span>
-<span class="s1">&lt;div class=&quot;field-group&quot; id=&quot;credit_card_name_group&quot;&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_first_name&quot;&gt;First name&lt;/label&gt;</span>
-<span class="s1">&lt;input id=&quot;credit_card_first_name&quot; name=&quot;credit_card[first_name]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_last_name&quot;&gt;Last name&lt;/label&gt;</span>
-<span class="s1">&lt;input id=&quot;credit_card_last_name&quot; name=&quot;credit_card[last_name]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div class=&quot;field-group&quot; id=&quot;credit_card_address_group&quot;&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_address_1&quot;&gt;Address 1&lt;/label&gt;</span>
-<span class="s1">&lt;input class=&quot;div-6&quot; id=&quot;credit_card_address_1&quot; name=&quot;credit_card[address_1]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_address_2&quot;&gt;Address 2&lt;/label&gt;</span>
-<span class="s1">&lt;input class=&quot;div-6&quot; id=&quot;credit_card_address_2&quot; name=&quot;credit_card[address_2]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div class=&quot;field-group&quot; id=&quot;location_group&quot;&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_city&quot;&gt;City&lt;/label&gt;</span>
-<span class="s1">&lt;input id=&quot;credit_card_city&quot; name=&quot;credit_card[city]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_state&quot;&gt;State&lt;/label&gt;</span>
-<span class="s1">&lt;input class=&quot;div-1&quot; id=&quot;credit_card_state&quot; name=&quot;credit_card[state]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_zip&quot;&gt;Zip&lt;/label&gt;</span>
-<span class="s1">&lt;input class=&quot;div-2&quot; id=&quot;credit_card_zip&quot; name=&quot;credit_card[zip]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;/fieldset&gt;</span>
-<span class="s1">&lt;fieldset&gt;</span>
-<span class="s1">&lt;div class=&quot;field-group&quot; id=&quot;credit_card_info_group&quot;&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_card_number&quot;&gt;Card number&lt;/label&gt;</span>
-<span class="s1">&lt;input id=&quot;credit_card_card_number&quot; name=&quot;credit_card[card_number]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; autocomplete=&quot;off&quot; /&gt;</span>
-<span class="s1">&lt;label data-samurai-card-previews class=&quot;show-accepted&quot;&gt;</span>
-<span class="s1">&lt;span class=&#39;</span><span class="nx">visa</span><span class="s1">&#39;&gt;&lt;/span&gt;</span>
-<span class="s1">&lt;span class=&#39;</span><span class="nx">mastercard</span><span class="s1">&#39;&gt;&lt;/span&gt;</span>
-<span class="s1">&lt;span class=&#39;</span><span class="nx">amex</span><span class="s1">&#39;&gt;&lt;/span&gt;</span>
-<span class="s1">&lt;span class=&#39;</span><span class="nx">discover</span><span class="s1">&#39;&gt;&lt;/span&gt;</span>
-<span class="s1">&lt;/label&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div id=&quot;samurai_card_cvv&quot;&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_cvv&quot;&gt;CVV&lt;/label&gt;</span>
-<span class="s1">&lt;input class=&quot;div-1&quot; id=&quot;credit_card_cvv&quot; name=&quot;credit_card[cvv]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;&quot; autocomplete=&quot;off&quot; /&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;div class=&quot;field-group&quot; id=&quot;credit_card_expiration&quot;&gt;</span>
-<span class="s1">&lt;div&gt;</span>
-<span class="s1">&lt;label for=&quot;credit_card_expiry_month&quot;&gt;Expires on&lt;/label&gt;</span>
-<span class="s1">&lt;select id=&quot;credit_card_expiry_month&quot; name=&quot;credit_card[expiry_month]&quot;&gt;</span>
-<span class="s1">&lt;option value=&quot;1&quot;&gt;01&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;2&quot;&gt;02&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;3&quot;&gt;03&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;4&quot;&gt;04&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;5&quot;&gt;05&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;6&quot;&gt;06&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;7&quot;&gt;07&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;8&quot;&gt;08&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;9&quot;&gt;09&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;11&quot;&gt;11&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;12&quot;&gt;12&lt;/option&gt;</span>
-<span class="s1">&lt;/select&gt;</span>
-<span class="s1">&lt;select id=&quot;credit_card_expiry_year&quot; name=&quot;credit_card[expiry_year]&quot;&gt;</span>
-<span class="s1">&lt;option value=&quot;2011&quot; &gt;2011&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;2012&quot; &gt;2012&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;2013&quot; &gt;2013&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;2014&quot; &gt;2014&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;2015&quot; &gt;2015&lt;/option&gt;</span>
-<span class="s1">&lt;option value=&quot;2016&quot; &gt;2016&lt;/option&gt;</span>
-<span class="s1">&lt;/select&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;/div&gt;</span>
-<span class="s1">&lt;/fieldset&gt;</span>
-<span class="s1">&lt;button type=&#39;</span><span class="nx">submit</span><span class="s1">&#39; class=&#39;</span><span class="nx">button</span><span class="s1">&#39;&gt;Submit Payment&lt;/button&gt;</span>
-<span class="s1">&lt;span class=&#39;</span><span class="nx">loading</span><span class="s1">&#39; style=&quot;display: none;&quot;&gt;&lt;/span&gt;</span>
-<span class="s1">&lt;span class=&#39;</span><span class="nx">results</span><span class="s1">&#39; style=&quot;display: none;&quot;&gt;&lt;/span&gt;</span>
-<span class="s1">&lt;/form&gt;</span>
-
-<span class="s1">&#39;&#39;&#39;</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -305,17 +195,7 @@
           <p>Setup placeholders on form fields in this <code>container</code></p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">setFormPlaceholders = </span><span class="nf">(container) -&gt;</span>
-      <span class="nv">$container = </span><span class="nx">$</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[first_name]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;First Name&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[last_name]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Last Name&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[address_1]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Address&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[address_2]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Apartment or Suite&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[city]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;City&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[state]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;State&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[zip]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Zipcode&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[card_number]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;Credit Card Number&#39;</span>
-      <span class="nx">$container</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;[name=&quot;credit_card[cvv]&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span> <span class="s1">&#39;CVV&#39;</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -327,9 +207,7 @@
           <p>Support placeholders on old browsers</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">setFormPlaceholdersForOldBrowsers = </span><span class="o">-&gt;</span>
-      <span class="nx">unless</span> <span class="s1">&#39;placeholder&#39;</span> <span class="k">of</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.samurai label&quot;</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">)</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -342,7 +220,7 @@
 
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">}</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       

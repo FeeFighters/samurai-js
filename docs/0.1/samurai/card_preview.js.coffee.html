@@ -110,7 +110,7 @@
           <h2>Samurai Card Previews Module</h2>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">jQuery</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -122,11 +122,7 @@
           <p>Module for observing the credit_card[number] field, and displaying the proper card images</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
-  <span class="vi">@CardPreview = </span><span class="nx">do</span> <span class="o">-&gt;</span>
-    <span class="nv">cardNumberField = </span><span class="p">[]</span>
-    <span class="nv">cardPreviews = </span><span class="kc">null</span>
-    <span class="nv">showAccepted = </span><span class="kc">true</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -140,15 +136,7 @@ Attach event handlers on jQuery.ready()
 Build &amp; display the card preview images</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">init = </span><span class="o">-&gt;</span>
-      <span class="nv">cardNumberField = </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[name=&#39;credit_card[card_number]&#39;]&quot;</span><span class="p">)</span>
-      <span class="k">if</span> <span class="nx">cardNumberField</span><span class="p">.</span><span class="nx">length</span>
-        <span class="nx">attachEventHandlers</span><span class="p">()</span>
-        <span class="nx">$</span> <span class="o">=&gt;</span>
-          <span class="nv">cardPreviews = </span><span class="kc">null</span>
-          <span class="nx">cacheCardPreviews</span><span class="p">()</span>
-          <span class="nx">clearCardPreviews</span><span class="p">()</span>
-          <span class="nx">checkCardForPreview</span><span class="p">()</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -160,16 +148,7 @@ Build &amp; display the card preview images</p>
           <p>Attach event handlers to the form fields</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">attachEventHandlers = </span><span class="o">-&gt;</span>
-      <span class="nx">cardNumberField</span><span class="p">.</span><span class="nx">keyup</span> <span class="o">=&gt;</span>
-        <span class="nx">fadeAcceptedCards</span><span class="p">()</span> <span class="k">if</span> <span class="nx">showAccepted</span>
-        <span class="nx">clearCardPreviews</span><span class="p">()</span>
-        <span class="nx">checkCardForPreview</span><span class="p">()</span>
-        <span class="kc">true</span>
-      <span class="nx">cardNumberField</span><span class="p">.</span><span class="nx">change</span> <span class="o">=&gt;</span>
-        <span class="nx">clearCardPreviews</span><span class="p">()</span>
-        <span class="nx">checkCardForPreview</span><span class="p">()</span>
-        <span class="kc">true</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -181,8 +160,7 @@ Build &amp; display the card preview images</p>
           <p>Cache the card preview elements, so we aren&#39;t looking them up every time</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">cacheCardPreviews = </span><span class="o">-&gt;</span>
-      <span class="nv">cardPreviews = </span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[data-samurai-card-previews] span&#39;</span><span class="p">)</span> <span class="nx">unless</span> <span class="nx">cardPreviews</span><span class="o">?</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -194,9 +172,7 @@ Build &amp; display the card preview images</p>
           <p>Check if the card number matches a brand, and display that brand</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">checkCardForPreview = </span><span class="o">-&gt;</span>
-      <span class="nv">cardBrand = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">Utilities</span><span class="p">.</span><span class="nx">cardBrandFromNumber</span> <span class="nx">cardNumberField</span><span class="p">.</span><span class="nx">val</span><span class="p">()</span>
-      <span class="nx">previewCard</span><span class="p">(</span><span class="nx">cardBrand</span><span class="p">)</span> <span class="k">if</span> <span class="nx">cardBrand</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -208,8 +184,7 @@ Build &amp; display the card preview images</p>
           <p>Clear the displayed card brand</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">clearCardPreviews = </span><span class="o">-&gt;</span>
-      <span class="nx">cardPreviews</span><span class="p">.</span><span class="nx">removeClass</span> <span class="s1">&#39;active&#39;</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -221,8 +196,7 @@ Build &amp; display the card preview images</p>
           <p>Display a specific card brand</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">previewCard = </span><span class="nf">(card) -&gt;</span>
-      <span class="nx">cardPreviews</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="nx">card</span><span class="p">).</span><span class="nx">addClass</span> <span class="s1">&#39;active&#39;</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -234,9 +208,7 @@ Build &amp; display the card preview images</p>
           <p>Fade out the card images (once the user starts typing)</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">fadeAcceptedCards = </span><span class="o">-&gt;</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;[data-samurai-card-previews]&#39;</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s1">&#39;show-accepted&#39;</span>
-      <span class="nv">showAccepted = </span><span class="kc">false</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -249,7 +221,7 @@ Build &amp; display the card preview images</p>
 
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">}</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
