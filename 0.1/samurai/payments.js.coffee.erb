@@ -50,7 +50,6 @@ $ = Samurai.jQuery
     prepPaymentData = (data) ->
       data.redirect_url = 'http://location/'
       data.merchant_key = Samurai.config.merchant_key
-      data.sandbox = Samurai.config.sandbox
       data.ignore_merchant_key = true if Samurai.config.mock?
       data
 
