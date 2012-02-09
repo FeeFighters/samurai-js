@@ -52,7 +52,7 @@ namespace :samurai_js do
 
   Rake::TestTask.new(:integration => :compile) do |t|
     t.libs << 'api/0.1/integration_tests'
-    t.test_files = FileList['api/0.1/integration_tests/*.rb']
+    t.test_files = FileList['api/0.1/integration_tests/*.ruby']
     t.verbose = true
   end
   Rake::Task['samurai_js:integration'].comment = "Run the integration tests on SauceLabs"
