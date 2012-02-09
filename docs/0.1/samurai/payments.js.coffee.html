@@ -110,7 +110,7 @@
           <h2>Samurai Payment Forms Module</h2>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nv">$ = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">jQuery</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -122,14 +122,7 @@
           <p>Module for performing ajax payment transactions</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre><span class="nx">@module</span> <span class="s2">&quot;Samurai&quot;</span><span class="p">,</span> <span class="o">-&gt;</span>
-  <span class="vi">@Payments = </span><span class="nx">do</span> <span class="o">-&gt;</span>
-    <span class="nv">rpc = </span><span class="kc">null</span>  <span class="c1"># our easyXDM socket</span>
-    <span class="nv">transparentRedirectUrl = </span><span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span> <span class="k">then</span> <span class="s2">&quot;/uber_gateway_mock/v1/payment_methods&quot;</span> <span class="k">else</span> <span class="s2">&quot;https://api.samurai.feefighters.com/v1/payment_methods/tokenize.json&quot;</span> <span class="c1"># API endpoint</span>
-
-    <span class="nv">init = </span><span class="o">-&gt;</span>
-      <span class="nx">setupRpc</span><span class="p">()</span> <span class="nx">unless</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">withoutPayments</span>  <span class="c1"># initialize the easyXDM framework</span>
-      <span class="nx">attachPaymentFormHandlers</span><span class="p">()</span>  <span class="c1"># attach event handlers to any payment forms</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -141,7 +134,7 @@
           <p>Expose the payment method on the Samurai object, for convenience</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>      <span class="nv">Samurai.payment = </span><span class="nx">payment</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -153,11 +146,7 @@
           <p>Setup the easyXDM socket</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">setupRpc = </span><span class="o">-&gt;</span>
-      <span class="nv">remote = </span><span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span> <span class="k">then</span> <span class="s2">&quot;/provider.html&quot;</span> <span class="k">else</span> <span class="s2">&quot;https://api.samurai.feefighters.com/provider.html&quot;</span>
-      <span class="nv">rpc = </span><span class="k">new</span> <span class="nx">easyXDM</span><span class="p">.</span><span class="nx">Rpc</span> <span class="p">{</span>
-        <span class="nv">remote: </span><span class="nx">remote</span>
-      <span class="p">},</span> <span class="p">{</span> <span class="nv">remote: </span><span class="p">{</span> <span class="nv">request: </span><span class="p">{}</span> <span class="p">}}</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -171,19 +160,7 @@ It will generate a <code>payment_method_token</code> based on the supplied credi
 and pass it to the callback function</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">payment = </span><span class="nf">(data, callback) -&gt;</span>
-      <span class="nx">rpc</span><span class="p">.</span><span class="nx">request</span> <span class="p">{</span>
-        <span class="nv">url: </span><span class="nx">transparentRedirectUrl</span>
-        <span class="nv">method: </span><span class="s1">&#39;POST&#39;</span>
-        <span class="nv">data: </span><span class="nx">prepPaymentData</span> <span class="nx">data</span>
-        <span class="nv">dataType: </span><span class="s1">&#39;json&#39;</span>
-        <span class="nv">headers:</span>
-          <span class="s1">&#39;Accept&#39;</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span>
-      <span class="p">},</span> <span class="nf">(response) -&gt;</span>
-        <span class="nv">json = </span><span class="nx">$</span><span class="p">.</span><span class="nx">parseJSON</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span>
-        <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="s1">&#39;payment response&#39;</span>
-        <span class="nx">Samurai</span><span class="p">.</span><span class="nx">log</span> <span class="nx">json</span>
-        <span class="nx">callback</span><span class="p">(</span><span class="nx">json</span><span class="p">)</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -195,12 +172,7 @@ and pass it to the callback function</p>
           <p>Add the extra data fields that we need to add, ie: <code>redirect_url</code></p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">prepPaymentData = </span><span class="nf">(data) -&gt;</span>
-      <span class="nv">data.redirect_url = </span><span class="s1">&#39;http://location/&#39;</span>
-      <span class="nv">data.merchant_key = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">merchant_key</span>
-      <span class="nv">data.sandbox = </span><span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">sandbox</span>
-      <span class="nv">data.ignore_merchant_key = </span><span class="kc">true</span> <span class="k">if</span> <span class="nx">Samurai</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mock</span><span class="o">?</span>
-      <span class="nx">data</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -209,12 +181,10 @@ and pass it to the callback function</p>
           <div class="pilwrap">
             <a class="pilcrow" href="#section-7">&#182;</a>
           </div>
-          <p>Attach to any forms with <code>data-samurai-ajax</code>, and make them ajax-aware</p>
+          <p>Disable the submit button, while load the rest of the payments stack</p>
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="nv">attachPaymentFormHandlers = </span><span class="o">-&gt;</span>
-      <span class="nv">samurai = </span><span class="k">this</span>
-      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form[data-samurai-ajax=&quot;&quot;]&#39;</span><span class="p">).</span><span class="nx">each</span> <span class="o">-&gt;</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
@@ -223,11 +193,35 @@ and pass it to the callback function</p>
           <div class="pilwrap">
             <a class="pilcrow" href="#section-8">&#182;</a>
           </div>
+          <p>Attach to any forms with <code>data-samurai-ajax</code>, and make them ajax-aware</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-9'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-9">&#182;</a>
+          </div>
+          <p>Re-enable the submit buttons</p>
+        </td>
+        <td class=code>
+          <div class='highlight'><pre></pre></div>
+        </td>
+      </tr>
+      
+      <tr id='section-10'>
+        <td class=docs>
+          <div class="pilwrap">
+            <a class="pilcrow" href="#section-10">&#182;</a>
+          </div>
           <p>On submit:</p>
 
 <ul>
 <li>stop event propagation</li>
-<li>trigger the <code>samurai.loading</code> event</li>
+<li>trigger the <code>loading</code> event</li>
 <li>display the <code>.loading</code> spinner, and change the button style to inactive</li>
 <li>call <code>Samurai.payment()</code> to submit the credit card data
 
@@ -237,21 +231,14 @@ and pass it to the callback function</p>
 </ul>
         </td>
         <td class=code>
-          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">submit</span> <span class="nf">(event) -&gt;</span>
-          <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">()</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
-          <span class="nx">payment</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">formParams</span><span class="p">(),</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;payment&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
-          <span class="kc">false</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
-      <tr id='section-9'>
+      <tr id='section-11'>
         <td class=docs>
           <div class="pilwrap">
-            <a class="pilcrow" href="#section-9">&#182;</a>
+            <a class="pilcrow" href="#section-11">&#182;</a>
           </div>
           <p>Bind to the <code>errors-shown</code> event and do the following if the payment
 information was invalid:</p>
@@ -263,19 +250,14 @@ information was invalid:</p>
 </ul>
         </td>
         <td class=code>
-          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;errors-shown&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-            <span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">)</span>
-            <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">end</span><span class="p">()</span>
-            <span class="p">.</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">)</span>
-              <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Resubmit Payment&#39;</span><span class="p">)</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
-      <tr id='section-10'>
+      <tr id='section-12'>
         <td class=docs>
           <div class="pilwrap">
-            <a class="pilcrow" href="#section-10">&#182;</a>
+            <a class="pilcrow" href="#section-12">&#182;</a>
           </div>
           <p>Bind to the <code>completed</code> event:</p>
 
@@ -287,24 +269,20 @@ information was invalid:</p>
 </ul>
         </td>
         <td class=code>
-          <div class='highlight'><pre>        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">bind</span> <span class="s1">&#39;completed&#39;</span><span class="p">,</span> <span class="nf">(event) -&gt;</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;button[type=&quot;submit&quot;]&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">()</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;loading&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;complete&#39;</span><span class="p">)</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">()</span>
-          <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">children</span><span class="p">(</span><span class="s1">&#39;.results&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">()</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
-      <tr id='section-11'>
+      <tr id='section-13'>
         <td class=docs>
           <div class="pilwrap">
-            <a class="pilcrow" href="#section-11">&#182;</a>
+            <a class="pilcrow" href="#section-13">&#182;</a>
           </div>
           <p>Export public API</p>
 
         </td>
         <td class=code>
-          <div class='highlight'><pre>    <span class="p">{</span><span class="nx">init</span><span class="p">,</span> <span class="nx">payment</span><span class="p">}</span></pre></div>
+          <div class='highlight'><pre></pre></div>
         </td>
       </tr>
       
