@@ -36,6 +36,7 @@ $ = Samurai.jQuery
       'error processor.network_gateway unresponsive'            : 'The processing network is temporarily unavailable.',
       'error processor.network_gateway merchant_invalid'        : 'The merchant number is not on file.',
       'error processor.transaction duplicate'        : 'Duplicate transaction detected. This transaction was not processed.',
+      'error input.account_number invalid'         : 'The card number was invalid.',
 
       # CVV Responses
       'error input.cvv declined' : 'The CVV code was not correct.',
@@ -47,7 +48,7 @@ $ = Samurai.jQuery
       'error input.card_number too_long'        : 'The card number was too long.',
       'error input.card_number failed_checksum' : 'The card number was invalid.',
       'error input.card_number is_invalid'      : 'The card number was invalid.',
-      'error input.card_number invalid'      : 'The card number was invalid.',
+      'error input.card_number invalid'         : 'The card number was invalid.',
       'error input.cvv is_blank'                : 'The CVV was blank.',
       'error input.cvv not_numeric'             : 'The CVV was invalid.',
       'error input.cvv too_short'               : 'The CVV was too short.',
