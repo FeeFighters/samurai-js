@@ -1,7 +1,8 @@
 <%
   version ||= 0.1
   root_url = if Rails.env.development?
-    'http://127.0.0.1:3000'
+    #'http://127.0.0.1:3000'
+    'http://10.101.200.163:3000'
   elsif Rails.env.test?
     ''
   elsif Rails.env.staging?
@@ -82,7 +83,7 @@ window.Samurai =
         console[level](d...)
 
     if typeof data[0] is "string"
-      data[0] = (new Date()).toISOString()+' Samurai: '+data[0]
+      data[0] = (new Date()).toString()+' Samurai: '+data[0]
       log 'log', data...
     else
       if "debug" of console
